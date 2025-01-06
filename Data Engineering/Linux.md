@@ -5,30 +5,51 @@
 # cd
 
 - Change Directory
-- `$ cd directory_name`
+- Syntax : `$ cd directory_name`
+- Example : `$ cd /home/niranjan`
+- `$ cd ..` : Go to Previous Directory
 # mkdir
 
 - Make Directory
-- `$ mkdir directory_name`
-- `$ mkdir dir1 dir2`
-- `$ mkdir -p /dir1/dir2` <- Create folder within folder, -p = parent folder
+- Syntax : `$ mkdir directory_name`
+- Example : `$ mkdir dir1 dir2`
+- `$ mkdir -p /dir1/dir2` : Create Directory within Directory, `-p` = Parent Directory
 # pwd
 
 - Present Working Directory
 - Shows current path
-- `$ pwd`
+- Syntax : `$ pwd`
 # ls
 
-- List Files in Current directory
-- `$ ls`
-# less 
+- List Files and Folders in Current Directory
+- Syntax : `$ ls`
+- `$ ls -l` : List Files with Details
+- `$ ls -r` : List and Sort in Descending/Reverse Order
+- `$ ls -t` : List and Sort by Timestamp
+- `$ ls -R` : Show files and folder from Current and Sub Directories
+- `$ ls -a` : Shows Hidden Files and Directories
+- Absolute Path : Path from root
+- Relative Path : Path from Current Location
+# less
 
 - Browse files interactively
+- Syntax :  `$ less file_name.txt`
+# cat 
 
-- cat -> display whole file on terminal
-- cal  -> Display a calender
-- touch -> Create an empty file
-- cp -> Copy
+- Display whole file on terminal
+# cal  
+
+- Display a calendar on the terminal
+- Syntax : `$ cal`
+# touch
+
+- Create an empty file
+- Syntax : `$ touch file_name.extension`
+- Example : `$ touch file.txt file1.conf`
+# cp
+
+- Copy
+
 - mv -> Move
 - history -> View previous commands
 - clear -> Clear everything from the terminal
