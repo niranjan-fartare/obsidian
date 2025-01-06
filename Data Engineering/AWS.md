@@ -1,0 +1,5 @@
+
+- Scalability
+- Availability
+- Security
+- Accessibility

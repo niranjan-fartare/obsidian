@@ -1,0 +1,188 @@
+{
+  "main": {
+    "id": "ff902f850beea513",
+    "type": "split",
+    "children": [
+      {
+        "id": "085f1b1c9bfc3f7f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a94929b7627020f9",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering/Python.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Python"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "e4a1a0ed1153ff10",
+    "type": "split",
+    "children": [
+      {
+        "id": "16c54674d82e1131",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "60d749a861db7930",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "aacf6ab7f567febb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "287fd38cebd5e4c6",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200,
+    "collapsed": true
+  },
+  "right": {
+    "id": "8ea420d672dfb02a",
+    "type": "split",
+    "children": [
+      {
+        "id": "65734d0cd66b1563",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fb16bac178f91774",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Hive.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Hive"
+            }
+          },
+          {
+            "id": "63af4948854de7eb",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "RDBMS.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from RDBMS"
+            }
+          },
+          {
+            "id": "457ed0ca49c4cd75",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "02813e3964be4264",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Hive.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Hive"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "a94929b7627020f9",
+  "lastOpenFiles": [
+    "Data Engineering/Python.md",
+    "Data Engineering/Shell Scripting.md",
+    "Data Engineering/Hive.md",
+    "Data Engineering/SQL.md",
+    "Data Engineering/Linux.md",
+    "B16/10th Nov HW.md",
+    "Data Engineering/BigData.md",
+    "Data Engineering",
+    "Data Engineering/AWS.md",
+    "Java/Intro to ORMs, Models, Representing Cardinalities.md",
+    "B16",
+    "Git/Git.md",
+    "Java/Arrays.md",
+    "Git",
+    "Java/Product Service.md",
+    "Java/Spring Boot.md",
+    "SQL",
+    "Java"
+  ]
+}
