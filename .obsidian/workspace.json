@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "085f1b1c9bfc3f7f",
+        "id": "2d9d522a46c530ab",
         "type": "tabs",
         "children": [
           {
-            "id": "a94929b7627020f9",
+            "id": "5109163fce7d08a5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Engineering/Python.md",
+                "file": "Data Engineering/Linux.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Python"
+              "title": "Linux"
             }
           }
         ]
@@ -164,13 +164,13 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "a94929b7627020f9",
+  "active": "5109163fce7d08a5",
   "lastOpenFiles": [
+    "Data Engineering/Linux.md",
     "Data Engineering/Python.md",
     "Data Engineering/Shell Scripting.md",
     "Data Engineering/Hive.md",
     "Data Engineering/SQL.md",
-    "Data Engineering/Linux.md",
     "B16/10th Nov HW.md",
     "Data Engineering/BigData.md",
     "Data Engineering",

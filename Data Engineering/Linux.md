@@ -1,8 +1,26 @@
-- cd -> Change Directory
-- mkdir -> Create Directory
-- pwd -> View current path
-- ls -> list files
-- less -> Browse files interactively
+- Multi User OS - Multiple Users can access the OS at the same time.
+- Command Based OS.
+# cd
+
+- Change Directory
+- `$ cd directory_name`
+# mkdir
+
+- Make Directory
+- `$ mkdir directory_name`
+
+# pwd
+
+- View current path
+- `$ pwd`
+# ls
+
+- List Files
+- `$ ls`
+# less 
+
+- Browse files interactively
+
 - cat -> display whole file on terminal
 - cal  -> Display a calender
 - touch -> Create an empty file
