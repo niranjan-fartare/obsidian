@@ -1,5 +1,7 @@
+- Open Source Command Line based OS.
 - Multi User OS - Multiple Users can access the OS at the same time.
-- Command Based OS.
+- Flavors - Ubuntu, RedHat Linux, Kali Linux, etc.
+- Widely used in Servers.
 # cd
 
 - Change Directory
@@ -8,14 +10,16 @@
 
 - Make Directory
 - `$ mkdir directory_name`
-
+- `$ mkdir dir1 dir2`
+- `$ mkdir -p /dir1/dir2` <- Create folder within folder, -p = parent folder
 # pwd
 
-- View current path
+- Present Working Directory
+- Shows current path
 - `$ pwd`
 # ls
 
-- List Files
+- List Files in Current directory
 - `$ ls`
 # less 
 
