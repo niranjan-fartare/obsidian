@@ -30,13 +30,26 @@
 - `$ ls -a` : Shows Hidden Files and Directories
 - Absolute Path : Path from root
 - Relative Path : Path from Current Location
+
+# rmdir
+
+- Remove empty Directories
+- Syntax : `$ rmdir dir_name`
+
+# rm 
+
+- Remove Files
+- Syntax : `$ rm file_name`
+- `$ rm -r dir_name`   : Remove files recursively, remove non empty directories as well
+- `$ rm file1 file2 file3`
 # less
 
 - Browse files interactively
-- Syntax :  `$ less file_name.txt`
+- Syntax : `$ less file_name.txt`
 # cat 
 
 - Display whole file on terminal
+- Syntax : `$ cat file_name`
 # cal  
 
 - Display a calendar on the terminal
@@ -49,8 +62,31 @@
 # cp
 
 - Copy
+- 
 
-- mv -> Move
+# mv 
+
+- Move
+
+# vi
+
+- Vim text editor
+- Default Mode : Read Mode
+- Syntax : `$ vi file_name`
+- Switch to Insert Mode by clicking the `insert` or `i` button on keyboard
+- Switch to Read Mode by pressing `esc` on keyboard
+- `:w` : Write/Save File
+- `:q` : Exit Vim
+- `:wq` : Write/Save and Exit
+- `:<>!` : Override Commands, `:q!` : Force Quit, `:w` : Force Write
+- `:set number` : Assign numbers to lines
+- `:n` : Go to `n`'th line, `:10` : Go to 10th line
+- `Shift + G` : Go to last line
+- `/text` : Search for string, `n` to find next occurrence of `text`
+- `:set list` : Enable End Line Character, shows last character in a line
+	
+
+
 - history -> View previous commands
 - clear -> Clear everything from the terminal
 - date -> Shows current date and time
