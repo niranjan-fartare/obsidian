@@ -5,13 +5,13 @@
 # cd
 
 - Change Directory
-- Syntax : `$ cd directory_name`
+- Command : `$ cd directory_name`
 - Example : `$ cd /home/niranjan`
 - `$ cd ..` : Go to Previous Directory
 # mkdir
 
 - Make Directory
-- Syntax : `$ mkdir directory_name`
+- Command : `$ mkdir directory_name`
 - Example : `$ mkdir dir1 dir2`
 - `$ mkdir -p /dir1/dir2` : Create Directory within Directory, `-p` = Parent Directory
 # pwd
@@ -22,7 +22,7 @@
 # ls
 
 - List Files and Folders in Current Directory
-- Syntax : `$ ls`
+- Command : `$ ls`
 - `$ ls -l` : List Files with Details
 - `$ ls -r` : List and Sort in Descending/Reverse Order
 - `$ ls -t` : List and Sort by Timestamp
@@ -34,30 +34,30 @@
 # rmdir
 
 - Remove empty Directories
-- Syntax : `$ rmdir dir_name`
+- Command : `$ rmdir dir_name`
 
 # rm 
 
 - Remove Files
-- Syntax : `$ rm file_name`
+- Command : `$ rm file_name`
 - `$ rm -r dir_name`   : Remove files recursively, remove non empty directories as well
 - `$ rm file1 file2 file3`
 # less
 
 - Browse files interactively
-- Syntax : `$ less file_name.txt`
+- Command : `$ less file_name.txt`
 # cat 
 
 - Display whole file on terminal
-- Syntax : `$ cat file_name`
+- Command : `$ cat file_name`
 # cal  
 
 - Display a calendar on the terminal
-- Syntax : `$ cal`
+- Command : `$ cal`
 # touch
 
 - Create an empty file
-- Syntax : `$ touch file_name.extension`
+- Command : `$ touch file_name.extension`
 - Example : `$ touch file.txt file1.conf`
 # cp
 
@@ -72,7 +72,7 @@
 
 - Vim text editor
 - Default Mode : Read Mode
-- Syntax : `$ vi file_name`
+- Command : `$ vi file_name`
 - Switch to Insert Mode by clicking the `insert` or `i` button on keyboard
 - Switch to Read Mode by pressing `esc` on keyboard
 - `:w` : Write/Save File
@@ -80,7 +80,7 @@
 - `:wq` : Write/Save and Exit
 - `:<>!` : Override Commands, `:q!` : Force Quit, `:w` : Force Write
 - `:set number` : Assign numbers to lines
-- `:n` : Go to `n`'th line, `:10` : Go to 10th line
+- `:n` : Go to `n`'th line, `:10` : Go to the 10th line
 - `Shift + G` : Go to last line
 - `/text` : Search for string, `n` to find next occurrence of `text`
 - `:set list` : Enable End Line Character, shows last character in a line
