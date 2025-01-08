@@ -1,5 +1,4 @@
 - Dynamically typed programming language
-
 # Data Types
 
 ## Primitive
@@ -165,7 +164,7 @@ True
 ```
 
 ```python
-# Python Program  to find Area of Circle 
+# Python Program to find Area of Circle
 # Run Command : python main.py
 
 radius = 10
@@ -233,7 +232,6 @@ print("For {1} {0}'s you have saved {2} and you need to pay {3}.".format(name, q
 
 print("For {} {}'s you have saved {} and you need to pay {}.".format(quantity, name, discountedPrice,finalPrice))
 ```
-
 # Take Input
 
 ```python

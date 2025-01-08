@@ -2,7 +2,29 @@
 - Multi User OS - Multiple Users can access the OS at the same time.
 - Flavors - Ubuntu, RedHat Linux, Kali Linux, etc.
 - Widely used in Servers.
-# cd
+
+# Table Of Contents
+- [cd](#cd)
+- [mkdir](#mkdir)
+- [pwd](#pwd)
+- [ls](#ls)
+- [rmdir](#rmdir)
+- [rm](#rm)
+- [less](#less)
+- [more](#more)
+- [cat](#cat)
+- [cal](#cal)
+- [touch](#touch)
+- [cp](#cp)
+- [mv](#mv)
+- [vi](#vi)
+- [history](#history)
+- [clear](#clear)
+- [date](#date)
+- [head](#head)
+- [tail](#tail)
+- [rename files](#mv)
+# cd 
 
 - Change Directory
 - Command : `$ cd directory_name`
@@ -30,12 +52,10 @@
 - `$ ls -a` : Shows Hidden Files and Directories
 - Absolute Path : Path from root
 - Relative Path : Path from Current Location
-
 # rmdir
 
 - Remove empty Directories
 - Command : `$ rmdir dir_name`
-
 # rm 
 
 - Remove Files
@@ -46,6 +66,10 @@
 
 - Browse files interactively
 - Command : `$ less file_name.txt`
+# more
+
+- Browse files
+- Command : `$ more file.txt`
 # cat 
 
 - Display whole file on terminal
@@ -61,13 +85,16 @@
 - Example : `$ touch file.txt file1.conf`
 # cp
 
-- Copy
-- 
-
+- Copy Files or Directories
+- Command : `$ cp source destination`
+- Example : `$ cp sample.txt d1`
+- Copy Folders : `$ cp d1/ d2/ -r`
 # mv 
 
-- Move
-
+- Move Files or Directories
+- Command `$ mv source destination`
+- Example : `$ mv sample.txt d1`
+- Rename File/Folder : `$ mv old_name.txt new_name.txt`
 # vi
 
 - Vim text editor
@@ -84,14 +111,28 @@
 - `Shift + G` : Go to last line
 - `/text` : Search for string, `n` to find next occurrence of `text`
 - `:set list` : Enable End Line Character, shows last character in a line
-	
+# history
 
+- View previous commands
+# clear
 
-- history -> View previous commands
-- clear -> Clear everything from the terminal
-- date -> Shows current date and time
-- head -> View top lines of a file
-- tail -> View last lines of a file
+- Clear everything from the terminal
+# date
+
+- Shows current date and time
+# head 
+
+- View top lines of a file
+- Shows top 10 lines by default
+- Command : `$ head file.txt`
+- `$ head -n file.txt`, `-n` = number of lines to show 
+# tail 
+
+- View last lines of a file
+- Shows last 10 lines by default
+- Command : `$ tail file.txt`
+- `$ tail -n file.txt`, `-n` = number of lines to show 
+
 - du -> Show size of the directory
 - df -> shows disk details
 - chmod -> Modify permissions

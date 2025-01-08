@@ -1,13 +1,12 @@
 - Linux Program
-- 
-
+- Also known as Linux Programming
 # Options
 
 - -d -> Checks of given path is a directory
 - -f -> Checks of given path is a file
 
 ```shell
-#!/bin/bash
+#!/bin/bash <- SheBang
 
 mkdir d1 d2 d3
 touch f1 f2 f3
@@ -132,7 +131,6 @@ echo "create table ${schema}.${table_name}_${today} as select * from ${schema}.$
 echo Backup complete for table ${schema}.${table_name}
 ```
 
-
 ```shell
 #!/bin/bash
 
@@ -210,7 +208,6 @@ greeting
 welcome
 ```
 
-
 ```shell
 #!/bin/bash
 #Run Command : bash hive_ops.sh "Schema" "B/NA" "T/NA" "D/NA"
@@ -261,11 +258,9 @@ done < /home/hadoop/table_list.txt
 
 echo script completed
 ```
-
-
 # Crontab
 
 - Used for Scheduling Scripts/Tasks
 - Minimum frequency -> 1min
 - `crontab -l` -> List all tasks
-- `crontab -e` -> Open Cron Editor 
+- `crontab -e` -> Open Crontab Editor 
