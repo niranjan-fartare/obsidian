@@ -2,7 +2,6 @@
 - Multi User OS - Multiple Users can access the OS at the same time.
 - Flavors - Ubuntu, RedHat Linux, Kali Linux, etc.
 - Widely used in Servers.
-
 # Table Of Contents
 - [cd](#cd)
 - [mkdir](#mkdir)
@@ -24,7 +23,30 @@
 - [head](#head)
 - [tail](#tail)
 - [rename files](#mv)
-# cd 
+- [du](#du)
+- [df](#df)
+- [chmod](#chmod)
+- [chown](#chown)
+- [grep](#grep)
+- [find](#find)
+- [zip](#zip)
+- [> operator](#-operator)
+- [>> operator](#-operator-1)
+- [unzip](#unzip)
+- [gzip](#gzip)
+- [gunzip](#gunzip)
+- [tar](#tar)
+- [ifconfig](#ifconfig)
+- [ping](#ping)
+- [ln](#ln)
+- [whereis](#whereis)
+- [wc](#wc)
+
+# bc
+
+- Basic Calculator
+- Command : `$ bc`
+# cd
 
 - Change Directory
 - Command : `$ cd directory_name`
@@ -76,8 +98,10 @@
 - Command : `$ cat file_name`
 # cal  
 
-- Display a calendar on the terminal
+- Display a Calendar on the terminal
 - Command : `$ cal`
+- `$ cal -3` : Show previous, current, next month
+- `$ cal -y` : Show all months in current Year
 # touch
 
 - Create an empty file
@@ -113,13 +137,17 @@
 - `:set list` : Enable End Line Character, shows last character in a line
 # history
 
-- View previous commands
+- View previous 1000 commands
+- Command : `$ history`
 # clear
 
 - Clear everything from the terminal
+- Command : `$ clear`
 # date
 
 - Shows current date and time
+- Command : `$ date`
+- 
 # head 
 
 - View top lines of a file
@@ -132,26 +160,91 @@
 - Shows last 10 lines by default
 - Command : `$ tail file.txt`
 - `$ tail -n file.txt`, `-n` = number of lines to show 
+# du
 
-- du -> Show size of the directory
-- df -> shows disk details
-- chmod -> Modify permissions
-- chown -> Modify ownsership
-- grep -> 
-- find -> 
-- zip -> Compress files
-- > operator
-	- Overwrites the output
-	- creates file if not present
-- >> operator
-	- appends the output
-	- creates file if not present
-- unzip -> extracts .zip files
-- gzip -> Compress files.
-- gunzip -> Unzip files compressed using gzip 
-- tar -> Create a tar file
-- ifconfig -> View Network information
-- ping -> Check reachability of website
-- ln -> Create link between files
-- whereis -> Location of software
-- wc 
+- Disk Usage
+- Show size of the directory
+- Command : `du file/folder`
+- `$ du -h file/folder` :  Shows size of file/folder in human readable format
+- `$ du -s` : Shows summarized size of folder
+# df
+
+- Disk Free
+- Shows disk details
+- Command : `df`
+- `$ df -h` : Shows free space in human readable format
+
+# chmod
+
+- Change Permissions of Files and Directories
+
+```bash
+$ ls -l
+drwxr-xr-x 3 niranjan niranjan 4096 Jan  8 10:25 d3
+-rw-r--r-- 1 niranjan niranjan  323 Jan  7 11:28 data.txt
+```
+
+- `d rwx r-x r-x` : file/directory, owner permissions, group permissions, other permissions
+- `r` : Read Permission (4)
+- `w` : Write Permission (2)
+- `x` : Execute Permission (1)
+- `d` : DIrectory
+- Command : `$ chmod permissions file/directory`, `permissions` represented by 3 digits
+- Example : `$ chmod 700 data.txt`, `0` = no permission
+# chown 
+
+- Modify ownership of files/directories
+# grep  
+
+- 
+# find
+
+-
+# zip
+
+- Compress files
+# unzip 
+
+- extracts .zip files
+# gzip 
+
+- Compress files.
+# gunzip
+
+- Unzip files compressed using gzip 
+# tar 
+
+- Create a tar file
+# ifconfig 
+
+- View Network information
+# ping 
+
+- Check reachability of website
+# ln 
+- Create link between files
+# whereis 
+
+- Location of software
+# wc
+
+- Word Count
+- Command : `$ wc file_name`
+
+```bash
+$ wc test.txt 
+1 1001 6364 test.txt
+```
+
+- `1 1001 6364 test.txt` : lines, words, characters, file_name
+- `$ wc -l file` : Count only lines
+- `$ wc -w file` : Count only words
+- `$ wc -c file` : Count only characters
+# > operator
+
+- Overwrites the output
+- creates file if not present
+# >> operator
+
+- appends the output
+- creates file if not present
