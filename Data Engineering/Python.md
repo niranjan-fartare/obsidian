@@ -9,19 +9,19 @@
 - complex
 ## Collections
 
-- List []
-- Touple ()
-- Set {}
-- Dictionary/Map {}
+- List :  `[]`
+- Touple : `()`
+- Set : `{}`
+- Dictionary/Map : `{}`
 
 # Arithmetic Operators
 
-- Addition (+)
-- Subtraction (-) 
-- Division (/) 
-- Multiplication * 
-- Modulo (%)
-- Power **
+- Addition : `+`
+- Subtraction : `-` 
+- Division : `/`
+- Multiplication : `*` 
+- Modulo : `%`
+- Power : `**`
 
 ```python
 >>> a = 10;
@@ -41,12 +41,12 @@
 ```
 # Relational Operators
 
-- Greater than -> > 
-- Less than -> <
-- Greater than equal to -> >=
-- Less than equal to -> <=
-- Equal to -> ==
-- Not equal to -> !=
+- Greater than : `>` 
+- Less than : `<`
+- Greater than equal to : `>=`
+- Less than equal to  : `<=`
+- Equal to : `==`
+- Not equal to : `!=`
 
 ```python
 >>> 10>=10
@@ -124,7 +124,7 @@ True
 # Run Python Program
 
 - Interpreter Mode (CLI Mode)
-- Batch Mode
+- Batch Mode : `$ python program.py`
 # Variables
 
 - `variable_name = value`
@@ -189,8 +189,9 @@ print(final)
 
 # Inbuilt Functions
 
-- print() -> Prints anything in ()
-- type() -> Prints datatype of variables
+- `print()` : Prints anything in the, `print("Hello World!")`
+- `type()` : Prints datatype of the variables, `a = 100`
+- `input()` : Take input from the user, `name = input("Enter your age: ")`
 
 # String Formatting
 
@@ -215,7 +216,7 @@ also
 a 
 String """
 
-#### String Formatting
+# String Formatting
 
 name = "Mobile"
 price = 25000
@@ -244,9 +245,26 @@ quantity = int(input("Quantity: "))
 discount = float(input("Discount: "))
 
 totalPrice = price * quantity
-discountedPrice = (total * float(discount))/100
+discountedPrice = (totalPrice * discount)/100
 finalPrice = totalPrice - discounted
 
 print("For {1} {0}'s you have saved {2} and you need to pay {3}".format(name, quantity,discounted,finalPrice))
 ```
 
+```python
+# Take input from the command line 
+# Run Command : python main.py "name" age
+
+from sys import argv
+
+name = argv[1]
+age = argv[2]
+
+print("My name is {0} and I am {1} years old.".format(name, age))
+```
+
+# Flow control statements
+
+- Sequential Execution : Program is executed line by line
+- Decision Making : if/else statements
+- Loop : For loop and while loops
