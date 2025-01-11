@@ -77,7 +77,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "8ea420d672dfb02a",
@@ -164,9 +165,9 @@
   },
   "active": "75b266cb91eac304",
   "lastOpenFiles": [
-    "Data Engineering/Linux.md",
-    "Data Engineering/Python.md",
     "Data Engineering/Shell Scripting.md",
+    "Data Engineering/Python.md",
+    "Data Engineering/Linux.md",
     "push.sh",
     "Data Engineering/Hive.md",
     "Data Engineering/SQL.md",

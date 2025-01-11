@@ -3,10 +3,10 @@
 
 ## Primitive
 
-- int
-- string
-- boolean
-- complex
+- int : `10`
+- string : `name`
+- boolean : `True/False`
+- complex : `3 + 5j`
 ## Collections
 
 - List :  `[]`
@@ -192,6 +192,32 @@ print(final)
 - `print()` : Prints anything in the, `print("Hello World!")`
 - `type()` : Prints datatype of the variables, `a = 100`
 - `input()` : Take input from the user, `name = input("Enter your age: ")`
+- `range()` : Generate sequence of numbers, `range(start, stop, step)`
+	- Prints sequence from `start` to `stop-1`  increasing/decreasing by `step`
+
+```python
+# range()
+
+>>> for x in range(1,10,1): print(x)
+... 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+>>> for i in range(5, 0, -1): print(i)     
+... 
+5
+4
+3
+2
+1
+>>> 
+```
 
 # String Formatting
 
@@ -365,16 +391,245 @@ if username == "admin" :
 	if password == "admin@123" :
 		print("Login Successful!")
 	else :
-		print("Incorrect password!")
+		print("Incorrect Password!")
 else :
-	print("Incorrect username!")
+	print("Incorrect Username!")
 
 # Output
 
 $ python main.py admin admin@123
 Login Successful!
 $ python main.py admin admin@1234
-Incorrect password!
+Incorrect Password!
 $ python main.py guest admin@123
-Incorrect username!
+Incorrect Username!
+```
+
+## For
+
+```python
+# Simple For Loop
+
+>>> for x in range(6): print(x)
+...     
+0
+1
+2
+3
+4
+5
+>>> for i in range(5, 0, -1): print(i)
+... 
+5
+4
+3
+2
+1
+>>> for i in range(0,5,1) : print("India")
+... 
+India
+India
+India
+India
+India
+>>> for i in ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] : print(i)
+... 
+SUN
+MON
+TUE
+WED
+THU
+FRI
+SAT
+```
+
+```python
+# Program to print numbers divisible by 3 from 0 to 1000
+# Run Command : python main.py
+
+for x in range(3,1001,3) :
+	if x%3 == 0 and x%6 == 0 and x%9 == 0 :
+		print(x)	
+
+# Output
+
+$ python main.py 
+18
+36
+54
+72
+90
+108
+126
+144
+.
+.
+.
+990
+```
+## While
+
+```python
+# Infinite While Loop
+# Run Command : python main.py
+
+while True :
+	print("India")
+
+# Output
+
+$ python main.py
+India
+India
+India
+India
+India
+.
+.
+.
+```
+
+```python
+# Increment 
+# Run Command : python main.py
+
+num = 0
+while num <= 5 :
+	print(num)
+	num = num + 1
+
+# Output
+
+$ python main.py 
+0
+1
+2
+3
+4
+5
+```
+
+```python
+# Decrement 
+# Run Command : python main.py
+
+num = 10
+while num >= 5 :
+	print(num)
+	num = num - 1
+
+# Output
+
+$ python main.py 
+10
+9
+8
+7
+6
+5
+```
+
+```python
+# Nested For Loop
+# Run Command : python main.py
+
+for i in ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] :
+	for j in ["WORKING", "HOLIDAY"] :
+		print(i,j)
+
+# Output
+
+$ python main.py 
+SUN WORKING
+SUN HOLIDAY
+MON WORKING
+MON HOLIDAY
+TUE WORKING
+TUE HOLIDAY
+WED WORKING
+WED HOLIDAY
+THU WORKING
+THU HOLIDAY
+FRI WORKING
+FRI HOLIDAY
+SAT WORKING
+SAT HOLIDAY
+```
+
+```python
+# Nested For Loop with If else
+# Run Command : python main.py
+
+for i in ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"] :
+	for j in ["WORKING", "HOLIDAY"] :
+		if (i in ("SAT", "SUN")) and (j in ("HOLIDAY")) :
+			print(i,j)
+		if (i not in ("SAT", "SUN")) and (j not in ("HOLIDAY")) :
+			print(i,j)
+
+# Output
+
+$ python main.py 
+SUN HOLIDAY
+MON WORKING
+TUE WORKING
+WED WORKING
+THU WORKING
+FRI WORKING
+SAT HOLIDAY
+```
+
+```python
+# break statement : Break out of current loop
+# Run Command : python main.py
+
+for i in range(1,10) :
+	if i == 5 :
+		break
+	print(i)
+
+# Output
+
+$ python main.py 
+1
+2
+3
+4
+```
+
+```python
+# continue statement : Skip the current iteration
+# Run Command : python main.py
+
+for i in range(1,10) :
+	if i == 5 :
+		continue
+	print(i)
+
+# Output
+
+$ python main.py 
+1
+2
+3
+4
+6
+7
+8
+9
+```
+
+```python
+# pass : Placeholder for a code block
+# Run Command : python main.py
+
+for i in range(1,10) :
+	pass
+if 1 <= 5 :
+	pass
+# Output
+
+$ python main.py
+
+$
 ```
