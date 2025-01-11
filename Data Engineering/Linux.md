@@ -135,6 +135,7 @@
 - `Shift + G` : Go to last line
 - `/text` : Search for string, `n` to find next occurrence of `text`
 - `:set list` : Enable End Line Character, shows last character in a line
+- `ndd` : Delete `n` lines from the current location of cursor
 # history
 
 - View previous 1000 commands

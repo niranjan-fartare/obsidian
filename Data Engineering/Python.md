@@ -267,4 +267,114 @@ print("My name is {0} and I am {1} years old.".format(name, age))
 
 - Sequential Execution : Program is executed line by line
 - Decision Making : if/else statements
-- Loop : For loop and while loops
+- Loop : For Loop and While Loop
+## If/else
+
+```python
+# If Else Program with Single Condition
+# Run Command: python main.py age
+
+from sys import argv
+
+age = int(argv[1])
+
+if age >= 18 :
+	print("You are eligible for voting!")
+else : 
+	print("You are not eligible for voting!")
+
+# Output
+
+$ python3 main.py 26
+You are eligible for voting!
+$ python3 main.py 16
+You are not eligible for voting!
+```
+
+```python
+# If Else Program with Multiple Conditions
+# Run Command: python main.py username password
+
+from sys import argv
+
+username = argv[1]
+password = argv[2]
+
+if username == "admin" and password == "admnin@123" :
+	print("Login Successful!")
+else :
+	print("Incorrect username or password!")
+
+# Output
+
+$ python main.py "admin" "admin@123"
+Login Successful!
+$ python main.py "admin" "12345678"
+Incorrect username or password!
+```
+
+```python
+# If Else ladder
+# Run Command : python main.py marks
+
+from sys import argv
+
+marks = int(argv[1])
+
+if marks >= 70 : 
+	print("Grade : A")
+elif marks >= 60 :
+	print("Grade : B")
+elif marks >= 50 :
+	print("Grade : C")
+elif marks >= 40 :
+	print("Grade : D")
+elif marks >= 35 :
+	print("Grade : Pass")
+else :
+	print("Grade : Fail)
+
+# Output
+
+$ python3 main.py 80
+Grade : A
+$ python3 main.py 35
+Grade : Pass
+$ python3 main.py 34
+Grade : Fail
+$ python3 main.py 41
+Grade : D
+$ python3 main.py 51
+Grade : C
+$ python3 main.py 61
+Grade : B
+$ python3 main.py 71
+Grade : A
+```
+
+```python
+# Nested If Else
+# Run Command : python main.py "admin" "admin@123"
+
+from sys import argv
+
+username = argv[1]
+password = argv[2]
+
+if username == "admin" :
+	if password == "admin@123" :
+		print("Login Successful!")
+	else :
+		print("Incorrect password!")
+else :
+	print("Incorrect username!")
+
+# Output
+
+$ python main.py admin admin@123
+Login Successful!
+$ python main.py admin admin@1234
+Incorrect password!
+$ python main.py guest admin@123
+Incorrect username!
+```
