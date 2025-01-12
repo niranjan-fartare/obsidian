@@ -187,78 +187,6 @@ final = total - discounted
 print(final)
 ```
 
-# Inbuilt Functions
-
-- `print()` : Prints anything in the, `print("Hello World!")`
-- `type()` : Prints datatype of the variables, `a = 100`
-- `input()` : Take input from the user, `name = input("Enter your age: ")`
-- `range()` : Generate sequence of numbers, `range(start, stop, step)`
-	- Prints sequence from `start` to `stop-1`  increasing/decreasing by `step`
-
-```python
-# range()
-
->>> for x in range(1,10,1): print(x)
-... 
-1
-2
-3
-4
-5
-6
-7
-8
-9
->>> for i in range(5, 0, -1): print(i)     
-... 
-5
-4
-3
-2
-1
->>> 
-```
-
-# String Formatting
-
-```python
-# Ways to Declare String
-# Run Command : python main.py
-
-s = 'Niranjan'
-
-str = "This some text"
-
-str1 = ''' 
-This
-is 
-a 
-String '''
-
-str2 = """
-This
-is
-also
-a 
-String """
-
-# String Formatting
-
-name = "Mobile"
-price = 25000
-quantity = 2 
-discount = 10
-
-totalPrice = price * quantity
-discountedPrice = (totalPrice * discount)/100
-finalPrice = totalPrice - discountedPrice
-
-print("For",quantity,name,"s you have saved",discounted,"and you need to pay", final,".")
-
-print("For {1} {0}'s you have saved {2} and you need to pay {3}.".format(name, quantity,discountedPrice,finalPrice))
-
-print("For {} {}'s you have saved {} and you need to pay {}.".format(quantity, name, discountedPrice,finalPrice))
-```
 # Take Input
 
 ```python
@@ -641,7 +569,18 @@ $
  - Case sensitive
  - Index starts at 0
  - Supports -ve indexing
- - Access String Characters : `str_name[index]`
+## Access String
+
+### Using Index
+
+```python
+>>> str = "I love India"
+>>> str[0]
+I
+>>> str[3]
+o
+```
+### Using For Loop
 
 ```python
 # Print String characters using For Loop
@@ -667,4 +606,269 @@ d
 i
 a
 ```
+### Using slicing
 
+```python
+>>> greet="Good Morning"
+>>> greet[0:12:1]
+'Good Morning'
+>>> greet[0:12]
+'Good Morning'
+>>> greet[0:]
+'Good Morning'
+>>> greet[:]
+'Good Morning'
+>>> greet[3:8]
+'d Mor'
+>>> greet[6:10]
+'orni'
+>>> greet[4:10:2]
+' on'
+>>> greet[9:2:-1]
+'inroM d'
+>>> greet[::-1]
+'gninroM dooG'
+```
+## String Operations
+
+### String Formatting
+
+```python
+# Ways to Declare String
+# Run Command : python main.py
+
+s = 'Niranjan'
+
+str = "This some text"
+
+str1 = ''' 
+This
+is 
+a 
+String '''
+
+str2 = """
+This
+is
+also
+a 
+String """
+
+# String Formatting
+
+name = "Mobile"
+price = 25000
+quantity = 2 
+discount = 10
+
+totalPrice = price * quantity
+discountedPrice = (totalPrice * discount)/100
+finalPrice = totalPrice - discountedPrice
+
+print("For",quantity,name,"s you have saved",discounted,"and you need to pay", final,".")
+
+print("For {1} {0}'s you have saved {2} and you need to pay {3}.".format(name, quantity,discountedPrice,finalPrice))
+
+print("For {} {}'s you have saved {} and you need to pay {}.".format(quantity, name, discountedPrice,finalPrice))
+```
+
+### String Concatenation
+
+```python
+>>> fname = "Niranjan"
+>>> lname = "Fartare"
+>>> fname + lname
+'NiranjanFartare'
+>>> fname + " " + lname
+'Niranjan Fartare'
+```
+
+### String Multiplication
+
+```python
+>>> greet = "Good Morning"
+>>> greet*5
+'Good MorningGood MorningGood MorningGood MorningGood Morning'
+```
+
+###  Identity Operators
+
+```python
+>>> str = "Pune"
+>>> str1 = "pune"
+>>> str is str1
+False
+>>> str is not str1
+True
+>>> 
+```
+
+### Membership Operators
+
+```python
+>>> str = "Good Morning"
+>>> "Good" in str
+True
+>>> "IN" in str
+False
+>>> "IN" not in str
+True
+>>> "Good" not in str
+False
+```
+
+# Functions
+
+-  Reusable block of code
+
+## Inbuilt Functions
+
+- `print()` : Prints anything in the `()`, `print("Hello World!")`
+- `type()` : Prints datatype of the variables, `a = 100`
+- `input()` : Take input from the user, `name = input("Enter your age: ")`
+- `range()` : Generate sequence of numbers, `range(start, stop, step)`
+	- Prints sequence from `start` to `stop-1`  increasing/decreasing by `step`
+
+```python
+# range()
+
+>>> for x in range(1,10,1): print(x)
+... 
+1
+2
+3
+4
+5
+6
+7
+8
+9
+>>> for i in range(5, 0, -1): print(i)     
+... 
+5
+4
+3
+2
+1
+>>> 
+```
+# String Functions
+
+- `lower()`
+- `upper()`
+- `title()`
+- `len()`
+- `count()`
+- `find()`
+- `trim()`
+
+```python
+>>> str
+'Good Morning'
+>>> str.lower()
+'good morning'
+>>> str.upper()
+'GOOD MORNING'
+>>> str.title()
+'Good Morning'
+>>> len(str)
+12
+>>> str.strip # Removes extra space from the Left and Right
+'Good Morning'
+>>> str.count('o')
+3
+>>> str.find("India")
+7
+>>> str.find("USA") # Not Found
+-1
+>>> str.find("USA") 
+-1
+>>> str.replace("Love", "Like")
+'I Like India, India is a developing country'
+>>> str.replace(',',';')
+'I Love India; India is a developing country'
+>>> str.replace(" ", "")
+'ILoveIndia,Indiaisadevelopingcountry'
+>>> names = "Niranjan,Ganesh,Gaurav"
+>>> names.split(',')
+['Niranjan', 'Ganesh', 'Gaurav']
+>>> "niranjan@gmail.com".split('@')
+['niranjan', 'gmail.com']
+>>> greet.swapcase()
+'gOOD mORNING'
+>>> str.isalnum()
+False
+>>> str.isalpha()
+False
+>>> str.isdigit()
+False
+>>> "101".isdigit()
+True
+```
+
+# User Defined Functions (UDFs)
+
+- Parameterized Functions
+- Non Parameterized Functions
+
+```python
+# Non Parameterized Functions
+# Run Command : python main.py
+
+def display():
+    print("This is the display function.")
+
+def greetings():
+    print("Hello, Welcome!")
+
+display()
+greetings()
+
+# output
+
+$ python main.py 
+This is the display function.
+Hello, Welcome!
+
+```
+
+```python
+# Parameterized Functions
+# Run Command : python main.py
+
+def sum(a,b):
+	print(a+b)
+def greetigs(name):
+	print("Welcome!, {}!!".format(name))
+sum(100+200)
+greetings("Niranjan")
+
+# Output
+
+$ python main.py 
+300
+Welcome!, Niranjan!! 
+```
+
+```python
+def sub(a,b):
+	print("a =",a)
+	print("b =",b)
+	print(a+b)
+sub(b=100,a=50)
+
+```
+
+```python
+# Program to find salary after tax deduction, 10% income tax, 7% Policy Premium and 200 Professional tax
+# Run Command : python main.py "Niranjan" 100000
+
+from sys import argv
+
+name = argv[1]
+sal = float(argv[2])
+
+def inHandSal(name, sal):
+    print("Hello, {0}, your in hand salary after tax deduction is {1}.".format(name, sal - (sal * 0.10) - (sal * 0.07) - 200))
+inHandSal(name, sal)
+```
