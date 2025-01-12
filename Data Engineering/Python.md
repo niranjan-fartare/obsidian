@@ -4,7 +4,7 @@
 ## Primitive
 
 - int : `10`
-- string : `name`
+- string : `name` , sequence of characters
 - boolean : `True/False`
 - complex : `3 + 5j`
 ## Collections
@@ -627,9 +627,44 @@ for i in range(1,10) :
 	pass
 if 1 <= 5 :
 	pass
+
 # Output
 
 $ python main.py
 
 $
 ```
+
+# String
+
+ - Sequence of characters
+ - Case sensitive
+ - Index starts at 0
+ - Supports -ve indexing
+ - Access String Characters : `str_name[index]`
+
+```python
+# Print String characters using For Loop
+# Run Command : python main.py
+
+str = "I Love India"
+
+for i in str :
+	print(i)
+
+# Output
+$ python main.py
+I
+ 
+L
+o
+v
+e
+ 
+I
+n
+d
+i
+a
+```
+
