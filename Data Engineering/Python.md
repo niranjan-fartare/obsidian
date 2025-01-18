@@ -1050,6 +1050,9 @@ $ python main.py
 
 ## map
 
+- Allows to perform operations on each element in the given collection/sequence
+- Syntax : `map(function, collection)`
+
 ```python
 # Usage of map()
 # Run Command : python main.py
@@ -1058,6 +1061,13 @@ ls = range(10)
 def fun(n):
 	return n*n
 res = map(fun, ls)
+for i in res:
+    print(i)
+
+# Using Lambda
+
+ls = range(10)
+res = map(lambda n : n*n, ls)
 for i in res:
     print(i)
 
@@ -1087,6 +1097,13 @@ res = map(fun, ls)
 for i in res:
     print(i)
 
+# Using Lambda
+
+ls = range(10)
+res = map(lambda n : n*100, ls)
+for i in res:
+    print(i)
+
 # Output
 
 $ python main.py
@@ -1101,12 +1118,58 @@ $ python main.py
 800
 900
 [niranjan@arch ~```
-
 ## filter
 
+- Filters out elements from the given collection/sequence on the given condition
+- Syntax : `map(function, collection)`
+
 ```python
-#
-#
+# Usage of filter()
+# Run Command : python main.py
+def isEven(n):
+	if n%2 == 0:
+		return n
+
+ls = range(10)
+res = filter(isEven, ls)
+for i in res:
+    print(i)
+
+# Using Lambda Function
 
 
+ls = range(10)
+res = filter(lambda n : n%2 == 0, ls)
+for i in res:
+    print(i)
+
+# Output
+
+python main.py
+0
+2
+4
+6
+8
+```
+
+## reduce
+
+- Reduces the value based on the given function and returns a single value
+- Syntax : `reduce(function, ls)`
+
+```python
+# Usage of reduce()
+# Run Command : python main.py
+
+from functools import reduce
+
+ls = range(10)
+res = reduce(lambda x,y:x+y, ls)
+print(res)
+
+# Output
+
+$ python main.py
+45
 ```
