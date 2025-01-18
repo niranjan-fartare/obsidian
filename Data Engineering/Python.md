@@ -870,5 +870,42 @@ sal = float(argv[2])
 
 def inHandSal(name, sal):
     print("Hello, {0}, your in hand salary after tax deduction is {1}.".format(name, sal - (sal * 0.10) - (sal * 0.07) - 200))
+    
 inHandSal(name, sal)
+```
+
+```python
+# Program to add Square of Numbers
+# Run Command : python main.py
+def sqr(n):
+	return n*n
+
+res = sqr(1) + sqr(2) + sqr(4) + sqr(5) + sqr(6)
+
+print(res)
+
+# Output
+
+$ python main.py 
+82
+```
+
+```python
+# A function calling another function
+# Run Command : python main.py
+
+def f1():
+	print("This is function 1")
+
+def f2():
+	print("This is function 2")
+	f1()
+
+f2()
+
+# Output
+
+$ python main.py 
+This is function 2
+This is function 1
 ```
