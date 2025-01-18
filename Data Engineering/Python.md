@@ -810,6 +810,7 @@ True
 
 - Parameterized Functions
 - Non Parameterized Functions
+## Non Parameterized UDF
 
 ```python
 # Non Parameterized Functions
@@ -832,8 +833,10 @@ Hello, Welcome!
 
 ```
 
+## Parameterized UDF
+
 ```python
-# Parameterized Functions
+# Parameterized Function
 # Run Command : python main.py
 
 def sum(a,b):
@@ -851,12 +854,31 @@ Welcome!, Niranjan!!
 ```
 
 ```python
+# Parameterized Function
+# Run Command : python main.py
+
 def sub(a,b):
 	print("a =",a)
 	print("b =",b)
 	print(a+b)
+	
 sub(b=100,a=50)
+```
 
+```python
+# Pass default value to a function
+# Run Command : python main.py
+
+def calc(price, discount=10): # Default Value
+	finalPrice = price - (price*(discount/100))
+	print(finalPrice)
+
+calc(100)
+
+# Output
+
+$ python main.py 
+90.0
 ```
 
 ```python
@@ -875,7 +897,7 @@ inHandSal(name, sal)
 ```
 
 ```python
-# Program to add Square of Numbers
+# Program to calculate Square of Numbers and return them
 # Run Command : python main.py
 def sqr(n):
 	return n*n
@@ -889,9 +911,10 @@ print(res)
 $ python main.py 
 82
 ```
+# Return Keyword
 
 ```python
-# A function calling another function
+# A function calling another Function
 # Run Command : python main.py
 
 def f1():
@@ -908,4 +931,182 @@ f2()
 $ python main.py 
 This is function 2
 This is function 1
+```
+
+# Scope of Variables
+
+```python
+# Global and Local Variables
+# Run Command : python main.py
+
+a = 10; # Global Variable
+
+def localv():
+    b = 15 # Local Variable
+    print(b)
+    global c # Define Global Variable
+    c = 100
+    
+def localv2():
+    print(c)
+
+localv()
+localv2()
+```
+## Variable Arguments
+
+```python
+# Variable Arguments
+# Run Command : python main.py
+
+def func(a, *b):
+    sum = a
+    for i in b:
+        sum = sum + i
+    print(sum)
+
+func(10, 20)
+func(10,20,30,40,50)
+
+# Output
+
+$ python main.py
+30
+150
+```
+
+# Recursive Function
+
+```python
+# Recursive Function
+# Run Command : python main.py
+
+def display():
+	print("This is a display function")
+	display()
+
+display()
+
+# Output
+
+
+$ python main.py
+This is a display function
+This is a display function
+This is a display function
+This is a display function
+.
+.
+.
+```
+
+```python
+# Program to find factorial of a number using recursion
+# Run Command : python main.py
+
+def factorial(n):
+    if n == 1 :
+        return 1
+    else :
+        return n*factorial(n-1)
+
+print(factorial(5))
+
+# Output
+
+$ python main.py
+120
+```
+
+# Lambda Functions / Anonymous Functions
+
+- Syntax : `lambda parameters:expression`
+
+```python
+# Lambda Function
+# Run Command : python main.py
+
+a = lambda x : x * x
+b = lambda x,y:x + y
+c = lambda x : x * x * x # x**3 : x power 3
+
+print(a(5))
+print(b(10,10))
+print(c(5))
+
+# Output
+
+$ python main.py
+25
+20
+125
+```
+# Higher Order Functions
+
+- Functions who accept another function as a parameter
+- map()
+- filter()
+- reduce()
+
+## map
+
+```python
+# Usage of map()
+# Run Command : python main.py
+
+ls = range(10)
+def fun(n):
+	return n*n
+res = map(fun, ls)
+for i in res:
+    print(i)
+
+# Output
+
+$ python main.py
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+```
+
+```python
+# Usage of map()
+# Run Command : python main.py
+
+ls = range(10)
+def fun(n):
+	return n*100
+res = map(fun, ls)
+for i in res:
+    print(i)
+
+# Output
+
+$ python main.py
+0
+100
+200
+300
+400
+500
+600
+700
+800
+900
+[niranjan@arch ~```
+
+## filter
+
+```python
+#
+#
+
+
 ```
