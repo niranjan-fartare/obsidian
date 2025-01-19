@@ -9,10 +9,15 @@
 - complex : `3 + 5j`
 ## Collections
 
-- List :  `[]`
+- List :  `[1,2,3]`
 - Touple : `()`
-- Set : `{}`
-- Dictionary/Map : `{}`
+- Set : `{1,2,3}`
+- Dictionary / Map : `{a:1, b:2,c:3}`
+### 1. List 
+
+- Syntax : `list = [1,2,3,4,5]`
+- Supports negative indexing, `list[-1]` will print `5`
+- Supports slicing, `list[2:3]`  : Access elements from index 2 to 3-1
 
 # Arithmetic Operators
 
@@ -186,7 +191,6 @@ discounted = (total * discount)/100
 final = total - discounted
 print(final)
 ```
-
 # Take Input
 
 ```python
@@ -507,6 +511,8 @@ FRI WORKING
 SAT HOLIDAY
 ```
 
+# Loop Control Statements
+
 ```python
 # break statement : Break out of current loop
 # Run Command : python main.py
@@ -690,7 +696,6 @@ print("For {} {}'s you have saved {} and you need to pay {}.".format(quantity, n
 >>> greet*5
 'Good MorningGood MorningGood MorningGood MorningGood Morning'
 ```
-
 ###  Identity Operators
 
 ```python
@@ -702,7 +707,6 @@ False
 True
 >>> 
 ```
-
 ### Membership Operators
 
 ```python
@@ -974,7 +978,6 @@ $ python main.py
 30
 150
 ```
-
 # Recursive Function
 
 ```python
@@ -1017,7 +1020,6 @@ print(factorial(5))
 $ python main.py
 120
 ```
-
 # Lambda Functions / Anonymous Functions
 
 - Syntax : `lambda parameters:expression`
@@ -1047,7 +1049,6 @@ $ python main.py
 - map()
 - filter()
 - reduce()
-
 ## map
 
 - Allows to perform operations on each element in the given collection/sequence
@@ -1172,4 +1173,47 @@ print(res)
 
 $ python main.py
 45
+```
+
+# Modules / Packages
+
+```python
+# File Name: math_func.py
+
+def add(a,b):
+	return a+b
+def sub(a,b):
+	return a-b
+def mult(a,b):
+	return a*b
+def div(a,b):
+	return a/b
+def power(a,b):
+	return a**b
+```
+
+```python
+# File Name: main.py
+# Run Command : python main.py
+
+from math_func import * # import math_func.py
+# OR
+from math_func import add,sub,mult
+
+a = 10
+b = 20
+print(add(a,b))
+print(sub(a,b))
+print(mult(a,b))
+print(div(a,b))
+print(power(a,b))
+
+# Output
+
+$ python main.py
+30
+-10
+200
+0.5
+100000000000000000000
 ```
