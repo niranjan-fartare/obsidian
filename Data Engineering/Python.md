@@ -30,6 +30,7 @@ for i in ls:
 	print(i)
 
 # Output
+
 $ python main.py
 1
 2
@@ -50,6 +51,7 @@ $ python main.py
 - `list.sort()` : Sort list in Ascending Order
 - `list.sort(reverse=True)` : Sort list in Descending Order
 - `list.reverse` : Reverse the list, not sort in descending order
+- `value in list` : Checks if `value` is present in `list`, `50 in ls`
 
 ### Tuple
 
@@ -61,25 +63,64 @@ $ python main.py
 - Supports slicing, `t[2:3]` : Access elements from index `2` to `3-1`
 - Tuple is immutable
 
-#### Operations on List
+#### Operations on Tuple
 
 - `len(tuple)`
 - `tuple.count(value)`
 - `max(tuple)`
 - `min(tuple)`
 - `tuple.index(value)`
+-  `value in tuple` : Checks if `value` is present in tuple, `50 in t`
 ### Set
 
 - Syntax : `set = {1,2,3,4}`
 - Does not support indexing and slicing
 - Unordered Collection
 - Does not support duplicate elements
+#### Operations on Set
+
+- `set.add(value)` : 
+- `set.remove(value)` :
+- `set.pop()` : 
+- `max(set)` : Returns the largest element in the set.Returns the smallest element in the set.Calculates the sum of all elements in the set.Returns the number of elements in the set.
+- `min(set)`
+- `sum(set)`
+- `len(set)` 
+- `set1.union(set2)` : Returns a new set containing all unique elements from both set1 and set2.
+- `set1.intersection(set2)` : Returns a new set containing only the elements that are present in both set1 and set2.
+- `set1.difference(set2)` : Returns a new set containing elements that are in set1 but not in set2.
+- `value in set` : Checks if `value` is present in Set, `50 in set`
+
+```python
+>>> s.union(s1)
+{1, 2, 3, 4, 5}
+>>> s.intersection(s1)
+{3}
+>>> s.difference(s1)
+{1, 2}
+```
 ### Dictionary
 
 - Syntax : `dict = {"ind":91,"usa":1}`
 - Does not support indexing
-- Unordered Collection 
-# Arithmetic Operators
+- Unordered and Mutable Collection
+- Unique keys, values can be duplicate
+#### Operations on Dictionary
+
+ - `dict['Key']` : Access value of `key`
+ - `dict['Key'] = Value` : Add / Reassign `value` for `key`
+ - `del dict['Key']` : Delete element with key `Key`
+ - `'Key' in dict` : Check if the given `Key` is present in the dictionary
+
+```python
+dict = {"IND":91,"USA":1,"UK":44}
+
+for key in dict:
+    print(key,dict[key])
+
+```
+ 
+#  Arithmetic Operators
 
 - Addition : `+`
 - Subtraction : `-` 
@@ -1276,4 +1317,31 @@ $ python main.py
 200
 0.5
 100000000000000000000
+```
+
+# Exception Handling
+
+- Exception handling handling is Runtime Errors, eg. Invalid input, file not found, division by zero
+
+```python
+try:
+    # Get user input for numerator and denominator
+    a = float(input("Enter the numerator: "))
+    b = float(input("Enter the denominator: "))
+
+    # Perform division
+    result = a / b
+
+except ValueError:
+    # Handle the case where the input is not a valid number
+    print("Error: Please enter valid numbers.")
+except ZeroDivisionError:
+    # Handle the case where the denominator is zero
+    print("Error: You cannot divide by zero.")
+else:
+    # This block runs if no exceptions were raised
+    print("The result of the division is:", result)
+finally:
+    # This block runs no matter what
+    print("Execution complete.")
 ```
