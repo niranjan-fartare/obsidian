@@ -13,7 +13,7 @@
 - Touple : `()`
 - Set : `{1,2,3}`
 - Dictionary / Map : `{a:1, b:2,c:3}`
-### 1. List
+### List
 
 - Syntax : `list = [1,2,3,4,5]`
 - Can have duplicate elements
