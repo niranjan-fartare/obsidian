@@ -13,12 +13,71 @@
 - Touple : `()`
 - Set : `{1,2,3}`
 - Dictionary / Map : `{a:1, b:2,c:3}`
-### 1. List 
+### 1. List
 
 - Syntax : `list = [1,2,3,4,5]`
+- Can have duplicate elements
+- List is an Ordered Collection
+- Can have duplicate values and different data types
+- Mutable : Elements can be added, removed or modified
 - Supports negative indexing, `list[-1]` will print `5`
-- Supports slicing, `list[2:3]`  : Access elements from index 2 to 3-1
+- Supports slicing, `list[2:3]` : Access elements from index `2` to `3-1`
 
+```python
+ls = [1,2,34,45]
+
+for i in ls:
+	print(i)
+
+# Output
+$ python main.py
+1
+2
+34
+45
+```
+#### Operations on List
+
+- `len(list)` : Returns number of elements, `len(ls)`
+- `list.append(value)` : Append `value` at the end, `ls.append(60)`
+- `list.insert(index, value)` : Add the given `value` at `index`, `ls.insert(3,100)`
+- `list.index(value)` : Find index of `value`, `ls.index(50)`
+- `list.extend([values])` : Add `values` at the end  , `ls.extend([10,20,30,40])`
+- `list.count(value)` : Count frequency of `value`, `ls.count(10)`
+- `list.remove(value)` :  Removes first occurrence of `value` from the list, `ls.remove(10)`
+- `list.pop(index)` : Remove last element or the element on `index` ,`ls.pop()`, `ls.pop(2)`
+- `max(list), min(list)` : Returns Minimum and Maximum value from the list
+- `list.sort()` : Sort list in Ascending Order
+- `list.sort(reverse=True)` : Sort list in Descending Order
+- `list.reverse` : Reverse the list, not sort in descending order
+
+### 2. Tuple
+
+- Immutable 
+- Syntax : `t = (1,2,3,4,5)
+- Tuple is an Ordered Collection`
+- Can have duplicate values and different data types
+- Supports negative indexing, `t[-1]` will print `5`
+- Supports slicing, `t[2:3]` : Access elements from index `2` to `3-1`
+- Tuple is immutable
+
+#### Operations on List
+
+- `len(tuple)`
+- `tuple.count(value)`
+- `max(tuple)`
+- `min(tuple)`
+- `tuple.index(value)`
+### 3. Set
+
+- Syntax : `set = {1,2,3,4}`
+- Does not support indexing
+- Unordered Collection
+### 4. Dictionary
+
+- Syntax : `dict = {"ind":91,"usa":1}`
+- Does not support indexing
+- Unordered Collection 
 # Arithmetic Operators
 
 - Addition : `+`
