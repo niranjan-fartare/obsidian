@@ -71,7 +71,7 @@ $ python main.py
 ### 3. Set
 
 - Syntax : `set = {1,2,3,4}`
-- Does not support indexing
+- Does not support indexing and slicing
 - Unordered Collection
 ### 4. Dictionary
 
