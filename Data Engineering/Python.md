@@ -51,7 +51,7 @@ $ python main.py
 - `list.sort(reverse=True)` : Sort list in Descending Order
 - `list.reverse` : Reverse the list, not sort in descending order
 
-### 2. Tuple
+### Tuple
 
 - Immutable 
 - Syntax : `t = (1,2,3,4,5)
@@ -68,12 +68,13 @@ $ python main.py
 - `max(tuple)`
 - `min(tuple)`
 - `tuple.index(value)`
-### 3. Set
+### Set
 
 - Syntax : `set = {1,2,3,4}`
 - Does not support indexing and slicing
 - Unordered Collection
-### 4. Dictionary
+- Does not support duplicate elements
+### Dictionary
 
 - Syntax : `dict = {"ind":91,"usa":1}`
 - Does not support indexing
