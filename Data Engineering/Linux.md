@@ -52,6 +52,66 @@
 - Command : `$ cd directory_name`
 - Example : `$ cd /home/niranjan`
 - `$ cd ..` : Go to Previous Directory
+
+# cut
+
+- Extract specific columns from files
+- Syntax : `cut -d seperator -f'n' file`, `-d` : seperator, `-f` : Field Number
+- Example : `cut -d , -f1 data.txt`
+
+```shell
+$ cut -d , -f1 data.txt 
+eid
+1
+2
+3
+
+$ cut -d , -f 2,3 data.txt 
+ ename, did
+ Niranjan, 10
+ NoOne, 20
+ Gaurav 40, 50000
+```
+
+# grep
+
+- Global Search for Regular Expressions
+- Search patterns in files and return the lines with the pattern
+- Syntax : `$ grep "pattern" file`
+- `$ grep -i "Linux" f1.txt`, `-i` : Ignore case of pattern
+- `$ grep -c "Linux" f1.txt`, `-c`  : Number of lines where the pattern is present
+- `$ grep -v "Open" f1.txt`, `-v` : Shows all the lines that do not contain the specified pattern
+- `$ grep -l "Linux" *`, `-l` : Shows all the files where the pattern is present
+- `$ grep -R "Linux" *`, `-i` : Search sub directories
+
+```shell
+$ cat f1.txt 
+This is Linux
+Linux is Easy.
+Linux is a multi user operating SYstem
+Linux is Open Source
+
+$ grep "Open" f1.txt 
+Linux is Open Source
+
+$ grep -c "Linux" f1.txt
+5
+
+$ grep -l "Linux" *
+f1.txt
+f2.txt
+
+$ grep -R "Linux" *
+d1/f2.txt:Linux is Open Source
+d1/f2.txt:I use Arch Linux btw.
+f1.txt:This is Linux
+f1.txt:Linux is Easy.
+f1.txt:Linux is a multi user operating SYstem
+f1.txt:Linux is Open Source
+f1.txt:I use Arch Linux btw.
+
+
+```
 # mkdir
 
 - Make Directory
@@ -249,3 +309,15 @@ $ wc test.txt
 
 - appends the output
 - creates file if not present
+- Example : `$ cut -d , -f 2 data.txt >> new_data.txt`
+# ! Operator
+
+ - Passes output of first command to the second conmand as an input
+ - Syntax : `command 1 | Command 2`
+ - Example : `$ cut -d , -f2 data.txt | head -2
+ 
+```shell
+$ cut -d , -f2 data.txt | head -2
+ ename
+ Niranjan
+```
