@@ -121,8 +121,63 @@ Delhi|DL
 ## Soft Link / Symbolic Link
 
 - Link does not work  after deleting the original folder
--  Command : `ln -s file link_name`
+- Command : `ln -s file link_name`
 
+# sed
+
+- Stream Editor
+- Command : `sed 's/Linux/UNIX/' data.txt`
+# find
+
+- Find files and folders
+- Command : `$ find location options`
+- `$ find location -type f/d`, `-f` : Show files, `-d` : Show only directories
+- `$ find location -name pattern` : Find files with the given pattern
+- `$ find location -iname pattern` : Find files with the given pattern ignoring the case of the file name
+- `$ find . -perm permissions` : Find files with the given permissions
+- `$ find . -user username` : Find files with the given username
+- `$ find . -empty` : Find empty files
+- `$ find . -mtime -n `
+- `$ find . -mmin -n`
+- `$ find . -size size` : Find files based on the given `size`, `+5M` for files grater than 5MB or `-5M` for vice versa.
+- `$ find . -size size -size size` : Range 
+
+```shell
+$ find -type f
+./new
+./main.py
+./data.txt
+./state.txt
+./f3.txt
+./city.txt
+
+[niranjan@arch Sayu]$ find -type d
+.
+./abcd
+
+$ find . -name "*.txt"
+./data.txt
+./state.txt
+./f3.txt
+./city.txt
+
+$ find . -name "??.txt"
+./f3.txt
+
+$ find . -name "???*.txt"
+./data.txt
+./state.txt
+./city.txt
+
+$ find . -perm 644
+./new
+./main.py
+./data.txt
+./state.txt
+./f3.txt
+./city.txt
+
+```
 # grep
 
 - Global Search for Regular Expressions
