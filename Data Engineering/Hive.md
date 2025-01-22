@@ -174,7 +174,7 @@ hive> create table std_p (roll int,name string,marks array<int>)
 ```
 
 
-# 5. Map Join/ Broadcast Join
+# 5. Map Join / Broadcast Join
 
 # 6.  SMB Join
 

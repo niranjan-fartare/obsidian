@@ -56,7 +56,7 @@
 # cut
 
 - Extract specific columns from files
-- Syntax : `cut -d seperator -f'n' file`, `-d` : seperator, `-f` : Field Number
+- Command : `cut -d seperator -f'n' file`, `-d` : separator / delimiter, `-f` : Field Number
 - Example : `cut -d , -f1 data.txt`
 
 ```shell
@@ -73,16 +73,67 @@ $ cut -d , -f 2,3 data.txt
  Gaurav 40, 50000
 ```
 
+# diff
+
+- Differentiate Files
+
+# comm
+
+# paste
+
+- Combine 2 files line by line
+- Command : `paste file1 file2`
+- `paste -d '|' city.txt state.txt`, `-d` : separator / delimiter
+
+```shell
+$ cat city.txt 
+Pune
+Mumbai
+Surat
+Delhi
+
+$ cat state.txt
+MH
+MH
+GJ
+DL
+
+$ paste city.txt state.txt 
+Pune	MH
+Mumbai	MH
+Surat	GJ
+Delhi	DL
+
+$ paste -d '|' city.txt state.txt 
+Pune|MH
+Mumbai|MH
+Surat|GJ
+Delhi|DL
+```
+
+# link
+
+- Shortcut to files or folders
+## Hard Link 
+
+ - Link works even after deleting the original folder
+ - Command : `ln file link_name`
+## Soft Link / Symbolic Link
+
+- Link does not work  after deleting the original folder
+-  Command : `ln -s file link_name`
+
 # grep
 
 - Global Search for Regular Expressions
 - Search patterns in files and return the lines with the pattern
-- Syntax : `$ grep "pattern" file`
+- Command : `$ grep "pattern" file`
 - `$ grep -i "Linux" f1.txt`, `-i` : Ignore case of pattern
 - `$ grep -c "Linux" f1.txt`, `-c`  : Number of lines where the pattern is present
 - `$ grep -v "Open" f1.txt`, `-v` : Shows all the lines that do not contain the specified pattern
 - `$ grep -l "Linux" *`, `-l` : Shows all the files where the pattern is present
 - `$ grep -R "Linux" *`, `-i` : Search sub directories
+- `$ grep -R 'operating\|Open' *` : Search multiple patterns
 
 ```shell
 $ cat f1.txt 
@@ -110,6 +161,10 @@ f1.txt:Linux is a multi user operating SYstem
 f1.txt:Linux is Open Source
 f1.txt:I use Arch Linux btw.
 
+$ grep -R 'operating\|Open' *
+d1/f2.txt:Linux is Open Source
+f1.txt:linux is a multi user operating SYstem
+f1.txt:Linux is Open Source
 
 ```
 # mkdir
@@ -122,7 +177,7 @@ f1.txt:I use Arch Linux btw.
 
 - Present Working Directory
 - Shows current path
-- Syntax : `$ pwd`
+- Command : `$ pwd`
 # ls
 
 - List Files and Folders in Current Directory
@@ -279,9 +334,12 @@ drwxr-xr-x 3 niranjan niranjan 4096 Jan  8 10:25 d3
 # ifconfig 
 
 - View Network information
+- Command : `ifconfig`
+- 
 # ping 
 
 - Check reachability of website
+- Command : `$ ping domain/ip`
 # ln 
 - Create link between files
 # whereis 
@@ -313,7 +371,7 @@ $ wc test.txt
 # ! Operator
 
  - Passes output of first command to the second conmand as an input
- - Syntax : `command 1 | Command 2`
+ - Command : `command 1 | Command 2`
  - Example : `$ cut -d , -f2 data.txt | head -2
  
 ```shell
@@ -321,3 +379,11 @@ $ cut -d , -f2 data.txt | head -2
  ename
  Niranjan
 ```
+# users
+
+- Find all the active users
+- Command : `$ users`
+# whoami
+
+- View username
+- Command : `$ whoami`
