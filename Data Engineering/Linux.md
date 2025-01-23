@@ -10,8 +10,8 @@
 - [cd](#cd)
 - [chmod](#chmod)
 - [chown](#chown)
-- [cp](#cp)
 - [clear](#clear)
+- [cp](#cp)
 - [cut](#cut)
 - [date](#date)
 - [df](#df)
@@ -64,25 +64,60 @@
 - Example : `cut -d , -f1 data.txt`
 
 ```shell
-$ cut -d , -f1 data.txt 
+$ cut -d , -f1 data.txt
 eid
 1
 2
 3
 
-$ cut -d , -f 2,3 data.txt 
+$ cut -d , -f 2,3 data.txt
  ename, did
  Niranjan, 10
  NoOne, 20
  Gaurav 40, 50000
 ```
-
 # diff
 
 - Differentiate Files
 
 # comm
 
+- Filters out common and uncommon -- from two files
+- Outputs 3 columns,
+	- First column displays phrases preset only in first file (0 Tab Space)
+	- Second Column displays phrases preset only in second file (1 Tab Space)
+	- Third Column displays phrases present in both files (2 Tab Space)
+- Command : `$ comm file1 file2`
+
+| Flag   | Description                                                                      |
+| ------ | -------------------------------------------------------------------------------- |
+| **-1** | Suppresses the display of the first column (lines in _File1_)                    |
+| **-2** | Suppresses the display of the second column (lines in _File2_)                   |
+| **-3** | Suppresses the display of the third column (lines common to _File1_ and _File2_) |
+
+
+```shell
+$ cat file1.txt
+Ahmednagar
+Mumbai
+Pune
+Surat
+
+$ cat file2.txt
+Delhi
+Mumbai
+Patna
+Pune
+Surat
+
+$ comm file1.txt file2.txt
+Ahmednagar
+	Delhi
+		Mumbai
+	Patna
+		Pune
+		Surat
+```
 # paste
 
 - Combine 2 files line by line
