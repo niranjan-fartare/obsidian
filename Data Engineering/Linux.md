@@ -12,6 +12,7 @@
 - [chown](#chown)
 - [cp](#cp)
 - [clear](#clear)
+- [cut](#cut)
 - [date](#date)
 - [df](#df)
 - [du](#du)
@@ -38,11 +39,14 @@
 - [touch](#touch)
 - [vi](#vi)
 - [unzip](#unzip)
+- [users](#users)
 - [zip](#zip)
 - [whereis](#whereis)
+- [whoami](#whoami)
 - [wc](#wc)
 - [> operator](#-operator)
 - [>> operator](#-operator-1)
+- [! Operator](#-operator-2)
 # bc
 
 - Basic Calculator
@@ -53,7 +57,6 @@
 - Command : `$ cd directory_name`
 - Example : `$ cd /home/niranjan`
 - `$ cd ..` : Go to Previous Directory
-
 # cut
 
 - Extract specific columns from files
