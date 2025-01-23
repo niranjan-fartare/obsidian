@@ -41,8 +41,8 @@
 - [zip](#zip)
 - [whereis](#whereis)
 - [wc](#wc)
-- [> operator](#>-operator)
-- [>> operator](#>>-operator)
+- [> operator](#-operator)
+- [>> operator](#-operator-1)
 # bc
 
 - Basic Calculator
