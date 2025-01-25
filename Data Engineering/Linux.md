@@ -226,7 +226,7 @@ $ find . -perm 644
 - `$ grep -c "Linux" f1.txt`, `-c`  : Number of lines where the pattern is present
 - `$ grep -v "Open" f1.txt`, `-v` : Shows all the lines that do not contain the specified pattern
 - `$ grep -l "Linux" *`, `-l` : Shows all the files where the pattern is present
-- `$ grep -R "Linux" *`, `-i` : Search sub directories
+- `$ grep -R "Linux" *`, `-iR : Search sub directories
 - `$ grep -R 'operating\|Open' *` : Search multiple patterns
 
 ```shell

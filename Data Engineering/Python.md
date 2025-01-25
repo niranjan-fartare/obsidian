@@ -1345,3 +1345,15 @@ finally:
     # This block runs no matter what
     print("Execution complete.")
 ```
+
+
+# Object Oriented
+
+## Class
+
+- Blueprint
+- 
+
+## Object 
+
+- Instance of a class
