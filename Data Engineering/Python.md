@@ -1321,7 +1321,7 @@ $ python main.py
 
 # Exception Handling
 
-- Exception handling handling is Runtime Errors, eg. Invalid input, file not found, division by zero
+- Exception handling handling is handling Runtime Errors, eg. Invalid input, file not found, division by zero
 
 ```python
 try:
@@ -1347,13 +1347,63 @@ finally:
 ```
 
 
-# Object Oriented
+# Object Oriented Programming
+
+## Pillars
+
+### Abstraction
+### Encapsulation
+### Inheritance
+
+- Access attributes and methods of Parent Classes
+- Types:
+	- Single Inheritance
+	- Multilevel Inheritance
+	- Multiple Inheritance
+	- Hybrid Inheritance
+
+![[Pasted image 20250125110138.png]]
+### Polymorphism
 
 ## Class
 
-- Blueprint
-- 
-
+- Blueprint of an Object
 ## Object 
 
-- Instance of a class
+- Instance of a Class
+
+## Constructor
+
+- 
+
+```python
+# Program to demonstrate Classes, Objects and constructor
+# Run Commad : python main.py
+
+class car:  
+    name = "Toyota"  
+  
+    def __init__(self):   # Constructor
+        print("This is a car")  
+  
+    def color(self):  
+        print("Red")  
+
+    def speed(self):  
+        print("200 km/hr")  
+  
+c1 = car()  
+  
+print(c1.name)  
+c1.color()  
+c1.speed()
+
+# Output
+
+This is a car
+Toyota
+Red
+200 km/hr
+```
+
+
