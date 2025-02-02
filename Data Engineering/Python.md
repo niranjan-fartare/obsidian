@@ -1363,6 +1363,27 @@ finally:
 	- Hybrid Inheritance
 
 ![[Pasted image 20250125110138.png]]
+
+```python
+# Example of inheritance
+
+class Animal:
+    def sound(self):  
+        print("Some generic animal sound")  
+  
+class Dog(Animal):  
+    def bark(self):  
+        print("Barks")  
+  
+dog = Dog()  
+dog.sound()   
+dog.bark()
+
+# Output
+
+Some generic animal sound
+Barks
+```
 ### Polymorphism
 
 ## Class
@@ -1405,5 +1426,46 @@ Toyota
 Red
 200 km/hr
 ```
+
+## Abstract Class / Method
+
+
+# Questions
+
+- Stable Python Version : 2.7/3.7
+- Difference between Set, Tuple, List, Dict
+- Exception Handling 
+- Except vs Finally vs Else
+- OOP Pillars
+- Constructors, Class, Objects 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

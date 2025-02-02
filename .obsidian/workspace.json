@@ -4,24 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "0c349bb1a804aa94",
+        "id": "84533e6a174ad82a",
         "type": "tabs",
         "children": [
           {
-            "id": "cb067fe7e249d0e2",
+            "id": "71eed8628eb027a7",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "Data Engineering/Python.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
               "title": "Python"
             }
+          },
+          {
+            "id": "42a8d8f4969dece4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Engineering/Hive.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Hive"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -40,7 +55,8 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
+                "sortOrder": "alphabetical",
+                "autoReveal": false
               },
               "icon": "lucide-folder-closed",
               "title": "Files"
@@ -77,7 +93,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 203.5
   },
   "right": {
     "id": "8ea420d672dfb02a",
@@ -162,25 +178,29 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "cb067fe7e249d0e2",
+  "active": "42a8d8f4969dece4",
   "lastOpenFiles": [
-    "Pasted image 20250125110138.png",
-    "Data Engineering/SQL.md",
-    "Data Engineering/Hive.md",
-    "Data Engineering/Linux.md",
+    "Data Engineering/Spark.md",
+    "Data Engineering/images/Screenshot 2025-02-02 at 11-49-31 Learning Spark Second Edition - LearningSpark2.0.pdf.png",
+    "Data Engineering/images",
     "Data Engineering/Python.md",
+    "Data Engineering/TODO.md",
+    "Git/Git.md",
     "README.md",
-    "Untitled.md",
+    "Untitled",
+    "Data Engineering/SQL.md",
+    "Data Engineering/Linux.md",
+    "Data Engineering/BigData.md",
+    "Data Engineering/AWS.md",
+    "Data Engineering/images/Pasted image 20250125110138.png",
+    "Data Engineering/Hive.md",
     "Data Engineering/Notes.md",
     "Data Engineering/Shell Scripting.md",
     "push.sh",
     "B16/10th Nov HW.md",
-    "Data Engineering/BigData.md",
     "Data Engineering",
-    "Data Engineering/AWS.md",
     "Java/Intro to ORMs, Models, Representing Cardinalities.md",
     "B16",
-    "Git/Git.md",
     "Java/Arrays.md",
     "Git",
     "Java/Product Service.md",

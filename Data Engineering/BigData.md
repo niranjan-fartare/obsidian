@@ -14,7 +14,6 @@
 - Name / Primary Node -> Stores metadata of data
 - Data / Core Node -> Stores data
 - Follows, WORN -> Write Once Read N Times
-- 
 ### 7th Dec
 
 ## HDFS Commands
@@ -39,6 +38,7 @@
 - hadoop fs -df -appendToFile -> Appends local file to a file in Cluster
 - hadoop fs -expunge -> Deleted trashed files
 - hadoop dfsadmin -report -> Cluster status
+
 - Name Node Safe Mode -> Read Only mode 
 	- Checks health of the nodes
 	- hdfs dfsadmin -safemode get -> Current safe mode status
@@ -46,14 +46,4 @@
 	- hdfs dfsadmin -safemode leave -> Turn off safe mode
 - hdfs dfs -touchz file -> Create empty file in the Cluster
 - hadoop fs jar jar_file input output_folder(Create Automatically) -> Run Jar file which contains map reduce logic.
-
-### 8 Dec
-
-
-
-
-
-
-
-
 

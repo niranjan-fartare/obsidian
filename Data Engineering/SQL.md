@@ -1,7 +1,7 @@
 Data -> Facts, Figures, Statistics
 Information -> Meaningful data
 
-# Types of data
+# Types of Data
 
 - Structured -> Tables, CSV
 - Semi Structured -> JSON, XML, HTML
@@ -16,14 +16,12 @@ Information -> Meaningful data
 - Terabyte -> 1024 Gigabytes
 - Petabyte -> 1024 Terabytes
 - Exabyte -> 1024 Petabytes 
-
 # DBMS
 
 - Database Management System is a software which is used to store, manage and retrieve data. 
-- **RDMBS** is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
+- RDMBS is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
 - Data is stored in the form of rows and columns within tables. 
 - Each row represents a unique record, while each column represents a specific attribute of that record.
-
 # SQL 
 
 - Structured Query Language is a programming language used to communicate with databases, such as MySQL, to perform various operations like storing, retrieving, updating, and deleting data.
