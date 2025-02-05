@@ -139,14 +139,18 @@ Alter is used for,
 - Removing existing columns : 
 	- `alter table <table_name> drop column <column_name>;`
 	- `alter table subscriber drop column extra_column;`
-- Rename tables : `alter table <old_table_name> rename to <new_table_name>;`
+- Rename tables : 
+	- `alter table <old_table_name> rename to <new_table_name>;`
 	- Eg. `alter table subscriber rename to subs;`
 - Change data type :
-	- Change Column Name & Datatype :`alter table <table_name> change column <old_column> <new_col_name> <new_data_type>;`
+	- Change Column Name & Datatype :
+		- `alter table <table_name> change column <old_column> <new_col_name> <new_data_type>;`
 		- Eg. `alter table subscriber change column samount amount double;`
-	- Change Column Name : `alter table <table_name> change column <old_column> <new_col_name> <old_data_type>;`
+	- Change Column Name : 
+		- `alter table <table_name> change column <old_column> <new_col_name> <old_data_type>;`
 		- Eg. `alter table subscriber change column cid sid int;`
-	- Change Data type : `alter table <table_name> change column <old_column> <old_column> <new_datatype>;`
+	- Change Data type : 
+		- `alter table <table_name> change column <old_column> <old_column> <new_datatype>;`
 		- Eg. `alter table subscriber change column sid sid varchar(100);`
 
 # Constraints
