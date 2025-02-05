@@ -8,7 +8,9 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - [ACID Properties](#acid-properties)
 - [ER Diagram](#er-diagram)
 	- [Relations / Cardinality](#relations--cardinality)
-- 
+- [DDL](#ddl)
+- [DML](#dml)
+- [DRL](#drl)
 
 # Data 
 
@@ -56,11 +58,13 @@ ACID properties ensure that database Transactions are processed reliably, mainta
 - **Isolation** : A transaction should not affect other transactions.
 - **Durability** : Once a transaction is committed, changes are permanent, even in the event of a failure.
 
-# DDL (Data Definition)(Auto-Commit)
+# DDL
 
 DDL is used to define and manage all database objects.
 
-- `alter`
+- Data Definition Language
+- DDL statements are Auto-Commit
+- [`alter`](#alter)
 - `create`
 - `drop`
 - `truncate`
