@@ -2,8 +2,12 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 # Table Of Contents
 
 - [Data](#data)
+	- [Types Of Data](#types-of-data)
+	- [Units Of Data](#units-of-data)
 - [DBMS](#DBMS)
 - [ACID Properties](#acid-properties)
+- [ER Diagram](#er-diagram)
+- 
 
 # Data 
 
