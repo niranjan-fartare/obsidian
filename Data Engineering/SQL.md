@@ -132,12 +132,13 @@ Delete the whole table.
 - Eg. `drop table emp;`
 # alter
 
-alter is used for,
-- Adding new columns : `alter table <table_name> add column <column_name> <data_type>`
-- 
-	- Eg. `alter table subscriber add column samount long;`  
-- Removing existing columns : `alter table <table_name> drop column <column_name>;`
-		- Eg. `alter table subscriber drop column extrac;`
+Alter is used for,
+- Adding new columns : 
+	- `alter table <table_name> add column <column_name> <data_type>`
+	- `alter table subscriber add column samount long;`  
+- Removing existing columns : 
+	- `alter table <table_name> drop column <column_name>;`
+	- `alter table subscriber drop column extra_column;`
 - Rename tables : `alter table <old_table_name> rename to <new_table_name>;`
 	- Eg. `alter table subscriber rename to subs;`
 - Change data type :
