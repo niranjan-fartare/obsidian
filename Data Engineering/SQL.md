@@ -30,17 +30,18 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - RDMBS is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
 - Data is stored in the form of rows and columns within tables. 
 - Each row represents a unique record, while each column represents a specific attribute of that record.
-- 
 # ER Diagram
 
-- Entity Relationship Diagram 
-- Entity : Tables
-# Relations / Cardinality 
+- Entity Relationship Diagram
+- **Entity** : An entity is a object or thing in the real world that can be identified. It can be a physical object (like a car) or a concept (like a course).
+- **Attributes** : Attributes are the properties or characteristics of an entity.
+- **Relationships** : Relationships describe how entities are related to one another.
+## Relations / Cardinality 
 
-- One to One
-- One to Many
-- Many to One
-- Many to Many
+- **One-to-One (1:1)**: One instance of an entity is related to one instance of another entity.
+- **One-to-Many (1:N)**: One instance of an entity is related to multiple instances of another entity.
+- **Many-to-One (N:1)**: Multiple instances of one entity are related to one instance of another entity.
+- **Many-to-Many (M:N)**: Multiple instances of one entity are related to multiple instances of another entity.
 # ACID Properties
 
 ACID properties ensure that database Transactions are processed reliably, maintaining the integrity and consistency of the data throughout their life-cycle.
