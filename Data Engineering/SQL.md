@@ -1,7 +1,7 @@
 Data : Facts, Figures, Statistics
 Information : Meaningful data
 
-#
+# Table Of Contents
 
 - [ACID Properties](#acid-properties)
 # Types of Data
