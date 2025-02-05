@@ -1,15 +1,19 @@
-Data : Facts, Figures, Statistics
-Information : Meaningful data
-
 # Table Of Contents
 
+- [Data](#data)
+- [DBMS](#DBMS)
 - [ACID Properties](#acid-properties)
-# Types of Data
+
+# Data 
+
+- Data : Facts, Figures, Statistics
+- Information : Meaningful data
+## Types of Data
 
 - Structured : Tables, CSV
 - Semi Structured : JSON, XML, HTML
 - Unstructured : Text, PDF, Images, Videos
-# Units Of Data 
+## Units Of Data 
 
 - Bit : 0/1
 - Byte : 8 Bits
