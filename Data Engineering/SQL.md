@@ -9,7 +9,14 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - [ER Diagram](#er-diagram)
 	- [Relations / Cardinality](#relations--cardinality)
 - [DDL](#ddl)
+	- [ALTER](#alter)
+	- [CREATE](#create)
+	- [DROP](#drop)
+	- [TRUNCATE](#truncate)
 - [DML](#dml)
+	- [INSERT](#insert)
+	- [UPDATE](#update)
+	- [DELETE](#delete)
 - [DRL](#drl)
 
 # Data 
