@@ -1,3 +1,4 @@
+Structured Query Language (SQL) is a programming language used to communicate with databases, such as MySQL, to perform various operations like storing, retrieving, updating, and deleting data.
 # Table Of Contents
 
 - [Data](#data)
@@ -29,9 +30,7 @@
 - RDMBS is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
 - Data is stored in the form of rows and columns within tables. 
 - Each row represents a unique record, while each column represents a specific attribute of that record.
-# SQL 
-
-- Structured Query Language is a programming language used to communicate with databases, such as MySQL, to perform various operations like storing, retrieving, updating, and deleting data.
+- 
 # ER Diagram
 
 - Entity Relationship Diagram 
