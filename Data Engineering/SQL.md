@@ -64,53 +64,62 @@ DDL is used to define and manage all database objects.
 
 - Data Definition Language
 - DDL statements are Auto-Commit
-- [`alter`](#alter)
-- `create`
+- [`ALTER`](#alter)
+- [`CREATE`](#create)
 - `drop`
 - `truncate`
 # DML (Data Manipulation)
 
 DML is used for managing data within existing database objects.
 
-- `insert`
-- `update`
+- `INSERT`
+- `UPDATE`
 - `delete`
 # DRL (Data Retrieval)
 
 DRL is a subset of DML focused specifically on retrieving data from the database.
 
-- `select`
+- `SELECT`
 # Misc
 
-- `show databases; : Show all databases
+- `show databases;` : Show all databases
 - `use database;` : Use given database
 - `desc table;` :  Show table structure
 - `show tables;` : Show all tables in current database
 
-# Create Table
+# CREATE
 
-Creates a new table.
+- It used to CREATE new database objects, such as tables, views, indexes, and databases.
+- Database : 
+	- Syntax : `CREATE DATABASE database_name;`
+	- Eg, `CREATE DATABASE CompanyDB;`
+- Table : 
+	- `CREATE table <table_name> (column datatype, column datatyoe(length/size));`
+	- Eg. `CREATE table student (roll int, name varchar(50));`
+	- Eg. `CREATE table emp (eid int, ename varchar(50), city varchar(40), doj date);`
+- View : 
+	- `CREATE VIEW view_name AS SELECT * FROM table_name WHERE condition;`
+	- Eg., `CREATE VIEW EmployeeView AS SELECT FirstName, LastName, DepartmentID FROM Employees WHERE Salary > 50000;`
+- Index : 
+	- `CREATE INDEX index_name ON table_name (column1, column2, ...);`
+	- Eg. `CREATE INDEX idx_lastname ON Employees (LastName);`
 
-- `create table <table_name> (column datatype, column datatyoe(length/size));`
-- Eg. `create table student (roll int, name varchar(50));`
-- Eg. `create table emp (eid int, ename varchar(50), city varchar(40), doj date);`
-
-# insert
+# INSERT
 
 Values should match the columns. 
 
-- `insert into <table_name> values(value, value);`
-- Eg. `insert into student values(1, "Niranjan");`
-- Eg. `insert into emp values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
-- Eg. `insert into emp (col1, col2, col3) values (val1, val2, val3);`
-- Eg. `insert into emp (roll, name, city, doj) values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
-# update
+- `INSERT into <table_name> values(value, value);`
+- Eg. `INSERT into student values(1, "Niranjan");`
+- Eg. `INSERT into emp values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
+- Eg. `INSERT into emp (col1, col2, col3) values (val1, val2, val3);`
+- Eg. `INSERT into emp (roll, name, city, doj) values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
+# UPDATE
 
-Update existing records
+UPDATE existing records
 
-- Single Column : `update <table_name> set <col_name>=<new_value> where <condition_>;`
-- Multiple Columns : `update <table_name> set <col_name>=<new_value>, <col_name>=<new_value> where <condition_>;`
-- Eg. `update student set roll = 4 where name='Niranjan';`
+- Single Column : `UPDATE <table_name> set <col_name>=<new_value> where <condition_>;`
+- Multiple Columns : `UPDATE <table_name> set <col_name>=<new_value>, <col_name>=<new_value> where <condition_>;`
+- Eg. `UPDATE student set roll = 4 where name='Niranjan';`
 # delete
 
 Delete exiting records.
@@ -156,21 +165,21 @@ Alter is used for,
 # Constraints
 
 - Not Null : Does not all `null` values.
-	- `create table student (roll int NOT NULL, name varchar(100));`
+	- `CREATE table student (roll int NOT NULL, name varchar(100));`
 - Unique : Does not allow `duplicate` values.
-	- `create table student (roll int UNIQUE, name varchar(100));`
+	- `CREATE table student (roll int UNIQUE, name varchar(100));`
 - Primary Key : Does not allow `null` and `duplicate` values.
-	- Single Column :`create table student (roll int PRIMARY KEY, name varchar(100));`
-	- Multiple Column : `create table student (roll int, name varchar(100), PRIMARY KEY(roll, name));
+	- Single Column :`CREATE table student (roll int PRIMARY KEY, name varchar(100));`
+	- Multiple Column : `CREATE table student (roll int, name varchar(100), PRIMARY KEY(roll, name));
 
 ## 27 Oct 
 # between .. and
-- `select * from emp where eid between 0 and 10;` - Range
+- `SELECT * from emp where eid between 0 and 10;` - Range
 # like
-- `select * from emp where ename like 'A%';` - Starts with A
-- `select * from emp where ename like '%A;` - Ends with A
-- `select * from emp where ename like '%A%';` - Anything that contains  A
-- `select * from emp where ename like '_____';` -  wildcard
+- `SELECT * from emp where ename like 'A%';` - Starts with A
+- `SELECT * from emp where ename like '%A;` - Ends with A
+- `SELECT * from emp where ename like '%A%';` - Anything that contains  A
+- `SELECT * from emp where ename like '_____';` -  wildcard
 
 ```sql
 SELECT DISTINCT CITY
@@ -178,20 +187,20 @@ FROM STATION
 WHERE CITY NOT LIKE '[AEIOU]%[AEIOU]';
 ```
 # order by
-- `select * from emp order by ename asc;` - List records in Ascending Order
-- `select * from emp order by ename desc;` - List records in Descending Order
-- `select * from emp order by ename desc, city asc;` - List desc by ename first then by city
+- `SELECT * from emp order by ename asc;` - List records in Ascending Order
+- `SELECT * from emp order by ename desc;` - List records in Descending Order
+- `SELECT * from emp order by ename desc, city asc;` - List desc by ename first then by city
 # limit
-- `select * from emp limit 8;` : List the top 8 records
-- `select * from emp limit 8,2;` : List the 2 records after the top 8 records
+- `SELECT * from emp limit 8;` : List the top 8 records
+- `SELECT * from emp limit 8,2;` : List the 2 records after the top 8 records
 # case
-- `select ename, case when city='Pune' then 1000 when city='Mumbai' then 1500 when city='Delhi' then 2000 else 500 end bonus from emp;`
+- `SELECT ename, case when city='Pune' then 1000 when city='Mumbai' then 1500 when city='Delhi' then 2000 else 500 end bonus from emp;`
 # Joins
 
 ## Inner Join : Matching in both
 
 ```sql
-select * from emp, dept.dname from emp join dept on emp.did=dept.did; 
+SELECT * from emp, dept.dname from emp join dept on emp.did=dept.did; 
 ```
 
 ```sql
@@ -210,7 +219,7 @@ select * from emp, dept.dname from emp join dept on emp.did=dept.did;
 -  All records from left and matching from right
 
 ```sql
-select emp.*, dname from emp left join dept on emp.did = dept.did;
+SELECT emp.*, dname from emp left join dept on emp.did = dept.did;
 ```
 
 ```sql
@@ -236,7 +245,7 @@ select emp.*, dname from emp left join dept on emp.did = dept.did;
 - All records from right and matching from left.
 
 ```sql
-select emp.*, dname from emp right join dept on emp.did = dept.did;
+SELECT emp.*, dname from emp right join dept on emp.did = dept.did;
 ```
 
 ```sql
@@ -259,7 +268,7 @@ select emp.*, dname from emp right join dept on emp.did = dept.did;
 - Match every row from both tables.
 
 ```sql
-MariaDB [b16]> select eid, ename, dname from emp cross join dept;
+MariaDB [b16]> SELECT eid, ename, dname from emp cross join dept;
 +------+----------+-------+
 | eid  | ename    | dname |
 +------+----------+-------+
@@ -305,7 +314,7 @@ MariaDB [b16]> select eid, ename, dname from emp cross join dept;
 - Join table with itself
 
 ```sql
-MariaDB [b16]> select * from emps;
+MariaDB [b16]> SELECT * from emps;
 +------+---------+-------+
 | eid  | ename   | mgrid |
 +------+---------+-------+
@@ -327,7 +336,7 @@ Output :
 
 ```sql
 
-MariaDB [b16]> select e.eid, e.ename , m.ename as Manager from emps e left join emps m on e.mgrid = m.eid;
+MariaDB [b16]> SELECT e.eid, e.ename , m.ename as Manager from emps e left join emps m on e.mgrid = m.eid;
 +------+---------+---------+
 | eid  | ename   | Manager |
 +------+---------+---------+
@@ -358,7 +367,7 @@ MariaDB [b16]> select e.eid, e.ename , m.ename as Manager from emps e left join 
 Convert String to Upper case
 
 ```sql
-MariaDB [b16]> select ename, upper(ename) from emp;
+MariaDB [b16]> SELECT ename, upper(ename) from emp;
 +----------+--------------+
 | ename    | upper(ename) |
 +----------+--------------+
@@ -375,14 +384,14 @@ MariaDB [b16]> select ename, upper(ename) from emp;
 | Xin      | XIN          |
 +----------+--------------+
 
-MariaDB [b16]> select upper('abcd');
+MariaDB [b16]> SELECT upper('abcd');
 +---------------+
 | upper('abcd') |
 +---------------+
 | ABCD          |
 +---------------+
 
-MariaDB [b16]> select * from emp where upper(city) = 'Pune';
+MariaDB [b16]> SELECT * from emp where upper(city) = 'Pune';
 +------+-------+------+------------+-------+------+
 | eid  | ename | city | doj        | sal   | did  |
 +------+-------+------+------------+-------+------+
@@ -396,7 +405,7 @@ MariaDB [b16]> select * from emp where upper(city) = 'Pune';
 Convert string to Lower Case
 
 ```sql
-MariaDB [b16]> select ename, lower(ename) from emp;
+MariaDB [b16]> SELECT ename, lower(ename) from emp;
 +----------+--------------+
 | ename    | lower(ename) |
 +----------+--------------+
@@ -413,7 +422,7 @@ MariaDB [b16]> select ename, lower(ename) from emp;
 | Xin      | xin          |
 +----------+--------------+
 
-MariaDB [b16]> select lower('ABCD');
+MariaDB [b16]> SELECT lower('ABCD');
 +---------------+
 | lower('ABCD') |
 +---------------+
@@ -426,7 +435,7 @@ MariaDB [b16]> select lower('ABCD');
 Counts characters in a string
 
 ```sql
-MariaDB [b16]> select length('  Hello World ');
+MariaDB [b16]> SELECT length('  Hello World ');
 +--------------------------+
 | length('  Hello World ') |
 +--------------------------+
@@ -439,7 +448,7 @@ MariaDB [b16]> select length('  Hello World ');
 Remove space from left and right side of the string
 
 ```sql
-MariaDB [b16]> select length(trim('  Hello World '));
+MariaDB [b16]> SELECT length(trim('  Hello World '));
 +--------------------------------+
 | length(trim('  Hello World ')) |
 +--------------------------------+
@@ -452,7 +461,7 @@ MariaDB [b16]> select length(trim('  Hello World '));
 Remove space from left side of the string
 
 ```sql
-MariaDB [b16]> select length(ltrim('  Hello World '));
+MariaDB [b16]> SELECT length(ltrim('  Hello World '));
 +---------------------------------+
 | length(ltrim('  Hello World ')) |
 +---------------------------------+
@@ -466,7 +475,7 @@ MariaDB [b16]> select length(ltrim('  Hello World '));
 Remove space from right side of the string
 
 ```sql
-MariaDB [b16]> select length(rtrim('  Hello World '));
+MariaDB [b16]> SELECT length(rtrim('  Hello World '));
 +---------------------------------+
 | length(rtrim('  Hello World ')) |
 +---------------------------------+
@@ -476,10 +485,10 @@ MariaDB [b16]> select length(rtrim('  Hello World '));
 
 ### repeat 
 
-Repeats the selected records n times
+Repeats the SELECTed records n times
 
 ```sql
-MariaDB [b16]> select repeat(ename,2) from emp;
+MariaDB [b16]> SELECT repeat(ename,2) from emp;
 +------------------+
 | repeat(ename,2)  |
 +------------------+
@@ -499,10 +508,10 @@ MariaDB [b16]> select repeat(ename,2) from emp;
 
 ### reverse 
 
-Reverses the selected column
+Reverses the SELECTed column
 
 ```sql
-MariaDB [b16]> select ename, reverse(ename) from emp;
+MariaDB [b16]> SELECT ename, reverse(ename) from emp;
 +----------+----------------+
 | ename    | reverse(ename) |apt install default-jre
 +----------+----------------+
@@ -526,7 +535,7 @@ MariaDB [b16]> select ename, reverse(ename) from emp;
 - If one the value is null returns null
 
 ```sql
-MariaDB [b16]> select ename, city, concat(ename,'-',city) from emp;
+MariaDB [b16]> SELECT ename, city, concat(ename,'-',city) from emp;
 +----------+------------+------------------------+
 | ename    | city       | concat(ename,'-',city) |
 +----------+------------+------------------------+
@@ -549,7 +558,7 @@ MariaDB [b16]> select ename, city, concat(ename,'-',city) from emp;
 replace char/string with given char/string
 
 ```sql
-MariaDB [b16]> select ename, replace(ename, 'a','x') from emp;
+MariaDB [b16]> SELECT ename, replace(ename, 'a','x') from emp;
 +----------+-------------------------+
 | ename    | replace(ename, 'a','x') |
 +----------+-------------------------+
@@ -566,7 +575,7 @@ MariaDB [b16]> select ename, replace(ename, 'a','x') from emp;
 | Xin      | Xin                     |
 +----------+-------------------------+
 
-MariaDB [b16]> select ename, replace(ename, 'ek','x') from emp;
+MariaDB [b16]> SELECT ename, replace(ename, 'ek','x') from emp;
 +----------+--------------------------+
 | ename    | replace(ename, 'ek','x') |
 +----------+--------------------------+
@@ -590,7 +599,7 @@ MariaDB [b16]> select ename, replace(ename, 'ek','x') from emp;
 Output the n char after given index (col, index, n )
 
 ```sql
-MariaDB [b16]> select city, substr(city, 1,3) from emp;
+MariaDB [b16]> SELECT city, substr(city, 1,3) from emp;
 +------------+-------------------+
 | city       | substr(city, 1,3) |
 +------------+-------------------+
@@ -614,7 +623,7 @@ MariaDB [b16]> select city, substr(city, 1,3) from emp;
 Split using given pattern
 
 ```sql
-MariaDB [b16]> select email, substring_index(email, '@',1) from emp;
+MariaDB [b16]> SELECT email, substring_index(email, '@',1) from emp;
 +--------------------+-------------------------------+
 | email              | substring_index(email, '@',1) |
 +--------------------+-------------------------------+
@@ -639,7 +648,7 @@ MariaDB [b16]> select email, substring_index(email, '@',1) from emp;
 Rounds up to nearest integer
 
 ```sql
-MariaDB [b16]> select round(190.12323);
+MariaDB [b16]> SELECT round(190.12323);
 +------------------+
 | round(190.12323) |
 +------------------+
@@ -647,7 +656,7 @@ MariaDB [b16]> select round(190.12323);
 +------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select round(190.92323);
+MariaDB [b16]> SELECT round(190.92323);
 +------------------+
 | round(190.92323) |
 +------------------+
@@ -661,7 +670,7 @@ MariaDB [b16]> select round(190.92323);
 Rounds up and make the value precise
 
 ```sql
-MariaDB [b16]> select format(190.1232, 2);
+MariaDB [b16]> SELECT format(190.1232, 2);
 +---------------------+
 | format(190.1232, 2) |
 +---------------------+
@@ -669,7 +678,7 @@ MariaDB [b16]> select format(190.1232, 2);
 +---------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select format(190.9232, 2);
+MariaDB [b16]> SELECT format(190.9232, 2);
 +---------------------+
 | format(190.9232, 2) |
 +---------------------+
@@ -677,7 +686,7 @@ MariaDB [b16]> select format(190.9232, 2);
 +---------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select format(190.9232, 3);
+MariaDB [b16]> SELECT format(190.9232, 3);
 +---------------------+
 | format(190.9232, 3) |
 +---------------------+
@@ -685,7 +694,7 @@ MariaDB [b16]> select format(190.9232, 3);
 +---------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select format(190.9632, 1);
+MariaDB [b16]> SELECT format(190.9632, 1);
 +---------------------+
 | format(190.9632, 1) |
 +---------------------+
@@ -699,7 +708,7 @@ MariaDB [b16]> select format(190.9632, 1);
 Returns the first non-NULL value in a list of arguments
 
 ```sql
-MariaDB [b16]> select *, coalesce(ccity,pcity,'Not Present') as City from cust;
+MariaDB [b16]> SELECT *, coalesce(ccity,pcity,'Not Present') as City from cust;
 +------+-------+--------+-------------+
 | id   | ccity | pcity  | City        |
 +------+-------+--------+-------------+
@@ -715,7 +724,7 @@ MariaDB [b16]> select *, coalesce(ccity,pcity,'Not Present') as City from cust;
 Current date & time
 
 ```sql
-MariaDB [b16]> select now();
+MariaDB [b16]> SELECT now();
 +---------------------+
 | now()               |
 +---------------------+
@@ -729,7 +738,7 @@ MariaDB [b16]> select now();
 Returns Current Date
 
 ```sql
-MariaDB [b16]> select current_date();
+MariaDB [b16]> SELECT current_date();
 +----------------+
 | current_date() |
 +----------------+
@@ -743,7 +752,7 @@ MariaDB [b16]> select current_date();
 Return Current Time
 
 ```sql
-MariaDB [b16]> select current_time();
+MariaDB [b16]> SELECT current_time();
 +----------------+
 | current_time() |
 +----------------+
@@ -754,7 +763,7 @@ MariaDB [b16]> select current_time();
 ### year, month, monthname, day, dayname, hour, minute, second 
 
 ```sql
-MariaDB [b16]> select year(now());
+MariaDB [b16]> SELECT year(now());
 +-------------+
 | year(now()) |
 +-------------+
@@ -762,7 +771,7 @@ MariaDB [b16]> select year(now());
 +-------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select month(now());
+MariaDB [b16]> SELECT month(now());
 +--------------+
 | month(now()) |
 +--------------+
@@ -770,7 +779,7 @@ MariaDB [b16]> select month(now());
 +--------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select monthname(now());
+MariaDB [b16]> SELECT monthname(now());
 +------------------+
 | monthname(now()) |
 +------------------+
@@ -778,7 +787,7 @@ MariaDB [b16]> select monthname(now());
 +------------------+
 
 
-MariaDB [b16]> select day(now());
+MariaDB [b16]> SELECT day(now());
 +------------+
 | day(now()) |
 +------------+
@@ -786,7 +795,7 @@ MariaDB [b16]> select day(now());
 +------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select dayname(now());
+MariaDB [b16]> SELECT dayname(now());
 +----------------+
 | dayname(now()) |
 +----------------+
@@ -794,7 +803,7 @@ MariaDB [b16]> select dayname(now());
 +----------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select hour(now());
+MariaDB [b16]> SELECT hour(now());
 +-------------+
 | hour(now()) |
 +-------------+
@@ -802,7 +811,7 @@ MariaDB [b16]> select hour(now());
 +-------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select minute(now());
+MariaDB [b16]> SELECT minute(now());
 +---------------+
 | minute(now()) |
 +---------------+
@@ -810,7 +819,7 @@ MariaDB [b16]> select minute(now());
 +---------------+
 1 row in set (0.000 sec)
 
-MariaDB [b16]> select second(now());
+MariaDB [b16]> SELECT second(now());
 +---------------+
 | second(now()) |
 +---------------+
@@ -825,7 +834,7 @@ MariaDB [b16]> select second(now());
 Change format of given col
 
 ```sql
-select date_format(now(), '%Y');
+SELECT date_format(now(), '%Y');
 ```
 
 | Specifier    | Description                                                          | Example Output      |
@@ -852,7 +861,7 @@ select date_format(now(), '%Y');
 Add n days/month/year to the given date
 
 ```sql
-MariaDB [b16]> select date_add(now(), interval 2 day);
+MariaDB [b16]> SELECT date_add(now(), interval 2 day);
 +---------------------------------+
 | date_add(now(), interval 2 day) |
 +---------------------------------+
@@ -860,7 +869,7 @@ MariaDB [b16]> select date_add(now(), interval 2 day);
 +---------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select date_add(now(), interval 2 month);
+MariaDB [b16]> SELECT date_add(now(), interval 2 month);
 +-----------------------------------+
 | date_add(now(), interval 2 month) |
 +-----------------------------------+
@@ -868,7 +877,7 @@ MariaDB [b16]> select date_add(now(), interval 2 month);
 +-----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select date_add(now(), interval 2 year);
+MariaDB [b16]> SELECT date_add(now(), interval 2 year);
 +----------------------------------+
 | date_add(now(), interval 2 year) |
 +----------------------------------+
@@ -876,7 +885,7 @@ MariaDB [b16]> select date_add(now(), interval 2 year);
 +----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> select date_format(date_add(now(), interval 1 month), '%Y/%M/%D');
+MariaDB [b16]> SELECT date_format(date_add(now(), interval 1 month), '%Y/%M/%D');
 +------------------------------------------------------------+
 | date_format(date_add(now(), interval 1 month), '%Y/%M/%D') |
 +------------------------------------------------------------+
@@ -890,7 +899,7 @@ MariaDB [b16]> select date_format(date_add(now(), interval 1 month), '%Y/%M/%D')
 Reduces the given interval 
 
 ```sql
-MariaDB [b16]> select date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), interval 2 day), '%Y/%M/%D') as 'sub_date()';
+MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), interval 2 day), '%Y/%M/%D') as 'sub_date()';
 +--------------------+-------------------+
 | Current            | sub_date()        |
 +--------------------+-------------------+
@@ -904,7 +913,7 @@ MariaDB [b16]> select date_format(now(), '%Y/%M/%D') as Current, date_format(dat
 Returns remaining days from the given date
 
 ```sql
-MariaDB [b16]> select sub_date, current_date(), datediff(now(), sub_date) as Expiry from subscriber;
+MariaDB [b16]> SELECT sub_date, current_date(), datediff(now(), sub_date) as Expiry from subscriber;
 +---------------------+----------------+--------+
 | sub_date            | current_date() | Expiry |
 +---------------------+----------------+--------+
@@ -931,7 +940,7 @@ MariaDB [b16]> select sub_date, current_date(), datediff(now(), sub_date) as Exp
 ### max(col)
 
 ```sql
-MariaDB [b16]> select max(sal) from emp;
+MariaDB [b16]> SELECT max(sal) from emp;
 +----------+
 | max(sal) |
 +----------+
@@ -943,7 +952,7 @@ MariaDB [b16]> select max(sal) from emp;
 ### min(col)
 
 ```sql
-MariaDB [b16]> select min(sal) from emp;
+MariaDB [b16]> SELECT min(sal) from emp;
 +----------+
 | min(sal) |
 +----------+
@@ -955,7 +964,7 @@ MariaDB [b16]> select min(sal) from emp;
 ### sum(col)
 
 ```sql
-MariaDB [b16]> select sum(sal) from emp;
+MariaDB [b16]> SELECT sum(sal) from emp;
 +----------+
 | sum(sal) |
 +----------+
@@ -967,7 +976,7 @@ MariaDB [b16]> select sum(sal) from emp;
 ### avg(sal)
 
 ```sql
-MariaDB [b16]> select avg(sal) from emp;
+MariaDB [b16]> SELECT avg(sal) from emp;
 +------------+
 | avg(sal)   |
 +------------+
@@ -982,7 +991,7 @@ MariaDB [b16]> select avg(sal) from emp;
 - count(1) : Counts all records including Null
 
 ```sql
-MariaDB [b16]> select count(sal) from emp;
+MariaDB [b16]> SELECT count(sal) from emp;
 +------------+
 | count(sal) |
 +------------+
@@ -993,7 +1002,7 @@ MariaDB [b16]> select count(sal) from emp;
 ### distinct 
 
 ```sql
-MariaDB [b16]> select * from emp;
+MariaDB [b16]> SELECT * from emp;
 +------+----------+------------+------------+-------+------+--------------------+
 | eid  | ename    | city       | doj        | sal   | did  | email              |
 +------+----------+------------+------------+-------+------+--------------------+
@@ -1022,7 +1031,7 @@ MariaDB [b16]> select * from emp;
 +------+----------+------------+------------+-------+------+--------------------+
 22 rows in set (0.001 sec)
 
-MariaDB [b16]> select distinct * from emp;
+MariaDB [b16]> SELECT distinct * from emp;
 +------+----------+------------+------------+-------+------+--------------------+
 | eid  | ename    | city       | doj        | sal   | did  | email              |
 +------+----------+------------+------------+-------+------+--------------------+
@@ -1040,7 +1049,7 @@ MariaDB [b16]> select distinct * from emp;
 +------+----------+------------+------------+-------+------+--------------------+
 11 rows in set (0.001 sec)
 
-MariaDB [b16]> select distinct sal from emp;
+MariaDB [b16]> SELECT distinct sal from emp;
 +-------+
 | sal   |
 +-------+
@@ -1063,7 +1072,7 @@ Used to perform group functions on group of records based on given column
 
 
 ```sql
-MariaDB [b16]> select did, avg(sal) from emp group by did;
+MariaDB [b16]> SELECT did, avg(sal) from emp group by did;
 +------+------------+
 | did  | avg(sal)   |
 +------+------------+
@@ -1080,7 +1089,7 @@ MariaDB [b16]> select did, avg(sal) from emp group by did;
 Use to filter output of Group By
 
 ```sql
-MariaDB [b16]> select did, sum(sal)from emp group by did having sum(sal) > 50000;
+MariaDB [b16]> SELECT did, sum(sal)from emp group by did having sum(sal) > 50000;
 +------+----------+
 | did  | sum(sal) |
 +------+----------+
@@ -1102,7 +1111,7 @@ MariaDB [b16]> select did, sum(sal)from emp group by did having sum(sal) > 50000
 - MINUS/EXCEPT : Non Matching records from first table
 
 ```sql
-MariaDB [b16]> select * from pune;
+MariaDB [b16]> SELECT * from pune;
 +------+--------+
 | id   | ename  |
 +------+--------+
@@ -1111,7 +1120,7 @@ MariaDB [b16]> select * from pune;
 +------+--------+
 2 rows in set (0.000 sec)
 
-MariaDB [b16]> select * from mumbai;
+MariaDB [b16]> SELECT * from mumbai;
 +------+---------+
 | id   | ename   |
 +------+---------+
@@ -1124,7 +1133,7 @@ MariaDB [b16]> select * from mumbai;
 ## Union
 
 ```sql
-MariaDB [b16]> select * from pune UNION select * from mumbai;
+MariaDB [b16]> SELECT * from pune UNION SELECT * from mumbai;
 +------+---------+
 | id   | ename   |
 +------+---------+
@@ -1138,7 +1147,7 @@ MariaDB [b16]> select * from pune UNION select * from mumbai;
 ## Union All
 
 ```sql
-MariaDB [b16]> select * from pune UNION ALL select * from mumbai;
+MariaDB [b16]> SELECT * from pune UNION ALL SELECT * from mumbai;
 +------+---------+
 | id   | ename   |
 +------+---------+
@@ -1152,7 +1161,7 @@ MariaDB [b16]> select * from pune UNION ALL select * from mumbai;
 ## Intersect
 
 ```sql
-MariaDB [b16]> select * from pune INTERSECT select * from mumbai;
+MariaDB [b16]> SELECT * from pune INTERSECT SELECT * from mumbai;
 +------+-------+
 | id   | ename |
 +------+-------+
@@ -1164,7 +1173,7 @@ MariaDB [b16]> select * from pune INTERSECT select * from mumbai;
 ## EXCEPT / MINUS
 
 ```sql
-MariaDB [b16]> select * from pune EXCEPT select * from mumbai;
+MariaDB [b16]> SELECT * from pune EXCEPT SELECT * from mumbai;
 +------+--------+
 | id   | ename  |
 +------+--------+
@@ -1172,7 +1181,7 @@ MariaDB [b16]> select * from pune EXCEPT select * from mumbai;
 +------+--------+
 1 row in set (0.000 sec)
 
-MariaDB [b16]> select * from mumbai EXCEPT select * from pune;
+MariaDB [b16]> SELECT * from mumbai EXCEPT SELECT * from pune;
 +------+---------+
 | id   | ename   |
 +------+---------+
@@ -1188,7 +1197,7 @@ MariaDB [b16]> select * from mumbai EXCEPT select * from pune;
 # Sub Queries
 
 ```sql
-MariaDB [b16]> select * from emp where sal = (select max(sal)from emp);
+MariaDB [b16]> SELECT * from emp where sal = (SELECT max(sal)from emp);
 +------+--------+--------+------------+-------+------+------------------+
 | eid  | ename  | city   | doj        | sal   | did  | email            |
 +------+--------+--------+------------+-------+------+------------------+
@@ -1197,7 +1206,7 @@ MariaDB [b16]> select * from emp where sal = (select max(sal)from emp);
 +------+--------+--------+------------+-------+------+------------------+
 2 rows in set (0.007 sec)
 
-MariaDB [b16]> select * from (select *, sal * 12 as 'AnnualSalary'  from emp)A where AnnualSalary >= 300000;
+MariaDB [b16]> SELECT * from (SELECT *, sal * 12 as 'AnnualSalary'  from emp)A where AnnualSalary >= 300000;
 +------+----------+------------+------------+-------+------+--------------------+--------------+
 | eid  | ename    | city       | doj        | sal   | did  | email              | AnnualSalary |
 +------+----------+------------+------------+-------+------+--------------------+--------------+
@@ -1221,7 +1230,7 @@ MariaDB [b16]> select * from (select *, sal * 12 as 'AnnualSalary'  from emp)A w
 |   11 | Xin      | China      | 1998-01-01 | 65000 |   10 | xin@gmail.com      |       780000 |
 +------+----------+------------+------------+-------+------+--------------------
 
-MariaDB [b16]> select * from emp where did in (select did from dept);
+MariaDB [b16]> SELECT * from emp where did in (SELECT did from dept);
 +------+-----------+------------+------------+-------+------+-------------------+
 | eid  | ename     | city       | doj        | sal   | did  | email             |
 +------+-----------+------------+------------+-------+------+-------------------+
@@ -1237,7 +1246,7 @@ MariaDB [b16]> select * from emp where did in (select did from dept);
 +------+-----------+------------+------------+-------+------+-------------------+
 9 rows in set (0.001 sec)
 
-MariaDB [b16]> select temp_cust.*, temp_orders.order_date from (select * from customer where state='TX') temp_cust inner join (select * from orders where order_date between '2023-01-01' and '2023-12-31') temp_orders on temp_cust.cid = temp_orders.cid;
+MariaDB [b16]> SELECT temp_cust.*, temp_orders.order_date from (SELECT * from customer where state='TX') temp_cust inner join (SELECT * from orders where order_date between '2023-01-01' and '2023-12-31') temp_orders on temp_cust.cid = temp_orders.cid;
 +------+-------------------+-------------+-------+------------+-------------------------------+---------------------+
 | cid  | cname             | city        | state | mobile     | email                         | order_date          |
 +------+-------------------+-------------+-------+------------+-------------------------------+---------------------+
@@ -1251,7 +1260,7 @@ MariaDB [b16]> select temp_cust.*, temp_orders.order_date from (select * from cu
 # CTE (Common Table Expression)
 
 ```sql 
-MariaDB [b16]> with temp_cust AS (select * from customer where state='TX'), temp_orders AS (select * from orders where order_date between '2023-01-01' and '2023-12-31')  select temp_cust.*, temp_orders.order_date from temp_cust   inner join temp_orders  on temp_cust.cid = temp_orders.cid;
+MariaDB [b16]> with temp_cust AS (SELECT * from customer where state='TX'), temp_orders AS (SELECT * from orders where order_date between '2023-01-01' and '2023-12-31')  SELECT temp_cust.*, temp_orders.order_date from temp_cust   inner join temp_orders  on temp_cust.cid = temp_orders.cid;
 +------+-------------------+-------------+-------+------------+-------------------------------+---------------------+
 | cid  | cname             | city        | state | mobile     | email                         | order_date          |
 +------+-------------------+-------------+-------+------------+-------------------------------+---------------------+
@@ -1272,7 +1281,7 @@ MariaDB [b16]> with temp_cust AS (select * from customer where state='TX'), temp
 ## row_number
 
 ```sql
-MariaDB [b16]> select eid, sal, row_number() over(order by sal ) as 'Row Number' from emp;
+MariaDB [b16]> SELECT eid, sal, row_number() over(order by sal ) as 'Row Number' from emp;
 +------+-------+------------+
 | eid  | sal   | Row Number |
 +------+-------+------------+
@@ -1302,7 +1311,7 @@ MariaDB [b16]> select eid, sal, row_number() over(order by sal ) as 'Row Number'
 +------+-------+------------+
 23 rows in set (0.001 sec)
 
-MariaDB [b16]> select eid, sal, row_number() over(order by sal desc) as 'Row Number' from emp;
+MariaDB [b16]> SELECT eid, sal, row_number() over(order by sal desc) as 'Row Number' from emp;
 +------+-------+------------+
 | eid  | sal   | Row Number |
 +------+-------+------------+
@@ -1337,7 +1346,7 @@ MariaDB [b16]> select eid, sal, row_number() over(order by sal desc) as 'Row Num
 ## rank
 
 ```sql
-MariaDB [b16]> select eid, sal, rank() over(order by sal) as 'Rank' from emp;
+MariaDB [b16]> SELECT eid, sal, rank() over(order by sal) as 'Rank' from emp;
 +------+-------+------------+
 | eid  | sal   | Rank |
 +------+-------+------------+
@@ -1367,7 +1376,7 @@ MariaDB [b16]> select eid, sal, rank() over(order by sal) as 'Rank' from emp;
 +------+-------+------------+
 23 rows in set (0.001 sec)
 
-MariaDB [b16]> select eid, sal, rank() over(order by sal desc) as 'Rank' from emp;
+MariaDB [b16]> SELECT eid, sal, rank() over(order by sal desc) as 'Rank' from emp;
 +------+-------+------------+
 | eid  | sal   | Rank |
 +------+-------+------------+
@@ -1401,7 +1410,7 @@ MariaDB [b16]> select eid, sal, rank() over(order by sal desc) as 'Rank' from em
 ## Dense Rank
 
 ```sql
-MariaDB [b16]> select eid, sal, dense_rank() over(order by sal) as 'Dense Rank' from emp;
+MariaDB [b16]> SELECT eid, sal, dense_rank() over(order by sal) as 'Dense Rank' from emp;
 +------+-------+------------+
 | eid  | sal   | Dense Rank |
 +------+-------+------------+
@@ -1431,7 +1440,7 @@ MariaDB [b16]> select eid, sal, dense_rank() over(order by sal) as 'Dense Rank' 
 +------+-------+------------+
 23 rows in set (0.001 sec)
 
-MariaDB [b16]> select eid, sal, dense_rank() over(order by sal desc) as 'Dense Rank' from emp;
+MariaDB [b16]> SELECT eid, sal, dense_rank() over(order by sal desc) as 'Dense Rank' from emp;
 +------+-------+------------+
 | eid  | sal   | Dense Rank |
 +------+-------+------------+
@@ -1465,7 +1474,7 @@ MariaDB [b16]> select eid, sal, dense_rank() over(order by sal desc) as 'Dense R
 ## Lag(col, n) 
 
 ```sql
-MariaDB [b16]> select eid, ename, sal, did, lag(sal,3) over(order by eid asc) as total_sal from emp;
+MariaDB [b16]> SELECT eid, ename, sal, did, lag(sal,3) over(order by eid asc) as total_sal from emp;
 +------+-----------+-------+------+-----------+
 | eid  | ename     | sal   | did  | total_sal |
 +------+-----------+-------+------+-----------+
@@ -1499,7 +1508,7 @@ MariaDB [b16]> select eid, ename, sal, did, lag(sal,3) over(order by eid asc) as
 ## Lead(col,n)
 
 ```sql
-MariaDB [b16]> select eid, ename, sal, did, lead(sal,3) over(order by eid asc) as total_sal from emp;
+MariaDB [b16]> SELECT eid, ename, sal, did, lead(sal,3) over(order by eid asc) as total_sal from emp;
 +------+-----------+-------+------+-----------+
 | eid  | ename     | sal   | did  | total_sal |
 +------+-----------+-------+------+-----------+
@@ -1534,8 +1543,8 @@ MariaDB [b16]> select eid, ename, sal, did, lead(sal,3) over(order by eid asc) a
 
 ## View
 
-- Created virtual table
-- create view view_name as select_query;
+- CREATEd virtual table
+- CREATE view view_name as SELECT_query;
 - replace : 
 - Types:
 	- Simple : Uses simple statements like 'where', supports CRUD
@@ -1543,10 +1552,10 @@ MariaDB [b16]> select eid, ename, sal, did, lead(sal,3) over(order by eid asc) a
 	- Materialized : Saved view on HDD
 
 ```sql
-MariaDB [b16]> create view ac_mumbai as select * from account where city='Mumbai'; //Simple View
+MariaDB [b16]> CREATE view ac_mumbai as SELECT * from account where city='Mumbai'; //Simple View
 
 
-MariaDB [b16]> select * from ac_pune;
+MariaDB [b16]> SELECT * from ac_pune;
 +------+--------------+------+------------+-------+
 | id   | name         | city | mob        | bal   |
 +------+--------------+------+------------+-------+
@@ -1561,7 +1570,7 @@ Query OK, 0 rows affected (0.004 sec)
 ## Indexing 
 
 ```sql
-create index idx_name on table_name(col_name);
+CREATE index idx_name on table_name(col_name);
 ```
 
 - Clustered : Arranges records in order
@@ -1572,19 +1581,19 @@ create index idx_name on table_name(col_name);
 # Duplicate table with data
 
 ```sql
-create table emp_bak as select * from emp;
+CREATE table emp_bak as SELECT * from emp;
 ```
 
 # Duplicate table structure only
 
 ```sql
-create table emp_test as select * from emp where 1 = 0;
+CREATE table emp_test as SELECT * from emp where 1 = 0;
 ```
 
-# Insert from another table
+# INSERT from another table
 
 ```sql
-insert into emp_test select * from emp where eid < 5;
+INSERT into emp_test SELECT * from emp where eid < 5;
 ```
 
 # Run .sql files
@@ -1604,7 +1613,7 @@ Process of organizing data into multiple related tables to eliminate redundancy 
 ## Goals
 
 - Minimize redundancy.
-- Avoid data anomalies (insertion, update, and deletion).
+- Avoid data anomalies (INSERTion, UPDATE, and deletion).
 - 1NF (First Normal Form)
 	- Ensures that each column contains atomic values (no repeating groups or arrays).
 - 2NF (Second Normal Form):
