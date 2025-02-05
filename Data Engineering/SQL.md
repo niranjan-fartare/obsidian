@@ -1,21 +1,24 @@
-Data -> Facts, Figures, Statistics
-Information -> Meaningful data
+Data : Facts, Figures, Statistics
+Information : Meaningful data
 
+#
+
+- [ACID Properties](#acid-properties)
 # Types of Data
 
-- Structured -> Tables, CSV
-- Semi Structured -> JSON, XML, HTML
-- Unstructured -> Text, PDF, Images, Videos
+- Structured : Tables, CSV
+- Semi Structured : JSON, XML, HTML
+- Unstructured : Text, PDF, Images, Videos
 # Units Of Data 
 
-- Bit -> 0/1
-- Byte -> 8 Bits
-- Kilobyte -> 1024 Bytes
-- Megabyte -> 1024 Kilobytes
-- Gigabyte -> 1024 Megabytes
-- Terabyte -> 1024 Gigabytes
-- Petabyte -> 1024 Terabytes
-- Exabyte -> 1024 Petabytes 
+- Bit : 0/1
+- Byte : 8 Bits
+- Kilobyte : 1024 Bytes
+- Megabyte : 1024 Kilobytes
+- Gigabyte : 1024 Megabytes
+- Terabyte : 1024 Gigabytes
+- Petabyte : 1024 Terabytes
+- Exabyte : 1024 Petabytes 
 # DBMS
 
 - Database Management System is a software which is used to store, manage and retrieve data. 
@@ -28,40 +31,48 @@ Information -> Meaningful data
 # ER Diagram
 
 - Entity Relationship Diagram 
-- Entity -> Tables
-- 
+- Entity : Tables
 # Relations / Cardinality 
 
 - One to One
 - One to Many
 - Many to One
 - Many to Many
-
 # ACID Properties
 
-ACID properties ensure that database transactions are processed reliably, maintaining the integrity and consistency of the data throughout their life-cycle.
+ACID properties ensure that database Transactions are processed reliably, maintaining the integrity and consistency of the data throughout their life-cycle.
 
-- Atomicity -> A transaction should either be successful or it should not happen at all. If any part of the transaction fails, the entire transaction should be rolled back.
-- Consistency -> The Data should be consistent across transactions.
-- Isolation -> A transaction should not affect other transactions.
-- Durability -> Once a transaction is committed, changes are permanent, even in the event of a failure.
+- **Atomicity** : A transaction should either be successful or it should not happen at all. If any part of the transaction fails, the entire transaction should be rolled back.
+- **Consistency** : The Data should be consistent across transactions.
+- **Isolation** : A transaction should not affect other transactions.
+- **Durability** : Once a transaction is committed, changes are permanent, even in the event of a failure.
 
 # DDL (Data Definition)(Auto-Commit)
-- create
-- drop
-- alter
-- truncate
-# DML (Data Manipulation)
-- insert
-- update
-- delete
-# DRL (Data Retrieval)
-- select
 
--  ```show databases;``` -> Show all databases
-### `use database;` -> Use given database
-### `desc table;` ->  Show table structure
-### `show tables;` -> Show all tables in current database
+DDL is used to define and manage all database objects.
+
+- `alter`
+- `create`
+- `drop`
+- `truncate`
+# DML (Data Manipulation)
+
+DML is used for managing data within existing database objects.
+
+- `insert`
+- `update`
+- `delete`
+# DRL (Data Retrieval)
+
+DRL is a subset of DML focused specifically on retrieving data from the database.
+
+- `select`
+# Misc
+
+- `show databases; : Show all databases
+- `use database;` : Use given database
+- `desc table;` :  Show table structure
+- `show tables;` : Show all tables in current database
 
 # Create Table
 
@@ -84,8 +95,8 @@ Values should match the columns.
 
 Update existing records
 
-- Single Column -> `update <table_name> set <col_name>=<new_value> where <condition_>;`
-- Multiple Columns -> `update <table_name> set <col_name>=<new_value>, <col_name>=<new_value> where <condition_>;`
+- Single Column : `update <table_name> set <col_name>=<new_value> where <condition_>;`
+- Multiple Columns : `update <table_name> set <col_name>=<new_value>, <col_name>=<new_value> where <condition_>;`
 - Eg. `update student set roll = 4 where name='Niranjan';`
 # delete
 
@@ -93,7 +104,7 @@ Delete exiting records.
 
 - `delete from <table_name> where <condition>;`
 - Eg. `delete from student where roll=1;`
-- `delete from <table_name>;` -> Deletes all records from given table.
+- `delete from <table_name>;` : Deletes all records from given table.
 # truncate
 
 Maintain table structure and Delete all data.
@@ -109,30 +120,30 @@ Delete the whole table.
 # alter
 
 alter is used for,
-- Adding new columns -> `alter table <table_name> add column <column_name> <data_type>`
+- Adding new columns : `alter table <table_name> add column <column_name> <data_type>`
 - 
 	- Eg. `alter table subscriber add column samount long;`  
-- Removing existing columns -> `alter table <table_name> drop column <column_name>;`
-	- Eg. `alter table subscriber drop column extrac;`
-- Rename tables -> `alter table <old_table_name> rename to <new_table_name>;`
+- Removing existing columns : `alter table <table_name> drop column <column_name>;`
+		- Eg. `alter table subscriber drop column extrac;`
+- Rename tables : `alter table <old_table_name> rename to <new_table_name>;`
 	- Eg. `alter table subscriber rename to subs;`
-- Change data type ->
-	- Change Column Name & Datatype ->`alter table <table_name> change column <old_column> <new_col_name> <new_data_type>;`
+- Change data type :
+	- Change Column Name & Datatype :`alter table <table_name> change column <old_column> <new_col_name> <new_data_type>;`
 		- Eg. `alter table subscriber change column samount amount double;`
-	- Change Column Name -> `alter table <table_name> change column <old_column> <new_col_name> <old_data_type>;`
+	- Change Column Name : `alter table <table_name> change column <old_column> <new_col_name> <old_data_type>;`
 		- Eg. `alter table subscriber change column cid sid int;`
-	- Change Data type -> `alter table <table_name> change column <old_column> <old_column> <new_datatype>;`
+	- Change Data type : `alter table <table_name> change column <old_column> <old_column> <new_datatype>;`
 		- Eg. `alter table subscriber change column sid sid varchar(100);`
 
 # Constraints
 
-- Not Null -> Does not all `null` values.
+- Not Null : Does not all `null` values.
 	- `create table student (roll int NOT NULL, name varchar(100));`
-- Unique -> Does not allow `duplicate` values.
+- Unique : Does not allow `duplicate` values.
 	- `create table student (roll int UNIQUE, name varchar(100));`
-- Primary Key -> Does not allow `null` and `duplicate` values.
-	- Single Column ->`create table student (roll int PRIMARY KEY, name varchar(100));`
-	- Multiple Column -> `create table student (roll int, name varchar(100), PRIMARY KEY(roll, name));
+- Primary Key : Does not allow `null` and `duplicate` values.
+	- Single Column :`create table student (roll int PRIMARY KEY, name varchar(100));`
+	- Multiple Column : `create table student (roll int, name varchar(100), PRIMARY KEY(roll, name));
 
 ## 27 Oct 
 # between .. and
@@ -142,18 +153,24 @@ alter is used for,
 - `select * from emp where ename like '%A;` - Ends with A
 - `select * from emp where ename like '%A%';` - Anything that contains  A
 - `select * from emp where ename like '_____';` -  wildcard
+
+```sql
+SELECT DISTINCT CITY
+FROM STATION
+WHERE CITY NOT LIKE '[AEIOU]%[AEIOU]';
+```
 # order by
 - `select * from emp order by ename asc;` - List records in Ascending Order
 - `select * from emp order by ename desc;` - List records in Descending Order
 - `select * from emp order by ename desc, city asc;` - List desc by ename first then by city
 # limit
-- `select * from emp limit 8;` <- List the top 8 records
-- `select * from emp limit 8,2;` <- List the 2 records after the top 8 records
+- `select * from emp limit 8;` : List the top 8 records
+- `select * from emp limit 8,2;` : List the 2 records after the top 8 records
 # case
 - `select ename, case when city='Pune' then 1000 when city='Mumbai' then 1500 when city='Delhi' then 2000 else 500 end bonus from emp;`
 # Joins
 
-## Inner Join -> Matching in both
+## Inner Join : Matching in both
 
 ```sql
 select * from emp, dept.dname from emp join dept on emp.did=dept.did; 
@@ -288,7 +305,7 @@ MariaDB [b16]> select * from emps;
 10 rows in set (0.001 sec)
 ```
 
-Output ->
+Output :
 
 ```sql
 
@@ -312,8 +329,8 @@ MariaDB [b16]> select e.eid, e.ename , m.ename as Manager from emps e left join 
 
 # Functions
 
-- Scaler -> Returns same number of records, n records -> n output
-- Group -> Returns a single output, n records -> 1 output
+- Scaler : Returns same number of records, n records : n output
+- Group : Returns a single output, n records : 1 output
 
 
 ## Scaler Functions
@@ -943,8 +960,8 @@ MariaDB [b16]> select avg(sal) from emp;
 
 ### count(col)
 
-- count(col) -> Does not count Null columns
-- count(1) -> Counts all records including Null
+- count(col) : Does not count Null columns
+- count(1) : Counts all records including Null
 
 ```sql
 MariaDB [b16]> select count(sal) from emp;
@@ -1061,10 +1078,10 @@ MariaDB [b16]> select did, sum(sal)from emp group by did having sum(sal) > 50000
 
 # Set Operators
 
-- UNION -> Combines both returns unique records
-- UNION ALL -> Combines both tables including duplicate records
-- INTERSECT -> Returns matching unique records from both 
-- MINUS/EXCEPT -> Non Matching records from first table
+- UNION : Combines both returns unique records
+- UNION ALL : Combines both tables including duplicate records
+- INTERSECT : Returns matching unique records from both 
+- MINUS/EXCEPT : Non Matching records from first table
 
 ```sql
 MariaDB [b16]> select * from pune;
@@ -1229,11 +1246,11 @@ MariaDB [b16]> with temp_cust AS (select * from customer where state='TX'), temp
 
 # Window Functions
 
-- row_number -> Assigns row number sequentially
-- rank -> Returns same rank if value is same but skips ranks
-- dense rank -> Returns same rank if value is same but does not skips ranks
-- lead -> Next record
-- lag -> Previous record
+- row_number : Assigns row number sequentially
+- rank : Returns same rank if value is same but skips ranks
+- dense rank : Returns same rank if value is same but does not skips ranks
+- lead : Next record
+- lag : Previous record
 ## row_number
 
 ```sql
@@ -1501,11 +1518,11 @@ MariaDB [b16]> select eid, ename, sal, did, lead(sal,3) over(order by eid asc) a
 
 - Created virtual table
 - create view view_name as select_query;
-- replace -> 
+- replace : 
 - Types:
-	- Simple -> Uses simple statements like 'where', supports CRUD
-	- Complex -> Uses Joins, Group By, Window Functions, Set Operators
-	- Materialized -> Saved view on HDD
+	- Simple : Uses simple statements like 'where', supports CRUD
+	- Complex : Uses Joins, Group By, Window Functions, Set Operators
+	- Materialized : Saved view on HDD
 
 ```sql
 MariaDB [b16]> create view ac_mumbai as select * from account where city='Mumbai'; //Simple View
@@ -1529,9 +1546,9 @@ Query OK, 0 rows affected (0.004 sec)
 create index idx_name on table_name(col_name);
 ```
 
-- Clustered -> Arranges records in order
-- Non Clustered -> Maintains a reference table
-- Show indexes -> 
+- Clustered : Arranges records in order
+- Non Clustered : Maintains a reference table
+- Show indexes : 
 	- `show index from table_name;`
 
 # Duplicate table with data
@@ -1560,8 +1577,8 @@ source .sql_file_ocation
 
 # Misc
 
-- `if not exists` -> only if the target does not already exist
-- `if exists` -> only if the target exists
+- `if not exists` : only if the target does not already exist
+- `if exists` : only if the target exists
 # Normalization & DeNormalization
 
 Process of organizing data into multiple related tables to eliminate redundancy and dependency.
