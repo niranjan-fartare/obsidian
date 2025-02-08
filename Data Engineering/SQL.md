@@ -18,7 +18,7 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 	- [UPDATE](#update)
 	- [DELETE](#delete)
 - [DRL](#drl)
-
+	- [SELECT](#select)
 # Data 
 
 - Data : Facts, Figures, Statistics
@@ -73,20 +73,20 @@ DDL is used to define and manage all database objects.
 - DDL statements are Auto-Commit
 - [`ALTER`](#alter)
 - [`CREATE`](#create)
-- `drop`
-- `truncate`
+- [`DROP`](#drop)
+- [`truncate`](#truncate)
 # DML (Data Manipulation)
 
 DML is used for managing data within existing database objects.
 
-- `INSERT`
-- `UPDATE`
-- `delete`
+- [`INSERT`](#insert)
+- [`UPDATE`](#update)
+- [`DELETE`](#delete)
 # DRL (Data Retrieval)
 
 DRL is a subset of DML focused specifically on retrieving data from the database.
 
-- `SELECT`
+- [`SELECT`](#select)
 # Misc
 
 - `show databases;` : Show all databases
@@ -113,13 +113,20 @@ DRL is a subset of DML focused specifically on retrieving data from the database
 
 # INSERT
 
-Values should match the columns. 
-
-- `INSERT into <table_name> values(value, value);`
-- Eg. `INSERT into student values(1, "Niranjan");`
-- Eg. `INSERT into emp values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
-- Eg. `INSERT into emp (col1, col2, col3) values (val1, val2, val3);`
-- Eg. `INSERT into emp (roll, name, city, doj) values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
+- `INSERT` is used to add new records (rows) to a table.
+- Syntax : 
+	- `INSERT into <table_name> values(value, value);`
+	- `INSERT into <table_name> (col1, col2, col3) values (val1, val2, val3);`
+- Without Specifying Columns :
+	- `INSERT into student values(1, "Niranjan");`
+	- `INSERT into emp values(1, "Peter", "Pune", "2020-01-01");`
+- Specifying Columns : 
+	- `INSERT into emp (roll, name, city, doj) values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
+- Multiple Values : 
+	- `INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, HireDate, Salary, DepartmentID) VALUES (2, 'Jane', 'Smith', '1990-03-22', '2021-05-15', 65000.00, 1), (3, 'Alice', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);`
+- Inserting Data from Another Table :
+	- `INSERT INTO Employees (EmployeeID, FirstName, LastName) SELECT EmployeeID, FirstName, LastName FROM TempEmployees;`
+- The `VALUES` should match the actual columns
 # UPDATE
 
 UPDATE existing records
