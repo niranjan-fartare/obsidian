@@ -110,7 +110,7 @@ hive> insert into cust_dp partition(state, city) select * from tmp;
 
 ## 2. Bucketing
 
-- Used when unequal 
+- Used when unequal
 
 ```sql
 hive> create table emp_b (eid int,ename string,city string)
@@ -176,7 +176,12 @@ hive> create table std_p (roll int,name string,marks array<int>)
 
 # 5. Map Join / Broadcast Join
 
+In Map Join where smaller table is loaded into memory and the join
+
 # 6.  SMB Join
+
+- Sort Merge Bucket Join
+- 
 
 # 7.  Vectorization
 

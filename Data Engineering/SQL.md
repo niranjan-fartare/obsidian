@@ -19,6 +19,8 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 	- [DELETE](#delete)
 - [DRL](#drl)
 	- [SELECT](#select)
+- [Constraints](#Constraints)
+- [BETWEEN](#BETWEEN--AND)
 # Data 
 
 - Data : Facts, Figures, Statistics
@@ -41,7 +43,7 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 # DBMS
 
 - Database Management System is a software which is used to store, manage and retrieve data. 
-- RDMBS is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
+- RDMBS is a type of DBMS that organizes data INTo tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
 - Data is stored in the form of rows and columns within tables. 
 - Each row represents a unique record, while each column represents a specific attribute of that record.
 # ER Diagram
@@ -58,7 +60,7 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - **Many-to-Many (M:N)**: Multiple instances of one entity are related to multiple instances of another entity.
 # ACID Properties
 
-ACID properties ensure that database Transactions are processed reliably, maintaining the integrity and consistency of the data throughout their life-cycle.
+ACID properties ensure that database Transactions are processed reliably, maINTaining the INTegrity and consistency of the data throughout their life-cycle.
 
 - **Atomicity** : A transaction should either be successful or it should not happen at all. If any part of the transaction fails, the entire transaction should be rolled back.
 - **Consistency** : The Data should be consistent across transactions.
@@ -67,25 +69,24 @@ ACID properties ensure that database Transactions are processed reliably, mainta
 
 # DDL
 
-DDL is used to define and manage all database objects.
-
+- DDL is used to define and manage all database objects.
 - Data Definition Language
 - DDL statements are Auto-Commit
 - [`ALTER`](#alter)
 - [`CREATE`](#create)
 - [`DROP`](#drop)
 - [`truncate`](#truncate)
-# DML (Data Manipulation)
+# DML
 
-DML is used for managing data within existing database objects.
-
+- Data Manipulation Language
+- DML is used for managing data within existing database objects.
 - [`INSERT`](#insert)
 - [`UPDATE`](#update)
 - [`DELETE`](#delete)
-# DRL (Data Retrieval)
+# DRL
 
-DRL is a subset of DML focused specifically on retrieving data from the database.
-
+- Data Retrieval
+- DRL is a subset of DML focused specifically on retrieving data from the database.
 - [`SELECT`](#select)
 # Misc
 
@@ -96,14 +97,14 @@ DRL is a subset of DML focused specifically on retrieving data from the database
 
 # CREATE
 
-- It used to CREATE new database objects, such as tables, views, indexes, and databases.
+- It is used to CREATE new database objects, such as tables, views, indexes, and databases.
 - Database : 
 	- Syntax : `CREATE DATABASE database_name;`
 	- Eg, `CREATE DATABASE CompanyDB;`
 - Table : 
-	- `CREATE table <table_name> (column datatype, column datatyoe(length/size));`
-	- Eg. `CREATE table student (roll int, name varchar(50));`
-	- Eg. `CREATE table emp (eid int, ename varchar(50), city varchar(40), doj date);`
+	- `CREATE TABLE <table_name> (column datatype, column datatyoe(length/size));`
+	- Eg. `CREATE TABLE student (roll INT, name VARCHAR(50));`
+	- Eg. `CREATE TABLE emp (eid INT, ename VARCHAR(50), city VARCHAR(40), doj date);`
 - View : 
 	- `CREATE VIEW view_name AS SELECT * FROM table_name WHERE condition;`
 	- Eg., `CREATE VIEW EmployeeView AS SELECT FirstName, LastName, DepartmentID FROM Employees WHERE Salary > 50000;`
@@ -115,106 +116,138 @@ DRL is a subset of DML focused specifically on retrieving data from the database
 
 - `INSERT` is used to add new records (rows) to a table.
 - Syntax : 
-	- `INSERT into <table_name> values(value, value);`
-	- `INSERT into <table_name> (col1, col2, col3) values (val1, val2, val3);`
+	- `INSERT INTO <table_name> VALUES(value, value);`
+	- `INSERT INTO <table_name> (col1, col2, col3) VALUES(val1, val2, val3);`
 - Without Specifying Columns :
-	- `INSERT into student values(1, "Niranjan");`
-	- `INSERT into emp values(1, "Peter", "Pune", "2020-01-01");`
+	- `INSERT INTO student VALUES(1, "Niranjan");`
+	- `INSERT INTO emp VALUES(1, "Peter", "Pune", "2020-01-01");`
 - Specifying Columns : 
-	- `INSERT into emp (roll, name, city, doj) values(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
+	- `INSERT INTO emp (roll, name, city, doj) VALUES(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
 - Multiple Values : 
-	- `INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, HireDate, Salary, DepartmentID) VALUES (2, 'Jane', 'Smith', '1990-03-22', '2021-05-15', 65000.00, 1), (3, 'Alice', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);`
+	- `INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, HireDate, Salary, DepartmentID) VALUES(2, 'Jane', 'Smith', '1990-03-22', '2021-05-15', 65000.00, 1), (3, 'Alice', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);`
 - Inserting Data from Another Table :
-	- `INSERT INTO Employees (EmployeeID, FirstName, LastName) SELECT EmployeeID, FirstName, LastName FROM TempEmployees;`
+	- `INSERT INTO Employees(EmployeeID, FirstName, LastName) SELECT EmployeeID, FirstName, LastName FROM TempEmployees;`
 - The `VALUES` should match the actual columns
 # UPDATE
 
 UPDATE existing records
 
-- Single Column : `UPDATE <table_name> set <col_name>=<new_value> where <condition_>;`
-- Multiple Columns : `UPDATE <table_name> set <col_name>=<new_value>, <col_name>=<new_value> where <condition_>;`
-- Eg. `UPDATE student set roll = 4 where name='Niranjan';`
-# delete
+- Single Column : `UPDATE <table_name> SET <col_name>=<new_value> WHERE <condition_>;`
+- Multiple Columns : `UPDATE <table_name> SET <col_name>=<new_value>, <col_name>=<new_value> WHERE <condition_>;`
+- Eg. `UPDATE student SET roll = 4 WHERE name='Niranjan';`
+# DELETE
 
 Delete exiting records.
 
-- `delete from <table_name> where <condition>;`
-- Eg. `delete from student where roll=1;`
-- `delete from <table_name>;` : Deletes all records from given table.
-# truncate
+- `DELETE FROM <table_name> WHERE <condition>;`
+- Eg. `DELETE FROM student WHERE roll=1;`
+- `DELETE FROM <table_name>;` : Deletes all records from given table.
+# TRUNCATE
 
-Maintain table structure and Delete all data.
+MaINTain table structure and Delete all data.
 
-- `truncate table <table_name>;`
-- Eg. `truncate table emp;`
-# drop
+- `TRUNCATE TABLE <table_name>;`
+- Eg. `TRUNCATE TABLE emp;`
+# DROP
 
 Delete the whole table.
 
-- `drop table <table_name>;`
-- Eg. `drop table emp;`
-# alter
+- `DROP TABLE <table_name>;`
+- Eg. `DROP TABLE emp;`
+# ALTER
 
-Alter is used for,
 - Adding new columns : 
-	- `alter table <table_name> add column <column_name> <data_type>`
-	- `alter table subscriber add column samount long;`  
+	- `ALTER TABLE <table_name> ADD COLUMN <column_name> <data_type>`
+	- `ALTER TABLE subscriber ADD COLUMN samount long;`  
 - Removing existing columns : 
-	- `alter table <table_name> drop column <column_name>;`
-	- `alter table subscriber drop column extra_column;`
+	- `ALTER TABLE <table_name> DROP COLUMN <column_name>;`
+	- `ALTER TABLE subscriber DROP COLUMN extra_column;`
 - Rename tables : 
-	- `alter table <old_table_name> rename to <new_table_name>;`
-	- Eg. `alter table subscriber rename to subs;`
+	- `ALTER TABLE <old_table_name> RENAME TO <new_table_name>;`
+	- Eg. `ALTER TABLE subscriber RENAME TO subs;`
 - Change data type :
 	- Change Column Name & Datatype :
-		- `alter table <table_name> change column <old_column> <new_col_name> <new_data_type>;`
-		- Eg. `alter table subscriber change column samount amount double;`
+		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <new_data_type>;`
+		- Eg. `ALTER TABLE subscriber CHANGE COLUMN samount amount double;`
 	- Change Column Name : 
-		- `alter table <table_name> change column <old_column> <new_col_name> <old_data_type>;`
-		- Eg. `alter table subscriber change column cid sid int;`
+		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <old_data_type>;`
+		- Eg. `ALTER TABLE subscriber CHANGE COLUMN cid sid INT;`
 	- Change Data type : 
-		- `alter table <table_name> change column <old_column> <old_column> <new_datatype>;`
-		- Eg. `alter table subscriber change column sid sid varchar(100);`
+		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <old_column> <new_datatype>;`
+		- Eg. `ALTER TABLE subscriber CHANGE COLUMN sid sid VARCHAR(100);`
 
 # Constraints
 
 - Not Null : Does not all `null` values.
-	- `CREATE table student (roll int NOT NULL, name varchar(100));`
+	- `CREATE TABLE student (roll INT NOT NULL, name VARCHAR(100));`
 - Unique : Does not allow `duplicate` values.
-	- `CREATE table student (roll int UNIQUE, name varchar(100));`
+	- `CREATE TABLE student (roll INT UNIQUE, name VARCHAR(100));`
 - Primary Key : Does not allow `null` and `duplicate` values.
-	- Single Column :`CREATE table student (roll int PRIMARY KEY, name varchar(100));`
-	- Multiple Column : `CREATE table student (roll int, name varchar(100), PRIMARY KEY(roll, name));
-
-## 27 Oct 
-# between .. and
-- `SELECT * from emp where eid between 0 and 10;` - Range
-# like
-- `SELECT * from emp where ename like 'A%';` - Starts with A
-- `SELECT * from emp where ename like '%A;` - Ends with A
-- `SELECT * from emp where ename like '%A%';` - Anything that contains  A
-- `SELECT * from emp where ename like '_____';` -  wildcard
+	- Single Column :`CREATE TABLE student (roll INT PRIMARY KEY, name VARCHAR(100));`
+	- Multiple Column : `CREATE TABLE student (roll INT, name VARCHAR(100), PRIMARY KEY(roll, name));
+- Foreign Key : Used to link two tables together
 
 ```sql
-SELECT DISTINCT CITY
-FROM STATION
-WHERE CITY NOT LIKE '[AEIOU]%[AEIOU]';
+CREATE TABLE course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(100)
+);
+
+CREATE TABLE enrollment (
+    student_roll INT,
+    course_id INT,
+    PRIMARY KEY (student_roll, course_id),
+    FOREIGN KEY (student_roll) REFERENCES student(roll),
+    FOREIGN KEY (course_id) REFERENCES course(course_id)
+);
 ```
-# order by
-- `SELECT * from emp order by ename asc;` - List records in Ascending Order
-- `SELECT * from emp order by ename desc;` - List records in Descending Order
-- `SELECT * from emp order by ename desc, city asc;` - List desc by ename first then by city
-# limit
-- `SELECT * from emp limit 8;` : List the top 8 records
-- `SELECT * from emp limit 8,2;` : List the 2 records after the top 8 records
-# case
-- `SELECT ename, case when city='Pune' then 1000 when city='Mumbai' then 1500 when city='Delhi' then 2000 else 500 end bonus from emp;`
+
+# BETWEEN .. AND
+
+- `SELECT * FROM emp WHERE eid BETWEEN 0 AND 10;` : Range
+# LIKE
+
+- `SELECT * FROM emp WHERE ename LIKE 'A%';` : Starts with A
+- `SELECT * FROM emp WHERE ename LIKE '%A;` : Ends with A
+- `SELECT * FROM emp WHERE ename LIKE '%A%';` : Anything that contains  A
+- `SELECT * FROM emp WHERE ename LIKE '_____';` :  wildcard
+
+```sql
+-- City does not start and end with a,e,i,o,u
+
+SELECT DISTINCT city
+FROM station
+WHERE city NOT LIKE '[AEIOU]%[AEIOU]';
+```
+# ORDER BY
+
+```sql
+SELECT * FROM emp ORDER by ename ASC; -- List records in Ascending Order
+SELECT * FROM emp ORDER by ename DESC; -- List records in Descending Order
+SELECT * FROM emp ORDER by ename DESC, city ASC;` : List desc by `ename` first then by `city
+```
+# LIMIT
+
+- `SELECT * FROM emp LIMIT 8;` : List the top 8 records
+- `SELECT * FROM emp LIMIT 8,2;` : List the 2 records after the top 8 records
+# CASE
+
+```sql
+SELECT ename, CASE WHEN city='Pune' THEN 1000 WHEN city='Mumbai' THEN 1500 WHEN city='Delhi' THEN 2000 ELSE 500 END bonus FROM emp;
+```
 # Joins
 
-## Inner Join : Matching in both
+- A `JOIN` clause is used to combine rows from two or more tables, based on a related column between them.
+
+## Inner Join 
+
+- Returns Matching Records in both tables
+- Does not match with `NULL`.
 
 ```sql
-SELECT * from emp, dept.dname from emp join dept on emp.did=dept.did; 
+SELECT emp.*, dept.dname
+FROM emp
+JOIN dept ON emp.did = dept.did;
 ```
 
 ```sql
@@ -230,10 +263,13 @@ SELECT * from emp, dept.dname from emp join dept on emp.did=dept.did;
 ```
 ## Left Join
 
--  All records from left and matching from right
+- Returns **All Records from left** and matching from right
+	- Return 
 
 ```sql
-SELECT emp.*, dname from emp left join dept on emp.did = dept.did;
+SELECT emp.*, dname 
+FROM emp LEFT 
+JOIN dept ON emp.did = dept.did;
 ```
 
 ```sql
@@ -256,10 +292,12 @@ SELECT emp.*, dname from emp left join dept on emp.did = dept.did;
 
 ## Right Join
 
-- All records from right and matching from left.
+- Returns **All records from right** and matching from left.
 
 ```sql
-SELECT emp.*, dname from emp right join dept on emp.did = dept.did;
+SELECT emp.*, dname 
+FROM emp 
+RIGHT JOIN dept ON emp.did = dept.did;
 ```
 
 ```sql
@@ -274,15 +312,16 @@ SELECT emp.*, dname from emp right join dept on emp.did = dept.did;
 +------+--------+------------+------------+-------+------+-------+
 ```
 
-## Full Outer Join 
+## Full Outer Join
+
 - Matching and non matching records from tables
-### Nov 9
+
 ## Cross Join
 
 - Match every row from both tables.
 
 ```sql
-MariaDB [b16]> SELECT eid, ename, dname from emp cross join dept;
+MariaDB [b16]> SELECT eid, ename, dname FROM emp CROSS JOIN dept;
 +------+----------+-------+
 | eid  | ename    | dname |
 +------+----------+-------+
@@ -659,7 +698,7 @@ MariaDB [b16]> SELECT email, substring_index(email, '@',1) from emp;
 
 ### round
 
-Rounds up to nearest integer
+Rounds up to nearest INTeger
 
 ```sql
 MariaDB [b16]> SELECT round(190.12323);
@@ -870,50 +909,50 @@ SELECT date_format(now(), '%Y');
 | `%U`         | Week number of the year (00-53, Sunday as the first day of the week) | `14`                |
 | `%V`         | Week number of the year (01-53, Monday as the first day of the week) | `14`                |
 | `%X`         | Year for the week (same as `%Y` if the week belongs to that year)    | `2023`              |
-### date_add(col, interval n day/month/year) 
+### date_add(col, INTerval n day/month/year) 
 
 Add n days/month/year to the given date
 
 ```sql
-MariaDB [b16]> SELECT date_add(now(), interval 2 day);
+MariaDB [b16]> SELECT date_add(now(), INTerval 2 day);
 +---------------------------------+
-| date_add(now(), interval 2 day) |
+| date_add(now(), INTerval 2 day) |
 +---------------------------------+
 | 2024-11-12 09:58:19             |
 +---------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_add(now(), interval 2 month);
+MariaDB [b16]> SELECT date_add(now(), INTerval 2 month);
 +-----------------------------------+
-| date_add(now(), interval 2 month) |
+| date_add(now(), INTerval 2 month) |
 +-----------------------------------+
 | 2025-01-10 09:58:22               |
 +-----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_add(now(), interval 2 year);
+MariaDB [b16]> SELECT date_add(now(), INTerval 2 year);
 +----------------------------------+
-| date_add(now(), interval 2 year) |
+| date_add(now(), INTerval 2 year) |
 +----------------------------------+
 | 2026-11-10 09:58:25              |
 +----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_format(date_add(now(), interval 1 month), '%Y/%M/%D');
+MariaDB [b16]> SELECT date_format(date_add(now(), INTerval 1 month), '%Y/%M/%D');
 +------------------------------------------------------------+
-| date_format(date_add(now(), interval 1 month), '%Y/%M/%D') |
+| date_format(date_add(now(), INTerval 1 month), '%Y/%M/%D') |
 +------------------------------------------------------------+
 | 2024/December/10th                                         |
 +------------------------------------------------------------+
 1 row in set (0.001 sec)
 ```
 
-### sub_date(col, interval n) 
+### sub_date(col, INTerval n) 
 
-Reduces the given interval 
+Reduces the given INTerval 
 
 ```sql
-MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), interval 2 day), '%Y/%M/%D') as 'sub_date()';
+MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), INTerval 2 day), '%Y/%M/%D') as 'sub_date()';
 +--------------------+-------------------+
 | Current            | sub_date()        |
 +--------------------+-------------------+
@@ -1172,7 +1211,7 @@ MariaDB [b16]> SELECT * from pune UNION ALL SELECT * from mumbai;
 +------+---------+
 4 rows in set (0.000 sec)
 ```
-## Intersect
+## INTersect
 
 ```sql
 MariaDB [b16]> SELECT * from pune INTERSECT SELECT * from mumbai;
@@ -1355,7 +1394,6 @@ MariaDB [b16]> SELECT eid, sal, row_number() over(order by sal desc) as 'Row Num
 +------+-------+------------+
 23 rows in set (0.001 sec)
 ```
-
 
 ## rank
 
@@ -1588,7 +1626,7 @@ CREATE index idx_name on table_name(col_name);
 ```
 
 - Clustered : Arranges records in order
-- Non Clustered : Maintains a reference table
+- Non Clustered : MaINTains a reference table
 - Show indexes : 
 	- `show index from table_name;`
 
@@ -1607,7 +1645,7 @@ CREATE table emp_test as SELECT * from emp where 1 = 0;
 # INSERT from another table
 
 ```sql
-INSERT into emp_test SELECT * from emp where eid < 5;
+INSERT INTo emp_test SELECT * from emp where eid < 5;
 ```
 
 # Run .sql files
@@ -1622,7 +1660,7 @@ source .sql_file_ocation
 - `if exists` : only if the target exists
 # Normalization & DeNormalization
 
-Process of organizing data into multiple related tables to eliminate redundancy and dependency.
+Process of organizing data INTo multiple related tables to eliminate redundancy and dependency.
 
 ## Goals
 

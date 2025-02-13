@@ -10,7 +10,7 @@
 ## Collections
 
 - List :  `[1,2,3]`
-- Touple : `()`
+- Touple : `()`, 
 - Set : `{1,2,3}`
 - Dictionary / Map : `{a:1, b:2,c:3}`
 ### List
@@ -55,13 +55,11 @@ $ python main.py
 
 ### Tuple
 
-- Immutable 
+- Tuple items are ordered, indexed, unchangeable, and allow duplicate values.
 - Syntax : `t = (1,2,3,4,5)
-- Tuple is an Ordered Collection`
-- Can have duplicate values and different data types
+- Can have duplicate values and different data types, `t = ("abc", 34, True, 40)`
 - Supports negative indexing, `t[-1]` will print `5`
 - Supports slicing, `t[2:3]` : Access elements from index `2` to `3-1`
-- Tuple is immutable
 
 #### Operations on Tuple
 
@@ -70,7 +68,7 @@ $ python main.py
 - `max(tuple)`
 - `min(tuple)`
 - `tuple.index(value)`
--  `value in tuple` : Checks if `value` is present in tuple, `50 in t`
+- `value in tuple` : Checks if `value` is present in tuple, `50 in t`
 ### Set
 
 - Syntax : `set = {1,2,3,4}`
@@ -82,11 +80,11 @@ $ python main.py
 - `set.add(value)` : 
 - `set.remove(value)` :
 - `set.pop()` : 
-- `max(set)` : Returns the largest element in the set.Returns the smallest element in the set.Calculates the sum of all elements in the set.Returns the number of elements in the set.
-- `min(set)`
-- `sum(set)`
-- `len(set)` 
-- `set1.union(set2)` : Returns a new set containing all unique elements from both set1 and set2.
+- `max(set)` : Returns the largest element in the set.
+- `min(set)` : Returns the smallest element in the set
+- `sum(set)` : Calculates the sum of all elements in the set
+- `len(set)` : Returns the number of elements in the set.
+- `set1.union(set2)` : Returns a new set containing all unique elements from both `set1` and `set2`.
 - `set1.intersection(set2)` : Returns a new set containing only the elements that are present in both set1 and set2.
 - `set1.difference(set2)` : Returns a new set containing elements that are in set1 but not in set2.
 - `value in set` : Checks if `value` is present in Set, `50 in set`
