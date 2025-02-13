@@ -98,26 +98,41 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 # CREATE
 
 - It is used to CREATE new database objects, such as tables, views, indexes, and databases.
-- Database : 
-	- Syntax : `CREATE DATABASE database_name;`
-	- Eg, `CREATE DATABASE CompanyDB;`
-- Table : 
-	- `CREATE TABLE <table_name> (column datatype, column datatyoe(length/size));`
-	- Eg. `CREATE TABLE student (roll INT, name VARCHAR(50));`
-	- Eg. `CREATE TABLE emp (eid INT, ename VARCHAR(50), city VARCHAR(40), doj date);`
-- View : 
-	- `CREATE VIEW view_name AS SELECT * FROM table_name WHERE condition;`
-	- Eg., `CREATE VIEW EmployeeView AS SELECT FirstName, LastName, DepartmentID FROM Employees WHERE Salary > 50000;`
-- Index : 
-	- `CREATE INDEX index_name ON table_name (column1, column2, ...);`
-	- Eg. `CREATE INDEX idx_lastname ON Employees (LastName);`
+
+```sql
+-- Create Databases
+Syntax: CREATE DATABASE database_name;
+Example: CREATE DATABASE CompanyDB;
+
+-- Create Table
+Syntax: CREATE TABLE <table_name> (column datatype, column datatyoe(length/size));
+Example: CREATE TABLE student (roll INT, name VARCHAR(50));
+
+-- Create View
+Syntax: CREATE VIEW view_name AS SELECT * FROM table_name WHERE condition;
+Example: CREATE VIEW EmployeeView AS SELECT FirstName, LastName, DepartmentID FROM Employees WHERE Salary > 50000;
+
+-- Create Index
+Syntax: CREATE INDEX <index_name> on <table_name>(column1, column2)
+Example: CREATE INDEX idx_lastname ON Employees (LastName);
+
+```
 
 # INSERT
 
 - `INSERT` is used to add new records (rows) to a table.
+
+```sql
+-- Syntax
+INSERT INTO <table_name> VALUES(value, value); -- Without specifying the columns
+INSERT INTO <table_name> (col1, col2, col3) VALUES(val1, val2, val3);
+
+-- Examples
+
+```
 - Syntax : 
-	- `INSERT INTO <table_name> VALUES(value, value);`
-	- `INSERT INTO <table_name> (col1, col2, col3) VALUES(val1, val2, val3);`
+	- ``
+	- ``
 - Without Specifying Columns :
 	- `INSERT INTO student VALUES(1, "Niranjan");`
 	- `INSERT INTO emp VALUES(1, "Peter", "Pune", "2020-01-01");`
