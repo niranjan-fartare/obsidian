@@ -345,7 +345,7 @@ df_res.show()
 +---+------+-----+-------+
 ```
 
-## Data Frame API Functions
+## Data Frame API Functionsy
 
 ```python
 from pyspark.sql import SparkSession  
@@ -384,7 +384,6 @@ df1 = df_emp.where("sal > 10000")
 |  9|Ankita|  10|30000|Hyderabad|
 | 10|Vikram|  30|40000|     NULL|
 +---+------+----+-----+---------+
-
 ```
 
 ### Select
@@ -418,9 +417,7 @@ df_emp.select(df_emp['ename'].alias("Employee Name"), df_emp['sal'].alias("Month
 +-------------+--------------+-------------+
 ```
 
-### lit 
-
-
+### lit
 
 ```python
 df_emp.withColumn("Status",lit("Active")).show()
@@ -753,3 +750,592 @@ df_adv.py in pycharm
 ```
 
 ### Window Functions
+
+
+### Group By 
+
+```python
+df1=df.groupBy("did").count()  
+df1.show()  
+  
+df1=df.groupBy("did").sum("sal")  
+df1.show()  
+  
+df1=df.groupBy("did").max("sal")  
+df1.show()  
+  
+df1=df.groupBy("did").min("sal")  
+df1.show()  
+  
+df1=df.groupBy("did").avg("sal")  
+df1.show()  
+  
+## fiter groupBy 
+
+df1=df.groupBy("did").avg("sal").filter(df["did"]==101)  
+df1.show()
+
+## Output
+
++---+-----+
+|did|count|
++---+-----+
+|101|    6|
+|103|    4|
+|102|    5|
++---+-----+
+
++---+--------+
+|did|sum(sal)|
++---+--------+
+|101|  311000|
+|103|  287000|
+|102|  308000|
++---+--------+
+
++---+--------+
+|did|max(sal)|
++---+--------+
+|101|   55000|
+|103|   75000|
+|102|   65000|
++---+--------+
+
++---+--------+
+|did|min(sal)|
++---+--------+
+|101|   48000|
+|103|   70000|
+|102|   58000|
++---+--------+
+
++---+------------------+
+|did|          avg(sal)|
++---+------------------+
+|101|51833.333333333336|
+|103|           71750.0|
+|102|           61600.0|
++---+------------------+
+
++---+------------------+
+|did|          avg(sal)|
++---+------------------+
+|101|51833.333333333336|
++---+------------------+
+```
+
+### aggregate  functions 
+
+
+### distinct
+
+- Removes duplicates based on All Columns
+
+```python
+df.distinct().show()  
+
+## Output
+
++---+------+---+-----+
+|eid| ename|did|  sal|
++---+------+---+-----+
+|  2|  ABCD|102|60000|
+|  3| Arjun|101|55000|
+|  5| Karan|102|65000|
+|  1| Aarav|101|50000|
+|  4| Rohan|103|70000|
+|  2|Vihaan|102|60000|
++---+------+---+-----+
+```
+
+### dropDuplicates
+
+- By default removes duplicates based on all columns
+
+```python
+df.dropDuplicates().show()  
+  
+df.dropDuplicates(["eid"]).show()
+
+## output
+
++---+------+---+-----+
+|eid| ename|did|  sal|
++---+------+---+-----+
+|  2|  ABCD|102|60000|
+|  3| Arjun|101|55000|
+|  5| Karan|102|65000|
+|  1| Aarav|101|50000|
+|  4| Rohan|103|70000|
+|  2|Vihaan|102|60000|
++---+------+---+-----+
+
++---+------+---+-----+
+|eid| ename|did|  sal|
++---+------+---+-----+
+|  1| Aarav|101|50000|
+|  2|Vihaan|102|60000|
+|  3| Arjun|101|55000|
+|  4| Rohan|103|70000|
+|  5| Karan|102|65000|
++---+------+---+-----+
+```
+
+### set operators
+
+```python
+# UnionALL
+df1.union(df2).show()  
+  
+# UnionAll  
+df1.union(df2).distinct().show()  
+  
+# Intersect  
+df1.intersect(df2).show()  
+  
+# Except  
+df1.exceptAll(df2).show()
+df2.exceptAll(df1).show()
+
+## Output
+
++---+------+------+
+|eid| ename|  city|
++---+------+------+
+|  1| karan|  pune|
+|  2|rajesh|  pune|
+|  3|rakesh|mumbai|
+|  1| karan|  pune|
+|  2|rajesh|  pune|
+|  4|  Bond| Delhi|
++---+------+------+
+
++---+------+------+
+|eid| ename|  city|
++---+------+------+
+|  3|rakesh|mumbai|
+|  2|rajesh|  pune|
+|  1| karan|  pune|
+|  4|  Bond| Delhi|
++---+------+------+
+
++---+------+----+
+|eid| ename|city|
++---+------+----+
+|  2|rajesh|pune|
+|  1| karan|pune|
++---+------+----+
+
++---+------+------+
+|eid| ename|  city|
++---+------+------+
+|  3|rakesh|mumbai|
++---+------+------+
+
++---+-----+-----+
+|eid|ename| city|
++---+-----+-----+
+|  4| Bond|Delhi|
++---+-----+-----+
+```
+
+### Date Functions
+
+```python
+from pyspark.sql.functions import *
+
+df2.withColumn("pcd",date_add(df2['doj'],90)).show()  
+df2.withColumn("dcd",date_sub(df2['doj'],2)).show()  
+df2.withColumn("year",year(df2['doj'])).show()  
+df2.withColumn("month",month(df2['doj'])).show()  
+df2.withColumn("dayOfMonth",dayofmonth(df2['doj'])).show()  
+df2.withColumn("hour",hour(df2['doj'])).show()  
+df2.withColumn("minute",minute(df2['doj'])).show()  
+df2.withColumn("seconds",second(df2['doj'])).show()
+df2.withColumn("dayOfWeek",dayofweek(df2['doj'])).show()
+
+## Output
+
++---+------+------+-------------------+----------+
+|eid| ename|  city|                doj|       pcd|
++---+------+------+-------------------+----------+
+|  1| karan|  pune|2020-01-31 10:15:25|2020-04-30|
+|  2|rajesh|  pune|2021-05-07 12:25:11|2021-08-05|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|2023-05-31|
++---+------+------+-------------------+----------+
+
++---+------+------+-------------------+----------+
+|eid| ename|  city|                doj|       dcd|
++---+------+------+-------------------+----------+
+|  1| karan|  pune|2020-01-31 10:15:25|2020-01-29|
+|  2|rajesh|  pune|2021-05-07 12:25:11|2021-05-05|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|2023-02-28|
++---+------+------+-------------------+----------+
+
++---+------+------+-------------------+----+
+|eid| ename|  city|                doj|year|
++---+------+------+-------------------+----+
+|  1| karan|  pune|2020-01-31 10:15:25|2020|
+|  2|rajesh|  pune|2021-05-07 12:25:11|2021|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|2023|
++---+------+------+-------------------+----+
+
++---+------+------+-------------------+-----+
+|eid| ename|  city|                doj|month|
++---+------+------+-------------------+-----+
+|  1| karan|  pune|2020-01-31 10:15:25|    1|
+|  2|rajesh|  pune|2021-05-07 12:25:11|    5|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|    3|
++---+------+------+-------------------+-----+
+
++---+------+------+-------------------+----------+
+|eid| ename|  city|                doj|dayofmonth|
++---+------+------+-------------------+----------+
+|  1| karan|  pune|2020-01-31 10:15:25|        31|
+|  2|rajesh|  pune|2021-05-07 12:25:11|         7|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|         2|
++---+------+------+-------------------+----------+
+
++---+------+------+-------------------+----+
+|eid| ename|  city|                doj|hour|
++---+------+------+-------------------+----+
+|  1| karan|  pune|2020-01-31 10:15:25|  10|
+|  2|rajesh|  pune|2021-05-07 12:25:11|  12|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|  11|
++---+------+------+-------------------+----+
+
++---+------+------+-------------------+------+
+|eid| ename|  city|                doj|minute|
++---+------+------+-------------------+------+
+|  1| karan|  pune|2020-01-31 10:15:25|    15|
+|  2|rajesh|  pune|2021-05-07 12:25:11|    25|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|    45|
++---+------+------+-------------------+------+
+
++---+------+------+-------------------+------+
+|eid| ename|  city|                doj|seconds|
++---+------+------+-------------------+------+
+|  1| karan|  pune|2020-01-31 10:15:25|    25|
+|  2|rajesh|  pune|2021-05-07 12:25:11|    11|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|    25|
++---+------+------+-------------------+------+
+
++---+------+------+-------------------+---------+
+|eid| ename|  city|                doj|dayOfWeek|
++---+------+------+-------------------+---------+
+|  1| karan|  pune|2020-01-31 10:15:25|        6|
+|  2|rajesh|  pune|2021-05-07 12:25:11|        6|
+|  3|rakesh|mumbai|2023-03-02 11:45:25|        5|
++---+------+------+-------------------+---------+
+
+```
+
+### UDFs
+
+- User Defined Functions 
+
+```python
+from pyspark.sql.types import IntegerType
+
+def make_zero(x) :  
+    if x < 0:  
+        return 0  
+    else:  
+        return x  
+  
+make_zero=udf(make_zero,IntegerType())  
+  
+df2.withColumn("Mint",make_zero(df2['Mint'])).withColumn("Maxt",make_zero(df2['Maxt'])).show()
+
+## Output
++-----+----+----+----+
+|state|Mint|Maxt|year|
++-----+----+----+----+
+|   MH|   0|  40|2023|
+|   KA|  18|  35|2023|
+|   TN|  25|  38|2023|
+|   GJ|  22|  42|2023|
+|   WB|  15|  30|2023|
+|   RJ|  30|  45|2023|
+|   UP|  20|  37|2023|
+|   MH|   0|  39|2023|
+|   KA|   0|  36|2023|
+|   TN|  26|  39|2023|
+|   GJ|  23|  43|2023|
+|   WB|  16|  31|2023|
+|   RJ|  31|  46|2023|
+|   UP|  21|  38|2023|
++-----+----+----+----+
+```
+
+
+## RDS
+
+### Read from RDS write to LFS
+
+```python
+from pyspark.sql import SparkSession
+
+spark=SparkSession.builder.appName("RDBMS Data Process").getOrCreate()
+
+#read
+df=(spark.read.format("JDBC")
+    .option("url","jdbc:postgresql://database-1.cfqqsumomryu.eu-north-1.rds.amazonaws.com:5432/DEV")
+    .option("user","puser")
+    .option("password","ppassword")
+    .option("driver","org.postgresql.Driver")
+    .option("dbtable","cust")
+    .load())
+df.show()
+
+#process
+
+#write
+
+#df1.write.mode('append').format("CSV").option("header","true").option("delimiter","|").save("D:/cust_new")
+df1.write.mode('overwrite').format("CSV").option("header","true").option("delimiter","|").save("/home/niranjan/Documents/Sayu")
+```
+
+```python
+from pyspark.sql import SparkSession
+
+spark=SparkSession.builder.appName("RDBMS Data Process").getOrCreate()
+
+#read
+df=(spark.read.format("JDBC")
+    .option("url","jdbc:postgresql://database-1.cfqqsumomryu.eu-north-1.rds.amazonaws.com:5432/DEV")
+    .option("user","puser")
+    .option("password","ppassword")
+    .option("driver","org.postgresql.Driver")
+    .option("dbtable","cust")
+    .load())
+df.show()
+
+#process
+
+df1 = df.withColumn("dataLoadDate",current_timestamp())
+
+#write
+
+df1.write.partitionBy("did").mode('append').format("CSV").option("header","true").option("delimiter","|").save("D:/cust_new")
+(df.write.mode('append')
+    .format("JSON")
+    .option("header","true")
+    .option("delimiter","|")
+    .save("/home/niranjan/Documents/Sayu"))
+
+```
+
+### Read from LFS write to RDS
+
+```python
+from pyspark.sql import SparkSession
+
+spark=SparkSession.builder.appName("RDBMS Data Process").getOrCreate()
+
+## Remaining
+
+```
+
+### Read from Hive Write to S3
+
+```python
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder.appName("Hive Data Processing").enableHiveSupport().getOrCreate()
+
+print("Data reading Started")
+
+#read data from Hive 
+df = spark.sql("select * from products")
+df.show()
+
+#processing
+df1 = df.where(df['avlqty']>25)
+
+df1.show()
+
+#load
+df1.write.format("CSV").option("header","true").save("s3://anildata/productsop_niranjan")
+
+print("Data Successfully written")
+print("#############Program completed################")
+```
+
+## Yarn 
+
+- `$ yarn application -list` : Shows running applications
+- `$ yarn application -status app_id` : Shows status of `app_id`
+- `$ yarn -kill app_id` : Terminate the job with `app_is`
+- `$ yarn logs -applicationId app_id` : Shows logs for `app_id`
+
+### Read from S3 write to Hive
+
+```python
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
+
+spark=SparkSession.builder.appName("Hive Data Processing").enableHiveSupport().getOrCreate()
+
+#read data from s3 
+df=spark.read.format("CSV").option("header","true").option("inferschema","true").option("delimiter",",").load("s3://anildata/emp_data/*")
+
+df.show()
+
+#processing
+df1=df.withColumn("src",lit("S3")).withColumn("loaddate",current_date())
+df1.show()
+
+#query on hive through spark
+spark.sql("create database if not exists dev")
+
+#write data into Hive
+df1.write.partitionBy("did").saveAsTable("dev.emp_niranjan")
+
+print("******************program completed***************************")
+```
+# Check Logs
+
+- Yarn Application Master
+- Spark History Server
+
+# JSON
+
+- JavaScript Object Notation
+- Semi Structured Data
+- Elements are in Key Value pairs
+
+```json
+[
+    {
+        "eid" : 1,
+        "ename" : "niranjan",
+        "address" :
+	        {
+		        "city" : "Pune",
+		        "pin" : 412208
+	        }
+    },
+    {
+        "eid" : 2,
+        "ename" : "ABCD",
+        "mobile" : 9090909090
+    }
+]
+```
+
+## Single Line JSON
+
+```python
+(spark.read.format("JSON").load("/home/niranjan/data.json").show())
+```
+
+## Multi line JSON
+
+```python
+(spark.read.format("JSON")  
+    .option("multiline","true")  
+    .load("/home/niranjan/Documents/json/sample_mul.json").show())
+```
+
+## Complex JSON
+
+```json
+{
+    "persons": [
+        {
+            "name": "John",
+            "age": 30,
+            "cars": [
+                {
+                    "name": "Ford",
+                    "models": [
+                        "Fiesta",
+                        "Focus",
+                        "Mustang"
+                    ]
+                },
+                {
+                    "name": "BMW",
+                    "models": [
+                        "320",
+                        "X3",
+                        "X5"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Peter",
+            "age": 46,
+            "cars": [
+                {
+                    "name": "Huyndai",
+                    "models": [
+                        "i10",
+                        "i30"
+                    ]
+                },
+                {
+                    "name": "Mercedes",
+                    "models": [
+                        "E320",
+                        "E63 AMG"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+```python
+from pyspark.sql import SparkSession  
+from pyspark.sql.functions import *
+
+df = (spark.read.format("JSON")  
+    .option("multiline", "true")  
+    .load("/home/niranjan/Documents/json/persons.json"))  
+    
+df1 = (df.withColumn("persons",explode(df['persons']))  
+      .withColumn("cars",explode("persons.cars"))  
+      .withColumn("models",explode("cars.models"))  
+      .selectExpr("persons.name","persons.age","cars.name as cname","models"))
+  
+df1.show()
+
+## Output
+
++-----+---+--------+-------+
+| name|age|   cname| models|
++-----+---+--------+-------+
+| John| 30|    Ford| Fiesta|
+| John| 30|    Ford|  Focus|
+| John| 30|    Ford|Mustang|
+| John| 30|     BMW|    320|
+| John| 30|     BMW|     X3|
+| John| 30|     BMW|     X5|
+|Peter| 46| Huyndai|    i10|
+|Peter| 46| Huyndai|    i30|
+|Peter| 46|Mercedes|   E320|
+|Peter| 46|Mercedes|E63 AMG|
++-----+---+--------+-------+
+```
+
+# Set Log Level
+
+- `ALL`: The most detailed logging level. Logs all messages.
+- `DEBUG`: Logs debug messages.
+- `INFO`: Logs informational messages. This is the default level.
+- `WARN`: Logs warning messages.
+- `ERROR`: Logs error messages.
+- `FATAL`: Logs fatal messages.
+- `OFF`: Logs no messages.
+
+```python
+from pyspark.sql import SparkSession  
+  
+spark = SparkSession.builder.appName("SET LOG LEVEL").getOrCreate()  
+  
+spark.sparkContext.setLogLevel("DEBUG")
+```

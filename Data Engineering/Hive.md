@@ -314,3 +314,5 @@ insert into dtls1 select * from dtls;
 - Explode & Lateral View
 - Complex Data Structures
 - HQL Scripting
+
+
