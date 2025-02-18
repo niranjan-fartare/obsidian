@@ -21,7 +21,7 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 	- [SELECT](#select)
 - [Constraints](#Constraints)
 - [BETWEEN..AND](#BETWEEN--AND)
-# Data 
+# Data
 
 - Data : Facts, Figures, Statistics
 - Information : Meaningful data
@@ -42,9 +42,9 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - Exabyte : 1024 Petabytes 
 # DBMS
 
-- Database Management System is a software which is used to store, manage and retrieve data. 
-- RDMBS is a type of DBMS that organizes data INTo tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
-- Data is stored in the form of rows and columns within tables. 
+- Database Management System is a software which is used to store, manage and retrieve data.
+- RDMBS is a type of DBMS that organizes data into tables that can be connected based on common fields. Examples, MySQL, MariaDB, Oracle, MS Server, PostgreSQL etc.
+- Data is stored in the form of rows and columns within tables.
 - Each row represents a unique record, while each column represents a specific attribute of that record.
 # ER Diagram
 
@@ -75,7 +75,7 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 - [`ALTER`](#alter)
 - [`CREATE`](#create)
 - [`DROP`](#drop)
-- [`truncate`](#truncate)
+- [`TRUNCATE`](#truncate)
 # DML
 
 - Data Manipulation Language
@@ -91,13 +91,13 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 # Misc
 
 - `show databases;` : Show all databases
-- `use database;` : Use given database
+- `use database db_name;` : Use given database
 - `desc table;` :  Show table structure
 - `show tables;` : Show all tables in current database
 
 # CREATE
 
-- It is used to CREATE new database objects, such as tables, views, indexes, and databases.
+- It is used to CREATE new database objects, such as tables, views, indexes, and databases. [Ref](https://dev.mysql.com/doc/refman/8.4/en/creating-tables.html)
 
 ```sql
 -- Create Databases

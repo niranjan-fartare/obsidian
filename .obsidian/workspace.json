@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Engineering/Spark.md",
+                "file": "Data Engineering/SQL.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spark"
+              "title": "SQL"
             }
           }
         ]
@@ -78,7 +78,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "8ea420d672dfb02a",
@@ -165,13 +166,14 @@
   },
   "active": "5ca6b0f3670e3126",
   "lastOpenFiles": [
-    "Data Engineering/SQL.md",
-    "Data Engineering/Hive.md",
     "Data Engineering/Spark.md",
+    "Data Engineering/Hive.md",
+    "Data Engineering/BigData.md",
+    "Data Engineering/AWS.md",
     "Data Engineering/Linux.md",
+    "Data Engineering/SQL.md",
     "Untitled 1.md",
     "Data Engineering/TODO.md",
-    "Data Engineering/BigData.md",
     "Data Engineering/Python.md",
     "Untitled.md",
     "README.md",
@@ -181,7 +183,6 @@
     "Data Engineering/images",
     "Git/Git.md",
     "Untitled",
-    "Data Engineering/AWS.md",
     "Data Engineering/images/Pasted image 20250125110138.png",
     "Data Engineering/Notes.md",
     "Data Engineering/Shell Scripting.md",
