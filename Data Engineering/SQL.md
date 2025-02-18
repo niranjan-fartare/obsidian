@@ -1,4 +1,8 @@
-Structured Query Language (SQL) is a programming language used to communicate with databases, such as MySQL, to perform various operations like storing, retrieving, updating, and deleting data.
+- SQL stands for **Structured Query Language**.
+- SQL is a programming language that is used to manage relational databases.
+- SQL commands retrieve, create, update, and delete data from a database.
+- Other commands can be used to control and manage the database.
+
 # Table Of Contents
 
 - [Data](#data)
@@ -39,7 +43,11 @@ Structured Query Language (SQL) is a programming language used to communicate wi
 - Gigabyte : 1024 Megabytes
 - Terabyte : 1024 Gigabytes
 - Petabyte : 1024 Terabytes
-- Exabyte : 1024 Petabytes 
+- Exabyte : 1024 Petabytes
+# Database
+
+- A collection of Tables
+- 
 # DBMS
 
 - Database Management System is a software which is used to store, manage and retrieve data.
@@ -79,7 +87,7 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 # DML
 
 - Data Manipulation Language
-- DML is used for managing data within existing database objects.
+1012.56- DML is used for managing data within existing database objects.
 - [`INSERT`](#insert)
 - [`UPDATE`](#update)
 - [`DELETE`](#delete)
@@ -94,6 +102,12 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 - `use database db_name;` : Use given database
 - `desc table;` :  Show table structure
 - `show tables;` : Show all tables in current database
+
+# Data Types
+
+- `INT` : Ranges between `-2147483648`to `2147483647`
+- `FLOAT` : 
+- `DOUBLE` : 
 
 # CREATE
 
@@ -173,7 +187,7 @@ Delete the whole table.
 
 - Adding new columns : 
 	- `ALTER TABLE <table_name> ADD COLUMN <column_name> <data_type>`
-	- `ALTER TABLE subscriber ADD COLUMN samount long;`  
+	- `ALTER TABLE subscriber ADD COLUMN samount long;` 
 - Removing existing columns : 
 	- `ALTER TABLE <table_name> DROP COLUMN <column_name>;`
 	- `ALTER TABLE subscriber DROP COLUMN extra_column;`
@@ -193,28 +207,65 @@ Delete the whole table.
 
 # Constraints
 
-- Not Null : Does not all `null` values.
-	- `CREATE TABLE student (roll INT NOT NULL, name VARCHAR(100));`
-- Unique : Does not allow `duplicate` values.
-	- `CREATE TABLE student (roll INT UNIQUE, name VARCHAR(100));`
-- Primary Key : Does not allow `null` and `duplicate` values.
-	- Single Column :`CREATE TABLE student (roll INT PRIMARY KEY, name VARCHAR(100));`
-	- Multiple Column : `CREATE TABLE student (roll INT, name VARCHAR(100), PRIMARY KEY(roll, name));
-- Foreign Key : Used to link two tables together
+SQL Constraints are rules that maintain the integrity of data in a table by ensuring Accuracy, Consistency, and Reliability.
+## Not Null
+
+- Does not allow `null` values.
 
 ```sql
+CREATE TABLE student (
+	roll INT NOT NULL, 
+	name VARCHAR(100)
+);
+```
+## Unique
+
+- Does not allow `duplicate` values.
+
+```sql
+CREATE TABLE student (
+	roll INT UNIQUE, 
+	name VARCHAR(100)
+);
+```
+## Primary Key
+
+- A Primary Key is column that **Uniquely Identifies** each row in a table.
+- The column values must be unique and cannot be NULL.
+- A table can only have one primary key.
+
+```sql
+-- Single Column
 CREATE TABLE course (
     course_id INT PRIMARY KEY,
     course_name VARCHAR(100)
 );
 
+-- Multi Column
+CREATE TABLE student (
+	roll INT, 
+	name VARCHAR(100), 
+	PRIMARY KEY(roll, name)
+);
+```
+## Foreign Key
+
+- Used to link two tables together.
+- A table can have multiple Foreign Keys.
+
+```sql
 CREATE TABLE enrollment (
     student_roll INT,
     course_id INT,
     PRIMARY KEY (student_roll, course_id),
     FOREIGN KEY (student_roll) REFERENCES student(roll),
     FOREIGN KEY (course_id) REFERENCES course(course_id)
-);
+	);
+```
+## Composite Key 
+
+```sql
+
 ```
 
 # BETWEEN .. AND
@@ -426,8 +477,6 @@ MariaDB [b16]> SELECT e.eid, e.ename , m.ename as Manager from emps e left join 
 
 - Scaler : Returns same number of records, n records : n output
 - Group : Returns a single output, n records : 1 output
-
-
 ## Scaler Functions
 
 ### upper 
@@ -1132,12 +1181,9 @@ MariaDB [b16]> SELECT distinct sal from emp;
 7 rows in set (0.001 sec)
 ```
 
-
-## 16 Nov
 # Group By
 
 Used to perform group functions on group of records based on given column
-
 
 ```sql
 MariaDB [b16]> SELECT did, avg(sal) from emp group by did;
