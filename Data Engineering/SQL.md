@@ -8,8 +8,11 @@
 - [Data](#data)
 	- [Types Of Data](#types-of-data)
 	- [Units Of Data](#units-of-data)
+- [Database](#database)
+- [Tables](#table)
 - [DBMS](#DBMS)
 - [ACID Properties](#acid-properties)
+- [Data Types in SQL](#data-types)
 - [ER Diagram](#er-diagram)
 	- [Relations / Cardinality](#relations--cardinality)
 - [DDL](#ddl)
@@ -46,8 +49,12 @@
 - Exabyte : 1024 Petabytes
 # Database
 
+- Used for storing and retrieving Structured Data
 - A collection of Tables
-- 
+
+# Table
+
+- It is a collection of rows and columns
 # DBMS
 
 - Database Management System is a software which is used to store, manage and retrieve data.
@@ -60,7 +67,7 @@
 - **Entity** : An entity is a object or thing in the real world that can be identified. It can be a physical object (like a car) or a concept (like a course).
 - **Attributes** : Attributes are the properties or characteristics of an entity.
 - **Relationships** : Relationships describe how entities are related to one another.
-## Relations / Cardinality 
+## Relations / Cardinality
 
 - **One-to-One (1:1)**: One instance of an entity is related to one instance of another entity.
 - **One-to-Many (1:N)**: One instance of an entity is related to multiple instances of another entity.
@@ -74,6 +81,16 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 - **Consistency** : The Data should be consistent across transactions.
 - **Isolation** : A transaction should not affect other transactions.
 - **Durability** : Once a transaction is committed, changes are permanent, even in the event of a failure.
+# Data Types
+
+- `INT` : `1,10, 200, 505`, Ranges between `-2147483648`to `2147483647`
+- `FLOAT` : `35.3, 10.5, 1001.3`, 
+- `DOUBLE` : Stores large Floating Point Values
+- `VARCHAT` : `niranjan, software`, String Values
+- `TEXT` : Stores larger String / Varchar Values
+- `DATE` : Stores date values in `YYYY-MM-DD` format
+- `DATETIME` : Stores date values in `YYYY-MM-DD hh:mm:ss` format
+- `TIME` : Stores time value in `hh:mm:ss` format
 
 # DDL
 
@@ -103,12 +120,6 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 - `desc table;` :  Show table structure
 - `show tables;` : Show all tables in current database
 
-# Data Types
-
-- `INT` : Ranges between `-2147483648`to `2147483647`
-- `FLOAT` : 
-- `DOUBLE` : 
-
 # CREATE
 
 - It is used to CREATE new database objects, such as tables, views, indexes, and databases. [Ref](https://dev.mysql.com/doc/refman/8.4/en/creating-tables.html)
@@ -137,73 +148,140 @@ Example: CREATE INDEX idx_lastname ON Employees (LastName);
 - `INSERT` is used to add new records (rows) to a table.
 
 ```sql
--- Syntax
-INSERT INTO <table_name> VALUES(value, value); -- Without specifying the columns
+-- Without specifying the columns
+-- The `VALUES` should match the actual columns
+INSERT INTO <table_name> VALUES(value, value); 
 INSERT INTO <table_name> (col1, col2, col3) VALUES(val1, val2, val3);
 
--- Examples
+-- Example
+INSERT INTO student VALUES(1, "Niranjan");
+INSERT INTO emp VALUES(1, "Peter", "Pune", "2020-01-01");
 
+-- Specifying Columns
+INSERT INTO emp (roll, name, city, doj) VALUES(1, "Peter", "Pune", "2020-01-01");
+
+-- Multiple Values
+INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, HireDate, Salary, DepartmentID) 
+VALUES(2, 'Jane', 'Smith', '1990-03-22', '2021-05-15', 65000.00, 1), 
+	  (3, 'Alice', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);
+	  (4, 'John', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);
+
+-- Inserting Data from Another Table
+
+INSERT INTO Employees(EmployeeID, FirstName, LastName) SELECT EmployeeID, FirstName, LastName FROM TempEmployees;
 ```
-- Syntax : 
-	- ``
-	- ``
-- Without Specifying Columns :
-	- `INSERT INTO student VALUES(1, "Niranjan");`
-	- `INSERT INTO emp VALUES(1, "Peter", "Pune", "2020-01-01");`
-- Specifying Columns : 
-	- `INSERT INTO emp (roll, name, city, doj) VALUES(1, "Peter", "Pune", "2020-01-01");` //(YYYY-MM-DD);
-- Multiple Values : 
-	- `INSERT INTO Employees (EmployeeID, FirstName, LastName, DateOfBirth, HireDate, Salary, DepartmentID) VALUES(2, 'Jane', 'Smith', '1990-03-22', '2021-05-15', 65000.00, 1), (3, 'Alice', 'Johnson', '1988-11-30', '2019-07-20', 70000.00, 3);`
-- Inserting Data from Another Table :
-	- `INSERT INTO Employees(EmployeeID, FirstName, LastName) SELECT EmployeeID, FirstName, LastName FROM TempEmployees;`
-- The `VALUES` should match the actual columns
 # UPDATE
 
-UPDATE existing records
+- UPDATE existing rows/records
 
-- Single Column : `UPDATE <table_name> SET <col_name>=<new_value> WHERE <condition_>;`
-- Multiple Columns : `UPDATE <table_name> SET <col_name>=<new_value>, <col_name>=<new_value> WHERE <condition_>;`
-- Eg. `UPDATE student SET roll = 4 WHERE name='Niranjan';`
+```sql
+-- Syntax
+-- Single Column
+UPDATE <table_name> SET <col_name>=<new_value> WHERE <condition_>;
+
+-- Multiple Columns
+UPDATE <table_name> SET <col_name>=<new_value>, <col_name>=<new_value> WHERE <condition_>;
+
+-- Example
+UPDATE student SET roll = 4 WHERE name='Niranjan';
+```
 # DELETE
 
-Delete exiting records.
+- Delete exiting records.
 
-- `DELETE FROM <table_name> WHERE <condition>;`
-- Eg. `DELETE FROM student WHERE roll=1;`
-- `DELETE FROM <table_name>;` : Deletes all records from given table.
+```sql
+-- Syntax 
+DELETE FROM <table_name> WHERE <condition>;
+
+-- Example
+DELETE FROM student WHERE roll=1;
+
+-- Delete All Records
+DELETE FROM <table_name>;
+```
+
 # TRUNCATE
 
-MaINTain table structure and Delete all data.
+- Maintain table structure and Delete all data.
 
-- `TRUNCATE TABLE <table_name>;`
-- Eg. `TRUNCATE TABLE emp;`
+```sql
+-- Syntax
+TRUNCATE TABLE <table_name>;
+
+-- Example
+TRUNCATE TABLE emp;
+```
 # DROP
 
 Delete the whole table.
 
-- `DROP TABLE <table_name>;`
-- Eg. `DROP TABLE emp;`
+```sql
+-- Syntax
+DROP TABLE <table_name>;
+
+-- Example
+DROP TABLE emp;
+```
 # ALTER
 
-- Adding new columns : 
-	- `ALTER TABLE <table_name> ADD COLUMN <column_name> <data_type>`
-	- `ALTER TABLE subscriber ADD COLUMN samount long;` 
-- Removing existing columns : 
-	- `ALTER TABLE <table_name> DROP COLUMN <column_name>;`
-	- `ALTER TABLE subscriber DROP COLUMN extra_column;`
-- Rename tables : 
-	- `ALTER TABLE <old_table_name> RENAME TO <new_table_name>;`
-	- Eg. `ALTER TABLE subscriber RENAME TO subs;`
+- Used to modify structure of Table
+
+```sql
+-- Add Single Column
+-- Syntax
+ALTER TABLE <table_name> ADD <column_name> <data_type>`
+-- Example
+ALTER TABLE subscriber ADD samount long
+
+-- Add Multiple Columns
+-- Syntax
+ALTER TABLE table_name ADD <column_name> <data_type>,<column_name> <data_type>;
+-- Example
+ALTER TABLE employees ADD first_name VARCHAR(50),last_name VARCHAR(50);
+
+-- Removing existing columns
+-- Syntax
+ALTER TABLE <table_name> DROP COLUMN <column_name>;
+-- Example
+ALTER TABLE subscriber DROP COLUMN extra_column;
+
+-- Rename tables
+-- Syntax
+ALTER TABLE <old_table_name> RENAME TO <new_table_name>;
+-- Example
+ALTER TABLE subscriber RENAME TO subs;
+
+-- Change Column Name
+-- Syntax
+ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <old_data_type>;
+--Example
+ALTER TABLE subscriber CHANGE COLUMN cid sid INT;
+
+-- Change Data type
+-- Syntax
+ALTER TABLE <table_name> CHANGE COLUMN <old_column> <old_column> <new_datatype>;
+-- Example
+ALTER TABLE subscriber CHANGE COLUMN sid sid VARCHAR(100);
+
+--Change Column Name & Datatype
+-- Syntax
+ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <new_data_type>;
+-- Example
+ALTER TABLE subscriber CHANGE COLUMN samount amount double;
+
+
+```
+
+
+	- ``
+	- Eg. ``
 - Change data type :
-	- Change Column Name & Datatype :
-		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <new_data_type>;`
-		- Eg. `ALTER TABLE subscriber CHANGE COLUMN samount amount double;`
-	- Change Column Name : 
-		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <new_col_name> <old_data_type>;`
-		- Eg. `ALTER TABLE subscriber CHANGE COLUMN cid sid INT;`
-	- Change Data type : 
-		- `ALTER TABLE <table_name> CHANGE COLUMN <old_column> <old_column> <new_datatype>;`
-		- Eg. `ALTER TABLE subscriber CHANGE COLUMN sid sid VARCHAR(100);`
+	-  :
+		- `
+	-  : 
+		- ``
+	-  : 
+		- ``
 
 # Constraints
 

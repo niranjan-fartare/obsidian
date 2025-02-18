@@ -824,7 +824,7 @@ df1.show()
 +---+------------------+
 ```
 
-### aggregate  functions 
+### aggregate  functions
 
 
 ### distinct
