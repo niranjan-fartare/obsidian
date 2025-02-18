@@ -229,7 +229,7 @@ DROP TABLE emp;
 ```sql
 -- Add Single Column
 -- Syntax
-ALTER TABLE <table_name> ADD <column_name> <data_type>`
+ALTER TABLE <table_name> ADD <column_name> <data_type>
 -- Example
 ALTER TABLE subscriber ADD samount long
 
