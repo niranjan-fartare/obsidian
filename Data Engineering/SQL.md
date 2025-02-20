@@ -27,6 +27,11 @@
 - [DRL](#drl)
 	- [SELECT](#select)
 - [Constraints](#Constraints)
+	- [Not Null](#not-null)
+	- [Unique](#Unique)
+	- [Primary Key](#primary-key)
+	- [Foreign Key](#foreign-key)
+	- [Composite Key](composite-key)
 - [BETWEEN..AND](#BETWEEN--AND)
 # Data
 
@@ -239,7 +244,7 @@ ALTER TABLE table_name ADD <column_name> <data_type>,<column_name> <data_type>;
 -- Example
 ALTER TABLE employees ADD first_name VARCHAR(50),last_name VARCHAR(50);
 
--- Removing existing columns
+-- Removing columns
 -- Syntax
 ALTER TABLE <table_name> DROP COLUMN <column_name>;
 -- Example
@@ -271,18 +276,6 @@ ALTER TABLE subscriber CHANGE COLUMN samount amount double;
 
 
 ```
-
-
-	- ``
-	- Eg. ``
-- Change data type :
-	-  :
-		- `
-	-  : 
-		- ``
-	-  : 
-		- ``
-
 # Constraints
 
 SQL Constraints are rules that maintain the integrity of data in a table by ensuring Accuracy, Consistency, and Reliability.
@@ -342,48 +335,89 @@ CREATE TABLE enrollment (
 ```
 ## Composite Key 
 
-```sql
+- A combination of two or more columns that uniquely identifies a record in a database table.
 
+```sql
+CREATE TABLE student (
+	roll INT, 
+	name VARCHAR(100), 
+	PRIMARY KEY(roll, name)
+);
 ```
 
 # BETWEEN .. AND
 
-- `SELECT * FROM emp WHERE eid BETWEEN 0 AND 10;` : Range
-# LIKE
-
-- `SELECT * FROM emp WHERE ename LIKE 'A%';` : Starts with A
-- `SELECT * FROM emp WHERE ename LIKE '%A;` : Ends with A
-- `SELECT * FROM emp WHERE ename LIKE '%A%';` : Anything that contains  A
-- `SELECT * FROM emp WHERE ename LIKE '_____';` :  wildcard
+- Used to filter rows based on a range of values.
 
 ```sql
--- City does not start and end with a,e,i,o,u
+SELECT * FROM emp WHERE eid BETWEEN 0 AND 10;
+```
+# LIKE
 
+- Used to filter rows based on a Pattern.
+- `%` matches any sequence of zero or more characters
+- `_` matches any single character
+
+```sql
+-- Starts with A
+SELECT * FROM emp WHERE ename LIKE 'A%';
+
+-- Ends with A
+SELECT * FROM emp WHERE ename LIKE '%A';
+
+-- Anything that contains  A
+SELECT * FROM emp WHERE ename LIKE '%A%';
+
+-- Wildcard(_ == 1 Character) 
+SELECT * FROM emp WHERE ename LIKE '_____';
+
+-- City does not start and end with a,e,i,o,u
 SELECT DISTINCT city
 FROM station
 WHERE city NOT LIKE '[AEIOU]%[AEIOU]';
+
+-- Example
+SELECT * FROM sales WHERE amount LIKE '1__' OR amount LIKE '2%' OR amount LIKE '3%' OR amount LIKE '4%' OR amount LIKE '5%';
+
 ```
+
 # ORDER BY
 
+- Used to sort the result set of a query in ascending or descending order based on one or more columns.
+
 ```sql
-SELECT * FROM emp ORDER by ename ASC; -- List records in Ascending Order
-SELECT * FROM emp ORDER by ename DESC; -- List records in Descending Order
-SELECT * FROM emp ORDER by ename DESC, city ASC;` : List desc by `ename` first then by `city
+-- List records in Ascending Order
+SELECT * FROM emp ORDER by ename ASC; 
+
+-- List records in Descending Order
+SELECT * FROM emp ORDER by ename DESC; 
+
+-- List Descending by `ename` first then Ascending by `city
+SELECT * FROM emp ORDER by ename DESC, city ASC;`
 ```
 # LIMIT
 
-- `SELECT * FROM emp LIMIT 8;` : List the top 8 records
-- `SELECT * FROM emp LIMIT 8,2;` : List the 2 records after the top 8 records
+- Used to limit the number of rows returned by a query.
+
+```sql
+-- List the top 8 records
+SELECT * FROM emp LIMIT 8;
+
+-- List the 2 records after the top 8 records
+SELECT * FROM emp LIMIT 8,2;
+```
 # CASE
+
+- Used to perform conditional logic in a query. 
+- It allows to perform different actions based on whether a specified condition is true or false.
 
 ```sql
 SELECT ename, CASE WHEN city='Pune' THEN 1000 WHEN city='Mumbai' THEN 1500 WHEN city='Delhi' THEN 2000 ELSE 500 END bonus FROM emp;
 ```
 # Joins
 
-- A `JOIN` clause is used to combine rows from two or more tables, based on a related column between them.
-
-## Inner Join 
+- `JOIN` clause is used to combine rows from two or more tables, based on a related column between them.
+## Inner Join
 
 - Returns Matching Records in both tables
 - Does not match with `NULL`.
@@ -392,9 +426,8 @@ SELECT ename, CASE WHEN city='Pune' THEN 1000 WHEN city='Mumbai' THEN 1500 WHEN 
 SELECT emp.*, dept.dname
 FROM emp
 JOIN dept ON emp.did = dept.did;
-```
 
-```sql
+-- Output
 +------+--------+------------+------------+-------+------+-------+
 | eid  | ename  | city       | doj        | sal   | did  | dname |
 +------+--------+------------+------------+-------+------+-------+
@@ -408,15 +441,13 @@ JOIN dept ON emp.did = dept.did;
 ## Left Join
 
 - Returns **All Records from left** and matching from right
-	- Return 
 
 ```sql
 SELECT emp.*, dname 
 FROM emp LEFT 
 JOIN dept ON emp.did = dept.did;
-```
 
-```sql
+-- Output
 +------+----------+------------+------------+-------+------+-------+
 | eid  | ename    | city       | doj        | sal   | did  | dname |
 +------+----------+------------+------------+-------+------+-------+
@@ -442,9 +473,8 @@ JOIN dept ON emp.did = dept.did;
 SELECT emp.*, dname 
 FROM emp 
 RIGHT JOIN dept ON emp.did = dept.did;
-```
 
-```sql
+-- Output
 +------+--------+------------+------------+-------+------+-------+
 | eid  | ename  | city       | doj        | sal   | did  | dname |
 +------+--------+------------+------------+-------+------+-------+
@@ -460,12 +490,20 @@ RIGHT JOIN dept ON emp.did = dept.did;
 
 - Matching and non matching records from tables
 
+```sql
+SELECT o.order_id, o.customer_id, o.order_date, c.customer_name, c.customer_address
+FROM orders o
+FULL OUTER JOIN customers c
+ON o.customer_id = c.customer_id;
+```
 ## Cross Join
 
 - Match every row from both tables.
 
 ```sql
-MariaDB [b16]> SELECT eid, ename, dname FROM emp CROSS JOIN dept;
+SELECT eid, ename, dname FROM emp CROSS JOIN dept;
+
+-- Output 
 +------+----------+-------+
 | eid  | ename    | dname |
 +------+----------+-------+
@@ -504,14 +542,15 @@ MariaDB [b16]> SELECT eid, ename, dname FROM emp CROSS JOIN dept;
 |   11 | Xin      | DM    |
 +------+----------+-------+
 33 rows in set (0.006 sec)
-``` 
-
+```
 ## Self Join
 
 - Join table with itself
 
 ```sql
-MariaDB [b16]> SELECT * from emps;
+SELECT * from emps;
+
+-- Output
 +------+---------+-------+
 | eid  | ename   | mgrid |
 +------+---------+-------+
@@ -527,13 +566,13 @@ MariaDB [b16]> SELECT * from emps;
 |   10 | Jack    |     5 |
 +------+---------+-------+
 10 rows in set (0.001 sec)
-```
 
-Output :
+-- Example
 
-```sql
+SELECT e.eid, e.ename , m.ename as Manager from emps e left join emps m on e.mgrid = m.eid;
 
-MariaDB [b16]> SELECT e.eid, e.ename , m.ename as Manager from emps e left join emps m on e.mgrid = m.eid;
+-- Output 
+
 +------+---------+---------+
 | eid  | ename   | Manager |
 +------+---------+---------+
@@ -562,7 +601,7 @@ MariaDB [b16]> SELECT e.eid, e.ename , m.ename as Manager from emps e left join 
 Convert String to Upper case
 
 ```sql
-MariaDB [b16]> SELECT ename, upper(ename) from emp;
+SELECT ename, upper(ename) from emp;
 +----------+--------------+
 | ename    | upper(ename) |
 +----------+--------------+
@@ -579,14 +618,18 @@ MariaDB [b16]> SELECT ename, upper(ename) from emp;
 | Xin      | XIN          |
 +----------+--------------+
 
-MariaDB [b16]> SELECT upper('abcd');
+--
+
+SELECT upper('abcd');
 +---------------+
 | upper('abcd') |
 +---------------+
 | ABCD          |
 +---------------+
 
-MariaDB [b16]> SELECT * from emp where upper(city) = 'Pune';
+--
+
+SELECT * from emp where upper(city) = 'Pune';
 +------+-------+------+------------+-------+------+
 | eid  | ename | city | doj        | sal   | did  |
 +------+-------+------+------------+-------+------+
@@ -600,7 +643,7 @@ MariaDB [b16]> SELECT * from emp where upper(city) = 'Pune';
 Convert string to Lower Case
 
 ```sql
-MariaDB [b16]> SELECT ename, lower(ename) from emp;
+SELECT ename, lower(ename) from emp;
 +----------+--------------+
 | ename    | lower(ename) |
 +----------+--------------+
@@ -617,7 +660,9 @@ MariaDB [b16]> SELECT ename, lower(ename) from emp;
 | Xin      | xin          |
 +----------+--------------+
 
-MariaDB [b16]> SELECT lower('ABCD');
+-- 
+
+SELECT lower('ABCD');
 +---------------+
 | lower('ABCD') |
 +---------------+
@@ -630,7 +675,7 @@ MariaDB [b16]> SELECT lower('ABCD');
 Counts characters in a string
 
 ```sql
-MariaDB [b16]> SELECT length('  Hello World ');
+SELECT length('  Hello World ');
 +--------------------------+
 | length('  Hello World ') |
 +--------------------------+
@@ -643,7 +688,7 @@ MariaDB [b16]> SELECT length('  Hello World ');
 Remove space from left and right side of the string
 
 ```sql
-MariaDB [b16]> SELECT length(trim('  Hello World '));
+SELECT length(trim('  Hello World '));
 +--------------------------------+
 | length(trim('  Hello World ')) |
 +--------------------------------+
