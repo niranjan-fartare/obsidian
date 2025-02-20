@@ -58,6 +58,47 @@
 		- [replace](#replace)
 		- [substr](#substr)
 		- [substring_index](#substring_index)
+		- [round](#round)
+		- [format](#format)
+		- [coalesce](#coalesce)
+		- [now](#now)
+		- [current_date](#current_date)
+		- [current_time](#current_time)
+		- [More Date Functions](#current_time)
+		- [date_format](#date_format)
+		- [date_add](#date_add)
+		- [sub_date](#sub_date)
+		- [datediff](#datediff)
+	- [Group Functions](#group-functions)
+		- [max](#max)
+		- [min](#min)
+		- [sum](#sum)
+		- [avg](#avg)
+		- [count](#count)
+- [distinct](#distinct)
+- [Group By](#group-by)
+- [Having](#having)
+- [Set Operators](#set-operators)
+	- [UNION](#union)
+	- [UNION ALL](#union-all)
+	- [INTERSECT](#intersect)
+	- [EXCEPT / MINUS](#except--minus)
+- [Sub Queries](#sub-queries)
+- [CTE](#cte)
+- [Window Functions](#window-functions)
+	- [row_number](#row_number)
+	- [rank](#rank)
+	- [dense_rank](#dense_rank)
+	- [lead](#lead)
+	- [lag](#lag)
+- [Views](#Views)
+- [Indexing](#indexing)
+- [Misc](#misc)
+	- [Duplicate table with data](#duplicate-table-with-data)
+	- [Duplicate table structure only](#duplicate-table-structure-only)
+	- [INSERT from another table](#insert-from-another-table)
+	- [Run .sql files](#run-sql-files)
+- [Normalization & DeNormalization](#normalization--deNormalization)
 # Data
 
 - Data : Facts, Figures, Statistics
@@ -143,13 +184,6 @@ ACID properties ensure that database Transactions are processed reliably, maINTa
 - Data Retrieval
 - DRL is a subset of DML focused specifically on retrieving data from the database.
 - [`SELECT`](#select)
-# Misc
-
-- `show databases;` : Show all databases
-- `use database db_name;` : Use given database
-- `desc table;` :  Show table structure
-- `show tables;` : Show all tables in current database
-
 # CREATE
 
 - It is used to CREATE new database objects, such as tables, views, indexes, and databases. [Ref](https://dev.mysql.com/doc/refman/8.4/en/creating-tables.html)
@@ -906,8 +940,6 @@ MariaDB [b16]> SELECT email, substring_index(email, '@',1) from emp;
 +--------------------+-------------------------------+
 ```
 
-## 10 Nov
-
 ### round
 
 Rounds up to nearest INTeger
@@ -998,7 +1030,7 @@ MariaDB [b16]> SELECT now();
 1 row in set (0.001 sec)
 ```
 
-### current_date 
+### current_date
 
 Returns Current Date
 
@@ -1025,7 +1057,7 @@ MariaDB [b16]> SELECT current_time();
 +----------------+
 ```
 
-### year, month, monthname, day, dayname, hour, minute, second 
+### year, month, monthname, day, dayname, hour, minute, second
 
 ```sql
 MariaDB [b16]> SELECT year(now());
@@ -1094,9 +1126,10 @@ MariaDB [b16]> SELECT second(now());
 ```
 
 
-### dateformat(col, format)
+### date_format
 
-Change format of given col
+- date_format(col, format)
+- Change format of given col
 
 ```sql
 SELECT date_format(now(), '%Y');
@@ -1121,50 +1154,52 @@ SELECT date_format(now(), '%Y');
 | `%U`         | Week number of the year (00-53, Sunday as the first day of the week) | `14`                |
 | `%V`         | Week number of the year (01-53, Monday as the first day of the week) | `14`                |
 | `%X`         | Year for the week (same as `%Y` if the week belongs to that year)    | `2023`              |
-### date_add(col, INTerval n day/month/year) 
+### date_add
 
-Add n days/month/year to the given date
+- `date_add(col, Interval n day/month/year)`
+- Add `n` days/month/year to the given date
 
 ```sql
-MariaDB [b16]> SELECT date_add(now(), INTerval 2 day);
+MariaDB [b16]> SELECT date_add(now(), Interval 2 day);
 +---------------------------------+
-| date_add(now(), INTerval 2 day) |
+| date_add(now(), Interval 2 day) |
 +---------------------------------+
 | 2024-11-12 09:58:19             |
 +---------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_add(now(), INTerval 2 month);
+MariaDB [b16]> SELECT date_add(now(), Interval 2 month);
 +-----------------------------------+
-| date_add(now(), INTerval 2 month) |
+| date_add(now(), Interval 2 month) |
 +-----------------------------------+
 | 2025-01-10 09:58:22               |
 +-----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_add(now(), INTerval 2 year);
+MariaDB [b16]> SELECT date_add(now(), Interval 2 year);
 +----------------------------------+
-| date_add(now(), INTerval 2 year) |
+| date_add(now(), Interval 2 year) |
 +----------------------------------+
 | 2026-11-10 09:58:25              |
 +----------------------------------+
 1 row in set (0.001 sec)
 
-MariaDB [b16]> SELECT date_format(date_add(now(), INTerval 1 month), '%Y/%M/%D');
+MariaDB [b16]> SELECT date_format(date_add(now(), Interval 1 month), '%Y/%M/%D');
 +------------------------------------------------------------+
-| date_format(date_add(now(), INTerval 1 month), '%Y/%M/%D') |
+| date_format(date_add(now(), Interval 1 month), '%Y/%M/%D') |
 +------------------------------------------------------------+
 | 2024/December/10th                                         |
 +------------------------------------------------------------+
 1 row in set (0.001 sec)
 ```
 
-### sub_date(col, INTerval n) 
+### sub_date
 
-Reduces the given INTerval 
+- `sub_date(col, Interval n)`
+- Reduces the given Interval
 
 ```sql
-MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), INTerval 2 day), '%Y/%M/%D') as 'sub_date()';
+MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(date_sub(now(), Interval 2 day), '%Y/%M/%D') as 'sub_date()';
 +--------------------+-------------------+
 | Current            | sub_date()        |
 +--------------------+-------------------+
@@ -1173,9 +1208,10 @@ MariaDB [b16]> SELECT date_format(now(), '%Y/%M/%D') as Current, date_format(dat
 1 row in set (0.001 sec)
 ```
 
-### datediff(current_date, col)
+### datediff
 
-Returns remaining days from the given date
+- `datediff(current_date, col)`
+- Returns remaining days from the given date
 
 ```sql
 MariaDB [b16]> SELECT sub_date, current_date(), datediff(now(), sub_date) as Expiry from subscriber;
@@ -1202,7 +1238,10 @@ MariaDB [b16]> SELECT sub_date, current_date(), datediff(now(), sub_date) as Exp
 
 ## Group Functions
 
-### max(col)
+### max
+
+- `max(col)`
+- Selects maximum value from the given column.
 
 ```sql
 MariaDB [b16]> SELECT max(sal) from emp;
@@ -1214,7 +1253,10 @@ MariaDB [b16]> SELECT max(sal) from emp;
 1 row in set (0.001 sec)
 ```
 
-### min(col)
+### min
+
+- `min(col)`
+- Selects minimum value from the given column.
 
 ```sql
 MariaDB [b16]> SELECT min(sal) from emp;
@@ -1226,7 +1268,10 @@ MariaDB [b16]> SELECT min(sal) from emp;
 1 row in set (0.001 sec)
 ```
 
-### sum(col)
+### sum
+
+- `sum(col)`
+- Selects sum of all values of given column.
 
 ```sql
 MariaDB [b16]> SELECT sum(sal) from emp;
@@ -1238,7 +1283,10 @@ MariaDB [b16]> SELECT sum(sal) from emp;
 1 row in set (0.001 sec)
 ```
 
-### avg(sal)
+### avg
+
+- `avg(col)`
+- Selects average value of given column.
 
 ```sql
 MariaDB [b16]> SELECT avg(sal) from emp;
@@ -1250,7 +1298,7 @@ MariaDB [b16]> SELECT avg(sal) from emp;
 1 row in set (0.001 sec)
 ```
 
-### count(col)
+### count
 
 - count(col) : Does not count Null columns
 - count(1) : Counts all records including Null
@@ -1264,7 +1312,7 @@ MariaDB [b16]> SELECT count(sal) from emp;
 +------------+
 ```
 
-### distinct 
+# distinct
 
 ```sql
 MariaDB [b16]> SELECT * from emp;
@@ -1363,8 +1411,6 @@ MariaDB [b16]> SELECT did, sum(sal)from emp group by did having sum(sal) > 50000
 +------+----------+
 5 rows in set (0.001 sec)
 ```
-
-
 # Set Operators
 
 - UNION : Combines both returns unique records
@@ -1420,7 +1466,7 @@ MariaDB [b16]> SELECT * from pune UNION ALL SELECT * from mumbai;
 +------+---------+
 4 rows in set (0.000 sec)
 ```
-## INTersect
+## INTERSECT
 
 ```sql
 MariaDB [b16]> SELECT * from pune INTERSECT SELECT * from mumbai;
@@ -1452,9 +1498,6 @@ MariaDB [b16]> SELECT * from mumbai EXCEPT SELECT * from pune;
 1 row in set (0.000 sec)
 
 ```
-
-
-## 17 Nov
 
 # Sub Queries
 
@@ -1519,7 +1562,9 @@ MariaDB [b16]> SELECT temp_cust.*, temp_orders.order_date from (SELECT * from cu
 
 ```
 
-# CTE (Common Table Expression)
+# CTE 
+
+- Common Table Expression
 
 ```sql 
 MariaDB [b16]> with temp_cust AS (SELECT * from customer where state='TX'), temp_orders AS (SELECT * from orders where order_date between '2023-01-01' and '2023-12-31')  SELECT temp_cust.*, temp_orders.order_date from temp_cust   inner join temp_orders  on temp_cust.cid = temp_orders.cid;
@@ -1732,7 +1777,9 @@ MariaDB [b16]> SELECT eid, sal, dense_rank() over(order by sal desc) as 'Dense R
 23 rows in set (0.001 sec)
 ```
 
-## Lag(col, n) 
+## Lag
+
+- `Lag(col, n)`
 
 ```sql
 MariaDB [b16]> SELECT eid, ename, sal, did, lag(sal,3) over(order by eid asc) as total_sal from emp;
@@ -1766,7 +1813,9 @@ MariaDB [b16]> SELECT eid, ename, sal, did, lag(sal,3) over(order by eid asc) as
 23 rows in set (0.001 sec)
 ```
 
-## Lead(col,n)
+## Lead
+
+- `Lead(col,n)`
 
 ```sql
 MariaDB [b16]> SELECT eid, ename, sal, did, lead(sal,3) over(order by eid asc) as total_sal from emp;
@@ -1800,11 +1849,9 @@ MariaDB [b16]> SELECT eid, ename, sal, did, lead(sal,3) over(order by eid asc) a
 23 rows in set (0.001 sec)
 ```
 
-### 23 Nov
+## Views
 
-## View
-
-- CREATEd virtual table
+- Creates a virtual table
 - CREATE view view_name as SELECT_query;
 - replace : 
 - Types:
@@ -1839,34 +1886,38 @@ CREATE index idx_name on table_name(col_name);
 - Show indexes : 
 	- `show index from table_name;`
 
-# Duplicate table with data
+# Misc
+## Duplicate table with data
 
 ```sql
 CREATE table emp_bak as SELECT * from emp;
 ```
 
-# Duplicate table structure only
+## Duplicate table structure only
 
 ```sql
 CREATE table emp_test as SELECT * from emp where 1 = 0;
 ```
 
-# INSERT from another table
+## INSERT from another table
 
 ```sql
 INSERT INTo emp_test SELECT * from emp where eid < 5;
 ```
 
-# Run .sql files
+## Run .sql files
 
 ```sql
 source .sql_file_ocation
 ```
 
-# Misc
-
 - `if not exists` : only if the target does not already exist
 - `if exists` : only if the target exists
+##
+- `show databases;` : Show all databases
+- `use database db_name;` : Use given database
+- `desc table;` :  Show table structure
+- `show tables;` : Show all tables in current database
 # Normalization & DeNormalization
 
 Process of organizing data INTo multiple related tables to eliminate redundancy and dependency.
