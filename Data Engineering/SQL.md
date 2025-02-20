@@ -31,8 +31,33 @@
 	- [Unique](#Unique)
 	- [Primary Key](#primary-key)
 	- [Foreign Key](#foreign-key)
-	- [Composite Key](composite-key)
+	- [Composite Key](#composite-key)
 - [BETWEEN..AND](#BETWEEN--AND)
+- [LIKE](#like)
+- [ORDER BY](#order-by)
+- [LIMIT](#limit)
+- [CASE](#case)
+- [Joins](#joins)
+	- [Inner Join](#inner-join)
+	- [Left Join](#left-join)
+	- [Right Join](#right-join)
+	- [Full Outer Join](#full-outer-join)
+	- [Cross Join](#cross-join)
+	- [Self Join](#self-join)
+- [Functions](#functions)
+	- [Scaler Functions](#scaler-functions)
+		- [upper](#upper)
+		- [lower](#lower)
+		- [length](#length)
+		- [trim](#trim)
+		- [ltrim](#ltrim)
+		- [rtrim](#rtrim)
+		- [repeat](#repeat)
+		- [reverse](#reverse)
+		- [concat](#concat)
+		- [replace](#replace)
+		- [substr](#substr)
+		- [substring_index](#substring_index)
 # Data
 
 - Data : Facts, Figures, Statistics
@@ -333,7 +358,7 @@ CREATE TABLE enrollment (
     FOREIGN KEY (course_id) REFERENCES course(course_id)
 	);
 ```
-## Composite Key 
+## Composite Key
 
 - A combination of two or more columns that uniquely identifies a record in a database table.
 
@@ -598,7 +623,7 @@ SELECT e.eid, e.ename , m.ename as Manager from emps e left join emps m on e.mgr
 
 ### upper 
 
-Convert String to Upper case
+- Convert String to Upper case
 
 ```sql
 SELECT ename, upper(ename) from emp;
@@ -723,7 +748,7 @@ MariaDB [b16]> SELECT length(rtrim('  Hello World '));
 +---------------------------------+
 ```
 
-### repeat 
+### repeat
 
 Repeats the SELECTed records n times
 
@@ -748,7 +773,7 @@ MariaDB [b16]> SELECT repeat(ename,2) from emp;
 
 ### reverse 
 
-Reverses the SELECTed column
+Reverses the selected column
 
 ```sql
 MariaDB [b16]> SELECT ename, reverse(ename) from emp;
@@ -769,7 +794,7 @@ MariaDB [b16]> SELECT ename, reverse(ename) from emp;
 +----------+----------------+
 ```
 
-### concat 
+### concat
 
 - Concatenates columns
 - If one the value is null returns null
@@ -793,7 +818,7 @@ MariaDB [b16]> SELECT ename, city, concat(ename,'-',city) from emp;
 +----------+------------+------------------------+
 ```
 
-### replace 
+### replace
 
 replace char/string with given char/string
 

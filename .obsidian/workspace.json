@@ -98,7 +98,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "8ea420d672dfb02a",
@@ -183,7 +184,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "c691640053148c0f",
+  "active": "5ca6b0f3670e3126",
   "lastOpenFiles": [
     "Data Engineering/Spark.md",
     "Data Engineering/SQL.md",
