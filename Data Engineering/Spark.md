@@ -1339,3 +1339,278 @@ spark = SparkSession.builder.appName("SET LOG LEVEL").getOrCreate()
   
 spark.sparkContext.setLogLevel("DEBUG")
 ```
+
+# Data Skewness
+
+- Occurs when data is not distributed evenly across partitions. 
+- This can lead to job failure, longer processing times, inefficient resource utilization and slower performance.
+- [Ref](https://medium.com/@manishshrivastava26/data-skew-problem-and-different-ways-to-resolve-it-in-pyspark-bfb3a9183af)
+## Solutions
+
+- [Re-Partitioning](#re-partition-and-coalesce)
+- Salting
+- Adaptive Query Execution (AQE)
+
+### Salting
+
+- Adding one extra 
+
+```python
+from pyspark.sql.functions import *
+
+df=spark.read.format("CSV").option("header","true").option("inferschema","true").load("D:/emp1.csv")
+
+df.show() 
+df1=df.withColumn("sf", floor(rand() * 10))
+df2=df1.withColumn("city",concat("city",lit("_"),"sf")).drop("sf")
+#opr can cause data skewness
+df3=df2.groupBy("city").count()
+df3=df3.withColumnRenamed("count","cnt")
+df4=df3.withColumn("city",split(df3['city'],"_")[0])
+df5=df4.groupBy("city").sum("cnt")
+df5.show()
+```
+
+
+# RDD to DF
+
+```sql
+-- data.txt
+
+Mumbai-192.168.1.1:Techsight|India|www.google.com  
+Delhi-192.168.2.2:Techsight|India|www.microsoft.com  
+Bangalore-192.168.3.3:Techsight|India|www.apple.com  
+Pune-192.168.4.4:Techsight|India|www.amazon.com  
+Chennai-192.168.5.5:Techsight|India|www.facebook.com  
+Hyderabad-192.168.6.6:Techsight|India|www.twitter.com  
+Kolkata-192.168.7.7:Techsight|India|www.linkedin.com  
+Pune-192.168.8.8:Techsight|India|www.instagram.com  
+Jaipur-192.168.9.9:Techsight|India|www.reddit.com  
+Ahmedabad-192.168.10.10:Techsight|India|www.github.com  
+Mumbai-192.168.11.11:Techsight|India|www.medium.com  
+Delhi-192.168.12.12:Techsight|India|www.snapchat.com  
+Bangalore-192.168.13.13:Techsight|India|www.pinterest.com  
+Pune-192.168.14.14:Techsight|India|www.tumblr.com  
+Chennai-192.168.15.15:Techsight|India|www.quora.com  
+Hyderabad-192.168.16.16:Techsight|India|www.whatsapp.com  
+Kolkata-192.168.17.17:Techsight|India|www.telegram.org  
+Pune-192.168.18.18:Techsight|India|www.netflix.com  
+Jaipur-192.168.19.19:Techsight|India|www.spotify.com  
+Ahmedabad-192.168.20.20:Techsight|India|www.adobe.com  
+Mumbai-192.168.21.21:Techsight|India|www.oracle.com  
+Delhi-192.168.22.22:Techsight|India|www.ibm.com  
+Bangalore-192.168.23.23:Techsight|India|www.salesforce.com  
+Pune-192.168.24.24:Techsight|India|www.dropbox.com  
+Chennai-192.168.25.25:Techsight|India|www.skype.com
+```
+
+```python
+from pyspark.sql.types import *
+
+rdd=spark.sparkContext.textFile("D:/data.txt")
+rdd1=rdd.map(lambda x:x.replace("-","|")).map(lambda x:x.replace(":","|"))
+
+schema=StructType([
+StructField("city",StringType(),True),
+StructField("ip",StringType(),True),
+StructField("user",StringType(),True),
+StructField("country",StringType(),True),
+StructField("site",StringType(),True)
+])
+
+rdd2=rdd1.map(lambda x:x.split("|")).map(lambda x:(x[0],x[1],x[2],x[3],x[4]))
+df=spark.createDataFrame(rdd2,schema)
+df.show()
+
+# Output
+
++---------+-------------+---------+-------+-------------------+
+|     city|           ip|     user|country|               site|
++---------+-------------+---------+-------+-------------------+
+|   Mumbai|  192.168.1.1|Techsight|  India|   www.google.com  |
+|    Delhi|  192.168.2.2|Techsight|  India|www.microsoft.com  |
+|Bangalore|  192.168.3.3|Techsight|  India|    www.apple.com  |
+|     Pune|  192.168.4.4|Techsight|  India|   www.amazon.com  |
+|  Chennai|  192.168.5.5|Techsight|  India| www.facebook.com  |
+|Hyderabad|  192.168.6.6|Techsight|  India|  www.twitter.com  |
+|  Kolkata|  192.168.7.7|Techsight|  India| www.linkedin.com  |
+|     Pune|  192.168.8.8|Techsight|  India|www.instagram.com  |
+|   Jaipur|  192.168.9.9|Techsight|  India|   www.reddit.com  |
+|Ahmedabad|192.168.10.10|Techsight|  India|   www.github.com  |
+|   Mumbai|192.168.11.11|Techsight|  India|   www.medium.com  |
+|    Delhi|192.168.12.12|Techsight|  India| www.snapchat.com  |
+|Bangalore|192.168.13.13|Techsight|  India|www.pinterest.com  |
+|     Pune|192.168.14.14|Techsight|  India|   www.tumblr.com  |
+|  Chennai|192.168.15.15|Techsight|  India|    www.quora.com  |
+|Hyderabad|192.168.16.16|Techsight|  India| www.whatsapp.com  |
+|  Kolkata|192.168.17.17|Techsight|  India| www.telegram.org  |
+|     Pune|192.168.18.18|Techsight|  India|  www.netflix.com  |
+|   Jaipur|192.168.19.19|Techsight|  India|  www.spotify.com  |
+|Ahmedabad|192.168.20.20|Techsight|  India|    www.adobe.com  |
++---------+-------------+---------+-------+-------------------+
+```
+
+# CDC 
+
+- Change Data Capture
+
+# Historic Data
+
+# Delta
+
+Also knows as,
+- Daily Data
+- Incremental Data
+- Transactional Data 
+# SCD
+
+- Slowly Changing Dimension
+- Maintain history in Data Warehouse
+
+## Types
+
+- Type 0: No changes are made to the existing data. Historical data remains unchanged.
+- Type 1 : Old data is overwritten with new data. No historical data is preserved.
+- Type 2 : A new record is added for each change, preserving historical data. This typically includes effective dates or versioning.
+- Type 3 : A new column is added to store the previous value.
+- Type 4 : Historical data is stored in a separate table, while the current dimension table holds only the latest data.
+- Type 6 : Combines Type 1, Type 2, and Type 3
+
+```sql
+-- emp_ini.csv
+
+eid,ename,city
+1,karan,Pune
+2,Rajesh,Mumbai
+
+-- emp_upd.csv
+
+eid,ename,city
+1,karan,Surat
+3,Meera,Delhi
+```
+
+```python
+from pyspark.sql.functions import *
+from pyspark.sql.window import Window
+
+df_ini=spark.read.format("CSV").option("header","true").option("inferschema","true").load("emp_ini.csv")
+df_ini.show()
+
+###
+
++---+------+------+
+|eid| ename|  city|
++---+------+------+
+|  1| karan|  Pune|
+|  2|Rajesh|Mumbai|
++---+------+------+
+
+###
+
+df_ini1=df_ini.withColumn("start_date",date_sub(current_date(),1)).withColumn("end_date",lit('NA')).withColumn("current_flag",lit('Y'))
+df_ini1.show()
+
+###
+
++---+------+------+----------+--------+------------+
+|eid| ename|  city|start_date|end_date|current_flag|
++---+------+------+----------+--------+------------+
+|  1| karan|  Pune|2025-02-22|      NA|           Y|
+|  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|
++---+------+------+----------+--------+------------+
+
+###
+
+
+df_upd=spark.read.format("CSV").option("header","true").option("inferschema","true").load("emp_upd.csv")
+df_upd.show()
+
+###
+
++---+-----+-----+
+|eid|ename| city|
++---+-----+-----+
+|  1|karan|Surat|
+|  3|Meera|Delhi|
++---+-----+-----+
+
+###
+
+df_upd1=df_upd.withColumn("start_date",current_date()).withColumn("end_date",lit('NA')).withColumn("current_flag",lit('Y'))
+df_upd1.show()
+
+###
+
++---+-----+-----+----------+--------+------------+
+|eid|ename| city|start_date|end_date|current_flag|
++---+-----+-----+----------+--------+------------+
+|  1|karan|Surat|2025-02-23|      NA|           Y|
+|  3|Meera|Delhi|2025-02-23|      NA|           Y|
++---+-----+-----+----------+--------+------------+
+
+###
+
+dfu=df_ini1.union(df_upd1)
+dfu.show()
+
+#
+
++---+------+------+----------+--------+------------+
+|eid| ename|  city|start_date|end_date|current_flag|
++---+------+------+----------+--------+------------+
+|  1| karan|  Pune|2025-02-22|      NA|           Y|
+|  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|
+|  1| karan| Surat|2025-02-23|      NA|           Y|
+|  3| Meera| Delhi|2025-02-23|      NA|           Y|
++---+------+------+----------+--------+------------+
+
+###
+
+win_spec=Window.partitionBy("eid").orderBy(desc("start_date"))
+dfu1=dfu.withColumn("rn",row_number().over(win_spec))
+dfu1.show()
+
+###
+
++---+------+------+----------+--------+------------+---+
+|eid| ename|  city|start_date|end_date|current_flag| rn|
++---+------+------+----------+--------+------------+---+
+|  1| karan| Surat|2025-02-23|      NA|           Y|  1|
+|  1| karan|  Pune|2025-02-22|      NA|           Y|  2|
+|  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|  1|
+|  3| Meera| Delhi|2025-02-23|      NA|           Y|  1|
++---+------+------+----------+--------+------------+---+
+
+###
+
+dfu2=dfu1.withColumn("current_flag",when(dfu1['rn']>1,lit('N')).otherwise(dfu1['current_flag']))
+dfu2.show()
+
+###
+
++---+------+------+----------+--------+------------+---+
+|eid| ename|  city|start_date|end_date|current_flag| rn|
++---+------+------+----------+--------+------------+---+
+|  1| karan| Surat|2025-02-23|      NA|           Y|  1|
+|  1| karan|  Pune|2025-02-22|      NA|           N|  2|
+|  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|  1|
+|  3| Meera| Delhi|2025-02-23|      NA|           Y|  1|
++---+------+------+----------+--------+------------+---+
+
+###
+
+dfu3=dfu2.withColumn("end_date",lag("start_date",1,'NA').over(win_spec)).drop("rn")
+dfu3.show()
+
+###
+
++---+------+------+----------+----------+------------+
+|eid| ename|  city|start_date|  end_date|current_flag|
++---+------+------+----------+----------+------------+
+|  1| karan| Surat|2025-02-23|      NULL|           Y|
+|  1| karan|  Pune|2025-02-22|2025-02-23|           N|
+|  2|Rajesh|Mumbai|2025-02-22|      NULL|           Y|
+|  3| Meera| Delhi|2025-02-23|      NULL|           Y|
++---+------+------+----------+----------+------------+
+```
