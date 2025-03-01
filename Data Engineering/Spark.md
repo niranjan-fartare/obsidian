@@ -1,20 +1,41 @@
-- In Memory Processing
+- In Memory Distributed Processing Big Data Processing Framework
 - 10x Faster than Map Reduce
 - Process structured, semi structured and unstructured data
 - Programming Module
 - Computation Framework
 
-# Questions
+# Components of Spark
 
-- Spark vs Map Reduce
-- OLAP vs OLTP
+- Spark Core
+- Spark SQL
+- Spark Streaming
+- Spark GraphX
+- Spark ML
 
-# RDD - Resilient / Flexible Distributed Dataset
- 
- - Object of Spark Core
- - Basic storage element in Spark Core
- - Data distributed on multiple partitions
+# Spark Architecture
 
+![[Pasted image 20250228132951.png]]
+
+## Driver Program
+
+- It is the central control unit
+- It manages the overall workflow of a Spark job, communicating with the cluster manager, transforming user code into Spark jobs, and scheduling tasks to be executed on worker nodes.
+
+## Cluster Manager
+
+- Allocates resources across the applications.
+- Acts as intermediator between Driver Program and Worker Node.
+## Worker Node
+
+- Worker nodes is also called as slave node.
+- It's main task is to work on the task assigned by the Driver program process.
+# RDD
+
+- Resilient Distributed Dataset
+- Used for processing unstructured data
+- Object of Spark Core
+- Basic storage element in Spark Core
+- Data is distributed on multiple Partitions
 ## Ways to create RDD
 
 - From Collections (List, Set, Dict)
@@ -52,27 +73,26 @@ rdd1.saveAsTextFile("sparkOutput1")
 
 ## Operations on RDD
 
-- Transformation : Get a RDD as a output when processing
+- Transformation : Returns a RDD as a output when processing
 	- `map`
 	- `filter`
 	- `reduce`
-- Action : Get a Collection or Value as a output
+- Action : Returns a collection or Value as a output when processing
 	- `collect` : Collect result of transformations from partitions
 	- `count` : Count number of items in RDD
 	- `take(n)` : Output top `n` items
 	- `saveAsTextFile()` : Save output as txt file
-
 ### Transformations
 
+- Operations that create new RDDs from existing RDD
 - Narrow Transformation : Perform operations on specific partitions, (Eg, `map`, `filter`)
-- Wide Transformation : Perform operations on multiple partitions, (Wg, `reduceByKey`, `Joins`)
+- Wide Transformation : Perform operations on multiple partitions, (Eg, `groupBy`,`reduceByKey`, `Joins`)
 
 ![[Screenshot 2025-02-02 at 11-49-31 Learning Spark Second Edition - LearningSpark2.0.pdf.png]]
 
 ## Lazy Evaluation
 
 - `Transformations` are not called until `Actions` are performed.
-
 # Optimization Techniques in Spark
 
 ## Re-partition and Coalesce
@@ -85,21 +105,26 @@ rdd1.saveAsTextFile("sparkOutput1")
 - More shuffling in `reparition()` as compared to `coalesce`.
 - Syntax : `newRDD = rdd.repartition(n)`, `n` is the number of partitions.
 - Syntax : `newRDD = rdd.coalesce(n)`, `n` is the number of partitions to decrease.
-
 ## Persist and Cache
 
 - `persist()` is used to store the result of an Action into the memory.
+- `cache()` stores the data in the memory with the default storage level.
+- `persist()` allows to specify the storage level for persisting data.
 - Syntax  : `rdd.persist()`
-- `cahce()` is fault tolerent.
+- `cahce()` is fault tolerant.
 - Syntax : `rdd.cache()`
 
 ### Persist storage levels
 
-- `rdd.persist()` 
-
+- `rdd.persist()`
 # Lineage Graph
 
+- A specific type of DAG that tracks the transformations applied to datasets, allowing Spark to understand how to recompute lost data and maintain efficient processing.
+
 # DAG
+
+- A general graph structure representing the sequence of computations in Spark, where nodes are datasets and edges are transformations. 
+- It is used for optimizing execution plans.
 
 # DAG Scheduler (Stages)
 
@@ -108,20 +133,18 @@ rdd1.saveAsTextFile("sparkOutput1")
 # Jobs
 
 - For every `Action` a new Spark Job is created
-
 # Deployment Mode
 
-- Decided based on where the driver code is executed
+- Deployment Mode is decided based on where the driver code is executed
 - **Client Deployment Mode** : Driver Program is running on the client machine where client submits the code
 - **Cluster Deployment Mode** : Driver Program is running on one of the machine in the Cluster.
 
 ## Client Deployment Mode 
 
 - In this mode, the Spark driver program runs on the client machine (the machine where the Spark application is submitted)
-  The client is responsible for the execution of the driver code, which includes the SparkContext and the logic for the application. 
+- The client is responsible for the execution of the driver code, which includes the SparkContext and the logic for the application. 
 - The driver communicates with the cluster manager (like YARN) to request resources and schedule tasks. 
 - This mode is typically used for interactive applications or when the user wants to run Spark jobs from a local machine or a development environment.
-
 ### Advantages
 
 - Easier to debug and develop applications since the driver runs locally.
@@ -130,10 +153,9 @@ rdd1.saveAsTextFile("sparkOutput1")
 
 - Limited by the resources of the client machine.
 - Network latency can be an issue, especially for large datasets.
-
 ## Cluster Deployment Mode
 
-- In this mode, the Spark driver program runs on one of the machines in the cluster.
+- In this mode, the Spark Driver program runs on one of the machines in the cluster.
 - The client submits the application to the cluster manager, which then allocates resources and runs the driver on one of the cluster nodes. 
 - The driver handles the scheduling of tasks and the coordination of the application, while the actual data processing occurs on the worker nodes. 
 - This mode is suitable for production environments and large-scale data processing tasks.
@@ -162,15 +184,17 @@ rdd1.saveAsTextFile("sparkOutput1")
 7. **Data Shuffling**: Redistributes data for wide transformations.
 8. **Result Collection**: Driver collects results from tasks.
 9. **Job Completion**: Job finishes, and resources are cleaned up.
-
-
 # Spark SQL
 
 # Catalyst Optimizer
 
-# DF
+- Optimizes query execution for DataFrames and SQL queries.
+- It enables efficient execution of data processing tasks
+- 
 
-- Data Frame
+# Data Frame
+
+- Data Frame are used for processing Structured data
 - `df.show()` : Shows top 20 records from the Data Frame
 - `df.show(n)` : Shows top `n` records from the Data Frame
 - `df.show(n, True/False)` : Shows top `n` records from the Data Frame and set truncated values `True/False`
@@ -220,7 +244,6 @@ df.printSchema()
 |  9|Ankita|  10|30000|Hyderabad|
 | 10|Vikram|  30|40000|     NULL|
 +---+------+----+-----+---------+
-
 
 # Output of df.printSchema()
 
@@ -345,7 +368,7 @@ df_res.show()
 +---+------+-----+-------+
 ```
 
-## Data Frame API Functionsy
+## Data Frame API Functions
 
 ```python
 from pyspark.sql import SparkSession  
@@ -1614,3 +1637,35 @@ dfu3.show()
 |  3| Meera| Delhi|2025-02-23|      NULL|           Y|
 +---+------+------+----------+----------+------------+
 ```
+
+#
+# RDD vs DataFrame
+
+- RDD is a low-level data structure, where as DataFrame is a higher-level abstraction that represents data in the form of columns.
+- RDD Provides a functional programming API, where as DF provides a SQL-like API and supports both functional and relational operations.
+- RDDs do not have a schema, where as DataFrames have a schema
+- RDDs are generally slower than DataFrames due to lack of optimization, where as DF's are faster due to the Catalyst Optimizer
+- RDDs are used for processing unstructured data where, as DFs are used for processing Structured data
+
+# Spark vs Map Reduce
+## Spark
+
+1. In-memory processing framework, allowing faster data processing.
+2. Faster than Map Reduce due to in-memory computation and optimized execution.
+3. Provides high-level APIs in multiple languages (Java, Scala, Python, R) and supports SQL queries, making it easier to use.
+4. Supports batch processing, stream processing, and interactive queries.
+5. Achieves fault tolerance through RDD lineage and data replication.
+6. Can run on various cluster managers (YARN, Kubernetes) and can also run standalone.
+### Map Reduce
+
+1. Disk-based processing framework, which can lead to slower performance
+2. Slower than Spark, due to its reliance on disk I/O.
+3. More complex to use, requiring more code and manage job configurations.
+4. Primarily designed for batch processing; does not support real-time data processing.
+5. Primarily runs on Hadoop clusters and is tightly integrated with the Hadoop ecosystem.
+# Questions
+
+- Spark vs Map Reduce
+- OLAP vs OLTP
+- Spark Architecture
+- RDD vs DataFrame

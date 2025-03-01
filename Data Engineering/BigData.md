@@ -14,7 +14,6 @@
 - Name / Primary Node -> Stores metadata of data
 - Data / Core Node -> Stores data
 - Follows, WORN -> Write Once Read N Times
-### 7th Dec
 
 ## HDFS Commands
 
