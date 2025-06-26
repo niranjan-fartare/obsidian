@@ -46,3 +46,20 @@
 - hdfs dfs -touchz file -> Create empty file in the Cluster
 - hadoop fs jar jar_file input output_folder(Create Automatically) -> Run Jar file which contains map reduce logic.
 
+# What are the challenges with Big data? How does Hadoop address them ?
+
+Big data presents several key challenges:
+
+- **Volume**: Overwhelming amounts of data make storage, processing, and analysis difficult
+- **Velocity**: Data generated at unprecedented speeds requires real-time processing
+- **Variety**: Multiple data formats (structured, semi-structured, unstructured) create integration challenges
+- **Veracity**: Variable data quality affects reliability and trustworthiness
+- **Value**: Extracting meaningful insights from massive datasets requires advanced analytics
+
+ How Hadoop Addresses These Challenges
+
+- **Scalable Architecture**: Hadoop's distributed design allows horizontal scaling by adding more nodes to handle increasing data volumes
+- **Efficient Storage**: The Hadoop Distributed File System (HDFS) stores large datasets across multiple machines, ensuring fault tolerance and high availability
+- **Parallel Processing**: MapReduce framework enables parallel data processing across clusters, accelerating analysis and handling high-velocity data
+- **Format Flexibility**: Processes various data types without requiring predefined schemas, accommodating diverse data sources
+- **Cost-Effective Solution**: Runs on commodity hardware, reducing storage and processing costs compared to traditional data warehousing

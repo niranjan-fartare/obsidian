@@ -2,7 +2,6 @@
 - SQL is a programming language that is used to manage relational databases.
 - SQL commands retrieve, create, update, and delete data from a database.
 - Other commands can be used to control and manage the database.
-
 # Table Of Contents
 
 - [Data](#data)
@@ -377,6 +376,10 @@ CREATE TABLE student (
 	name VARCHAR(100), 
 	PRIMARY KEY(roll, name)
 );
+
+-- Existing Table
+ALTER TABLE student  
+ADD CONSTRAINT PRIMARY KEY (roll);
 ```
 ## Foreign Key
 
@@ -390,8 +393,13 @@ CREATE TABLE enrollment (
     PRIMARY KEY (student_roll, course_id),
     FOREIGN KEY (student_roll) REFERENCES student(roll),
     FOREIGN KEY (course_id) REFERENCES course(course_id)
-	);
+);
 ```
+
+## Candidate Key
+
+- A candidate key is one of the keys which can be used as a Primary Key.
+- A table can have multiple Candidate Keys.
 ## Composite Key
 
 - A combination of two or more columns that uniquely identifies a record in a database table.

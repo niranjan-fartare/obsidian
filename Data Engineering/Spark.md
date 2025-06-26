@@ -3,7 +3,6 @@
 - Process structured, semi structured and unstructured data
 - Programming Module
 - Computation Framework
-
 # Components of Spark
 
 - Spark Core
@@ -20,7 +19,6 @@
 
 - It is the central control unit
 - It manages the overall workflow of a Spark job, communicating with the cluster manager, transforming user code into Spark jobs, and scheduling tasks to be executed on worker nodes.
-
 ## Cluster Manager
 
 - Allocates resources across the applications.
@@ -142,8 +140,8 @@ rdd1.saveAsTextFile("sparkOutput1")
 ## Client Deployment Mode 
 
 - In this mode, the Spark driver program runs on the client machine (the machine where the Spark application is submitted)
-- The client is responsible for the execution of the driver code, which includes the SparkContext and the logic for the application. 
-- The driver communicates with the cluster manager (like YARN) to request resources and schedule tasks. 
+- The client is responsible for the execution of the driver code, which includes the SparkContext and the logic for the application.
+- The driver communicates with the cluster manager (like YARN) to request resources and schedule tasks.
 - This mode is typically used for interactive applications or when the user wants to run Spark jobs from a local machine or a development environment.
 ### Advantages
 
@@ -156,10 +154,9 @@ rdd1.saveAsTextFile("sparkOutput1")
 ## Cluster Deployment Mode
 
 - In this mode, the Spark Driver program runs on one of the machines in the cluster.
-- The client submits the application to the cluster manager, which then allocates resources and runs the driver on one of the cluster nodes. 
-- The driver handles the scheduling of tasks and the coordination of the application, while the actual data processing occurs on the worker nodes. 
+- The client submits the application to the cluster manager, which then allocates resources and runs the driver on one of the cluster nodes.
+- The driver handles the scheduling of tasks and the coordination of the application, while the actual data processing occurs on the worker nodes.
 - This mode is suitable for production environments and large-scale data processing tasks.
-
 ### Advantages
 
 - Better resource utilization since the driver runs on a cluster node. 
@@ -1373,7 +1370,6 @@ spark.sparkContext.setLogLevel("DEBUG")
 - [Re-Partitioning](#re-partition-and-coalesce)
 - Salting
 - Adaptive Query Execution (AQE)
-
 ### Salting
 
 - Adding one extra 
@@ -1393,7 +1389,6 @@ df4=df3.withColumn("city",split(df3['city'],"_")[0])
 df5=df4.groupBy("city").sum("cnt")
 df5.show()
 ```
-
 
 # RDD to DF
 
@@ -1479,7 +1474,7 @@ df.show()
 
 # Historic Data
 
-# Delta
+# Delta Data
 
 Also knows as,
 - Daily Data
@@ -1521,48 +1516,39 @@ df_ini=spark.read.format("CSV").option("header","true").option("inferschema","tr
 df_ini.show()
 
 ###
-
 +---+------+------+
 |eid| ename|  city|
 +---+------+------+
 |  1| karan|  Pune|
 |  2|Rajesh|Mumbai|
 +---+------+------+
-
 ###
 
 df_ini1=df_ini.withColumn("start_date",date_sub(current_date(),1)).withColumn("end_date",lit('NA')).withColumn("current_flag",lit('Y'))
 df_ini1.show()
 
 ###
-
 +---+------+------+----------+--------+------------+
 |eid| ename|  city|start_date|end_date|current_flag|
 +---+------+------+----------+--------+------------+
 |  1| karan|  Pune|2025-02-22|      NA|           Y|
 |  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|
 +---+------+------+----------+--------+------------+
-
 ###
-
 
 df_upd=spark.read.format("CSV").option("header","true").option("inferschema","true").load("emp_upd.csv")
 df_upd.show()
 
 ###
-
 +---+-----+-----+
 |eid|ename| city|
 +---+-----+-----+
 |  1|karan|Surat|
 |  3|Meera|Delhi|
 +---+-----+-----+
-
 ###
-
 df_upd1=df_upd.withColumn("start_date",current_date()).withColumn("end_date",lit('NA')).withColumn("current_flag",lit('Y'))
 df_upd1.show()
-
 ###
 
 +---+-----+-----+----------+--------+------------+
@@ -1573,10 +1559,8 @@ df_upd1.show()
 +---+-----+-----+----------+--------+------------+
 
 ###
-
 dfu=df_ini1.union(df_upd1)
 dfu.show()
-
 #
 
 +---+------+------+----------+--------+------------+
@@ -1589,11 +1573,9 @@ dfu.show()
 +---+------+------+----------+--------+------------+
 
 ###
-
 win_spec=Window.partitionBy("eid").orderBy(desc("start_date"))
 dfu1=dfu.withColumn("rn",row_number().over(win_spec))
 dfu1.show()
-
 ###
 
 +---+------+------+----------+--------+------------+---+
@@ -1611,7 +1593,6 @@ dfu2=dfu1.withColumn("current_flag",when(dfu1['rn']>1,lit('N')).otherwise(dfu1['
 dfu2.show()
 
 ###
-
 +---+------+------+----------+--------+------------+---+
 |eid| ename|  city|start_date|end_date|current_flag| rn|
 +---+------+------+----------+--------+------------+---+
@@ -1620,14 +1601,12 @@ dfu2.show()
 |  2|Rajesh|Mumbai|2025-02-22|      NA|           Y|  1|
 |  3| Meera| Delhi|2025-02-23|      NA|           Y|  1|
 +---+------+------+----------+--------+------------+---+
-
 ###
 
 dfu3=dfu2.withColumn("end_date",lag("start_date",1,'NA').over(win_spec)).drop("rn")
 dfu3.show()
 
 ###
-
 +---+------+------+----------+----------+------------+
 |eid| ename|  city|start_date|  end_date|current_flag|
 +---+------+------+----------+----------+------------+
@@ -1645,7 +1624,7 @@ dfu3.show()
 - RDD Provides a functional programming API, where as DF provides a SQL-like API and supports both functional and relational operations.
 - RDDs do not have a schema, where as DataFrames have a schema
 - RDDs are generally slower than DataFrames due to lack of optimization, where as DF's are faster due to the Catalyst Optimizer
-- RDDs are used for processing unstructured data where, as DFs are used for processing Structured data
+- RDDs are used for processing unstructured data where as DF's are used for processing Structured data
 
 # Spark vs Map Reduce
 ## Spark
